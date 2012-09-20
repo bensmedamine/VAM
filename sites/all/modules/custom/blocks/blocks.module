@@ -17,6 +17,9 @@ function blocks_theme() {
     'footer' => array(
       'template' => 'themes/footer'
     ),
+    'txt_referencement' => array(
+      'template' => 'themes/txt_referencement'
+    ),
   );
 }
 
@@ -41,6 +44,10 @@ function blocks_block_info() {
     'info' => t('VAM Footer'),
      //'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['vam_referencement'] = array(
+    'info' => t('VAM texte Referencement bas page'),
+     //'cache' => DRUPAL_NO_CACHE,
+  );
   return $blocks;
 }
 
@@ -61,6 +68,9 @@ function blocks_block_view($block_name = '') {
       break;
     case 'vam_footer':
       $content = theme('footer');
+      break;
+    case 'vam_referencement':
+      $content = theme('txt_referencement');
       break;
   }
 

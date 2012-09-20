@@ -45,9 +45,8 @@
   <div id="vam-footer">
     <div class="centercolumn">
       <div id="copyright"><a href="/" title="Vacaumaroc.com">Vacaumaroc.com</a> © 2012.</div>
+      <?php print render($page['vam_txt_referencement']); ?>
 
-      <p style="font-size: 18px;">Vous cherchez une location de vacances au Maroc ?<br />
-      <span style="font-size: 15px;">Lorem ipsum dolor sit amet</span></p>
     </div>
 
   </div>
