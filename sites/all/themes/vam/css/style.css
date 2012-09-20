@@ -165,7 +165,7 @@ code {
 /*** CONTAINER ***/
 #top-container{ background:url(../images/bg-container-top.gif) repeat-x; border-top:6px solid #F24024; height:100%;;}
 #content-container{ margin-top:14px;}
-#bottom-container{background:url(../images/bg-copyright.gif) repeat-x bottom;}
+
 /*** END OF CONTAINER ***/
 
 /*** CENTERCOLUMN ***/
@@ -461,7 +461,7 @@ p:last-child { margin-bottom:0px!important;}
 #newsLetter .inputbox{ border:1px solid #dddddd; padding:8px; margin-right:0px; width:250px; }
 #newsLetter .button{ width:94px; padding:3px 0px; text-align:center; font-size:16px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; margin-left:175px!important;}
 
-#copyright{ height:40px; margin-top:31px; background-repeat:no-repeat; font-size:11px; padding-top:20px; }
+
 
 
 
@@ -582,3 +582,5 @@ tr.odd td {
 .locations-par-villes ul li{display: inline-block;}
 .locations-par-villes ul li a{font-size: 11px; margin-right: 20px !important; width: 115px;}
 .last-announcement h3 {text-align: justify; font-size: 18px;}
+#vam-footer{background:url(../images/bg-copyright.gif); margin-top: 30px; padding: 10px 0px;}
+#vam-footer p {margin: 10px 0;}
