@@ -3,35 +3,10 @@
   <div class="centercolumn">
     <div id="header">
       <div id="logo">
-        <a href="index.html"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/logo.png" alt="" /></a>
+        <a href="/"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/logo.png" alt="" /></a>
       </div><!-- end #logo -->
       <div id="navigation">
-        <ul id="nav" class="sf-menu">
-          <li><a href="index.html" class="current">Home</a></li>
-          <li><a href="about.html">About</a>
-            <ul>
-              <li><a href="styling.html">HTML Styling</a></li>
-              <li><a href="column.html">Column Layouts</a></li>
-              <li><a href="#">Example Dropdown</a>
-                <ul>
-                  <li><a href="#">More Menu</a></li>
-                  <li><a href="#">More Menu</a></li>
-                  <li><a href="#">More Menu</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="#">Property</a>
-            <ul>
-              <li><a href="property-list.html">Property List</a></li>
-              <li><a href="property-grid.html">Property Grid</a></li>
-              <li><a href="property-details.html">Property Details</a></li>
-            </ul>
-          </li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+        <?php print render($page['menu']); ?>
       </div><!-- end #navigation-->
       <div class="clr"></div>
     </div><!-- end #header -->
@@ -40,72 +15,14 @@
 
 
 <div class="centercolumn">
-  <!-- BEGIN SLIDE -->
-  <div id="slider_container">
-    <div id="slideshow_navigation">
-      <div id="pager"></div>
-    </div><!-- end slideshow navigation -->
-    <div id="slideshow">  
-      <div class="cycle">
-        <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/slider1.jpg" alt="" />
-        <div class="farme-slide-text">
-          <ul class="slide-text">
-            <li><span class="left">Property Type:</span>	Modern Home</li>
-            <li><span class="left">Address:</span>	Woodland Park, NJ 75412</li>
-            <li><span class="left">House Size:</span>	1,715 Sq Ft</li>
-            <li><span class="left">Year Built:</span>	2011</li>
-            <li><span class="left">Baths:</span>	3 Bath</li>
-            <li><span class="left">Beds:</span>	2 Bed</li>
-          </ul>
-          <div class="frame-price">
-            <div class="slider-button"><a href="#">more info</a></div>
-            <div class="slider-price">$ 2,200,000</div>
-          </div>
-        </div>
-      </div><!-- end cycle -->
-      <div class="cycle">
-        <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/slider2.jpg" alt="" />
-        <div class="farme-slide-text">
-          <ul class="slide-text">
-            <li><span class="left">Property Type:</span>	Modern Home</li>
-            <li><span class="left">Address:</span>	Woodland Park, NJ 75412</li>
-            <li><span class="left">House Size:</span>	1,715 Sq Ft</li>
-            <li><span class="left">Year Built:</span>	2011</li>
-            <li><span class="left">Baths:</span>	3 Bath</li>
-            <li><span class="left">Beds:</span>	2 Bed</li>
-          </ul>
-          <div class="frame-price">
-            <div class="slider-button"><a href="#">more info</a></div>
-            <div class="slider-price">$ 1,200,000</div>
-          </div>
-        </div>
-      </div><!-- end cycle -->
-      <div class="cycle">
-        <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/slider3.jpg" alt="" />
-        <div class="farme-slide-text">
-          <ul class="slide-text">
-            <li><span class="left">Property Type:</span>	Modern Home</li>
-            <li><span class="left">Address:</span>	Woodland Park, NJ 75412</li>
-            <li><span class="left">House Size:</span>	1,715 Sq Ft</li>
-            <li><span class="left">Year Built:</span>	2011</li>
-            <li><span class="left">Baths:</span>	3 Bath</li>
-            <li><span class="left">Beds:</span>	2 Bed</li>
-          </ul>
-          <div class="frame-price">
-            <div class="slider-button"><a href="#">more info</a></div>
-            <div class="slider-price">$ 2,800,000</div>
-          </div>
-        </div>
-      </div><!-- end cycle -->
-    </div><!-- end #slideshow -->
-  </div><!-- end #slide -->
-  <!-- END OF SLIDE -->
+
+  <?php print render($page['villes_slider']); ?>
 
   <div id="maincontent">
     <div id="content" class="full">
       <ul class="three_column">
         <li>
-          <h2 class="underline">Creative <span class="blue">Solutions</span></h2>
+          <h2 class="underline"><span class="blue">Rentabilisez</span> votre bien !</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis ligula velit. Etiam odio quam, lobortis eget porttitor nec, congue in lacus. In venenatis neque a eros laoreet eu placerat erat suscipit. Fusce cursus, erat ut scelerisque condimentum, quam odio ultrices leo. </p>
         </li>
         <li>

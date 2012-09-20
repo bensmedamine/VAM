@@ -176,127 +176,127 @@ code {
 #header{width:960px; height:74px; margin-bottom:44px;}
 
 #logo{float:left}
-#logo img{ margin-top:15px;}
+#logo img{ margin-top:5px;}
 
 /*** NAVIGATION ***/
 #navigation { margin:0px;  position:relative; z-index:200;}
-#nav{margin:0px 0px 0px 0px; padding:0px; list-style-type:none;  float:right;  position:relative; }
-#nav li a.current {color:#fff; background:#F24024; text-decoration:none}
+#navigation ul.menu{margin:0px 0px 0px 0px; padding:0px; list-style-type:none;  float:right;  position:relative; }
+#navigation ul.menu li a.active {color:#fff; background:#F24024; text-decoration:none}
 
-.sf-menu a:hover{ color:#fff; background:#F24024; }
+.menu a:hover{ color:#fff; background:#F24024; }
 .sfHover a {color:#fff;}
-.sf-menu ul li.sfHover > a { color:#171717; }
-.sf-menu a {
+.menu ul li.sfHover > a { color:#171717; }
+.menu a {
 	color:#171717; text-decoration:none!important;
 }
-.sf-menu li li {
+.menu li li {
 	border-bottom:1px solid #e2e2e2; 
 }
-.sf-menu ul a {
+.menu ul a {
 	background:#f4f4f4;
 }
-.sf-menu li li:last-child {
+.menu li li:last-child {
 	border-bottom:1px solid #e2e2e2;
 }
-.sfHover, .sf-menu li ul {
+.sfHover, .menu li ul {
 	background:#F24024;
 }
-.sf-menu ul a:hover {
+.menu ul a:hover {
 	background:#f4f4f4;
 }
-.sf-menu li li {
+.menu li li {
 	background:#f4f4f4;
 	border-left:1px solid #e2e2e2;
 	border-right:1px solid #e2e2e2;
 }
-.sf-menu li li:first-child {
+.menu li li:first-child {
 	border-top:0px solid #e2e2e2;
 }
-.sf-menu li li li:first-child {
+.menu li li li:first-child {
 	border-top:1px solid #e2e2e2;
 }
 
 
 /* Drop down menu */
-.sf-menu, .sf-menu * {
+.menu, .menu * {
 	margin:			0;
 	padding:		0;
 	list-style:		none;
 	font-size:15px;
 	
 }
-.sf-menu {
+.menu {
 	line-height:100%;
 	position:absolute;
 	right:0;
 	bottom:0;
 	float:left;
 }
-.sf-menu ul {
+.menu ul {
 	position:		absolute;
 	top:			-999em;
 	width:			20em; /* left offset of submenus need to match (see below) */
 }
-.sf-menu ul li {
+.menu ul li {
 	width:			100%;
 }
-.sf-menu li:hover {
+.menu li:hover {
 	visibility:		inherit; /* fixes IE7 'sticky bug' */
 }
-.sf-menu li {
+.menu li {
 	float:			left;
 	position:		relative;
 	margin:0px 5px;
 }
 
-.sf-menu li li{margin:0px 0px;}
+.menu li li{margin:0px 0px;}
 
-.sf-menu a {
+.menu a {
 	display:		block;
 	position:		relative;
 	padding: 		30px 20px 12px 20px!important;
 	text-decoration:none;
 	font-weight:normal;
 }
-.sf-menu li:hover ul,
-.sf-menu li.sfHover ul {
+.menu li:hover ul,
+.menu li.sfHover ul {
 	left:			0;
 	top:			4.5em; /* match top ul list item height */
 	z-index:		99;
 
 }
-ul.sf-menu li:hover li ul,
-ul.sf-menu li.sfHover li ul {
+ul.menu li:hover li ul,
+ul.menu li.sfHover li ul {
 	top:			-999em;
 }
-ul.sf-menu li li:hover ul,
-ul.sf-menu li li.sfHover ul {
+ul.menu li li:hover ul,
+ul.menu li li.sfHover ul {
 	left:			10em; /* match ul width */
 	top:			-1px;
 	margin-left:	0px;
 }
-ul.sf-menu li li:hover li ul,
-ul.sf-menu li li.sfHover li ul {
+ul.menu li li:hover li ul,
+ul.menu li li.sfHover li ul {
 	top:			-999em;
 	
 }
-ul.sf-menu li li li:hover ul,
-ul.sf-menu li li li.sfHover ul {
+ul.menu li li li:hover ul,
+ul.menu li li li.sfHover ul {
 	left:			10em; /* match ul width */
 	top:			-1px;
 	
 }
-.sf-menu ul li a{
+.menu ul li a{
 	font-size:12px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	padding:10px 15px 10px 15px!important;
 	color:#171717;
 }
-.sf-menu ul li a:hover{ color:#F24024!important;}
-.sf-menu li ul {
+.menu ul li a:hover{ color:#F24024!important;}
+.menu li ul {
 	padding:0px;
 }
-.sf-menu a.sf-with-ul {
+.menu a.sf-with-ul {
 	padding-right: 	0px;
 	min-width:		1px; /* trigger IE7 hasLayout so spans position accurately */
 }
@@ -354,12 +354,13 @@ ul.sf-menu li li li.sfHover ul {
 /* text slider */
 .farme-slide-text{ float:right; width:340px; padding:29px 51px;}
 ul.slide-text{ margin:0px; padding:0px;}
-ul.slide-text li{ text-align:right!important; clear:both; border-bottom:1px solid #e9e8e8; padding:9px 0px; font-size:11px;  color:#7e7e7e; list-style-type:none;}
+ul.slide-text li{ text-align:right!important; clear:both; border-bottom:1px solid #e9e8e8; margin-bottom: 10px; font-size:11px;  color:#7e7e7e; list-style-type:none;}
 .farme-slide-text .left{ float:left; color:#171717;}
 
 .frame-price{ margin-top:21px;}
-.slider-button a{ background:#F24024; font-size:16px; line-height:30px; color:#fff; width:92px; height:31px; text-align:center; float:left; text-decoration:none;}
-.slider-price{ font-size:32px; color:#171717; float:right;}
+.slider-button a{ background:#F24024; font-size:16px; line-height:30px; color:#fff; width:100%; height:31px; text-align:center; float:left; text-decoration:none;}
+.slider-city{ font-size:32px; color:#171717; margin-bottom: 15px;}
+.slider-city span{font-size: 15px; color: #7E7E7E;}
 
 /* END SLIDER */
 
@@ -398,10 +399,10 @@ ul.disc li{
 .sidebar .widget-title{font-size:26px; line-height:26px; margin-bottom:10px; border-bottom:1px solid #d8d8d8; padding-bottom:5px;}
 .sidebar ul{list-style-type:none; padding:0 ; margin:0; list-style-position:outside}
 .sidebar ul li{list-style-type:none; padding:0 ; margin:0; font-size:11px;}
-.sidebar ul li li{background:url(../images/arrow.png) no-repeat 0 6px; padding:0 0 5px 15px; }
-.sidebar ul li li{display:inline-block; zoom:1; *display:inline; vertical-align:top;  width:115px; margin-right:18px;}
-.sidebar ul li a, .sidebar ul li a:visited, .widget-container ul li a{color:#7e7e7e; font-size:11px; }
-.sidebar ul li a:hover, .widget-container ul li a:hover{color:#9e9d9d; text-decoration:none;}
+.sidebar ul li li, .slide-text li.arrow{background:url(../images/arrow.png) no-repeat 0 6px; padding:0 0 5px 15px; }
+.sidebar ul li li{display:inline-block; zoom:1; display:inline; vertical-align:top;  width:115px; margin-right:18px;}
+.sidebar ul li a, .sidebar ul li a:visited, .widget-container ul li a, .slide-text li.arrow a{color:#7e7e7e; font-size:12px; }
+.sidebar ul li a:hover, .widget-container ul li a:hover, .slide-text li.arrow a:hover{color:#9e9d9d; text-decoration:none;}
 
 .widget-container{margin-bottom:40px !important;}
 

@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function blocks_theme() {
+  return array(
+    'villes_slider' => array(
+      'template' => 'themes/villes_slider'
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function blocks_block_info() {
+  $blocks = array();
+  $blocks['vam_villes_slider'] = array(
+    'info' => t('VAM Villes slider'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function blocks_block_view($block_name = '') {
+
+  switch ($block_name) {
+    case 'vam_villes_slider':
+      $content = theme('villes_slider');
+      break;
+  }
+
+  $block = array(
+    'subject' => null,
+    'content' => $content,
+  );
+
+  return $block;
+}
+
+?>
