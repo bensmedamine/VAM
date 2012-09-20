@@ -576,3 +576,8 @@ tr.odd td {
 }
 
 #content #wrapper #image img{border-width:0px !important;}
+
+/** CUSTOM **/
+.font-size-12 p {font-size: 12px;}
+.locations-par-villes ul li{display: inline-block;}
+.locations-par-villes ul li a{font-size: 11px; margin-right: 20px !important; width: 115px;}

@@ -21,3 +21,6 @@ regions[content] = Contenu
 
 regions[menu] = Menu principal
 regions[villes_slider] = Villes Slider
+regions[accroches] = Accroches
+regions[last_announcements] = Last announcements
+regions[vam_footer] = VAM Footer

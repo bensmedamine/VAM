@@ -8,6 +8,15 @@ function blocks_theme() {
     'villes_slider' => array(
       'template' => 'themes/villes_slider'
     ),
+    'accroches' => array(
+      'template' => 'themes/accroches'
+    ),
+    'last_announcements' => array(
+      'template' => 'themes/last_announcements'
+    ),
+    'footer' => array(
+      'template' => 'themes/footer'
+    ),
   );
 }
 
@@ -18,7 +27,19 @@ function blocks_block_info() {
   $blocks = array();
   $blocks['vam_villes_slider'] = array(
     'info' => t('VAM Villes slider'),
-    'cache' => DRUPAL_NO_CACHE,
+     'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['vam_accroches'] = array(
+    'info' => t('VAM Accroches'),
+      //'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['vam_last_announcements'] = array(
+    'info' => t('VAM Last announcements'),
+     'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['vam_footer'] = array(
+    'info' => t('VAM Footer'),
+     //'cache' => DRUPAL_NO_CACHE,
   );
   return $blocks;
 }
@@ -31,6 +52,15 @@ function blocks_block_view($block_name = '') {
   switch ($block_name) {
     case 'vam_villes_slider':
       $content = theme('villes_slider');
+      break;
+    case 'vam_accroches':
+      $content = theme('accroches');
+      break;
+    case 'vam_last_announcements':
+      $content = theme('last_announcements');
+      break;
+    case 'vam_footer':
+      $content = theme('footer');
       break;
   }
 
