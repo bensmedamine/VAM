@@ -3,7 +3,7 @@
   <div class="centercolumn">
     <div id="header">
       <div id="logo">
-        <a href="/"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/logo.png" alt="" /></a>
+        <h1><a href="/"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/logo.png" alt="Locations vacances au Maroc" /></a></h1>
       </div><!-- end #logo -->
       <div id="navigation">
         <?php print render($page['menu']); ?>
@@ -37,9 +37,12 @@
   <div class="centercolumn">
 
     <?php print render($page['vam_footer']); ?>
-    
+
     <div class="clear"></div>
-    <div id="copyright">Copyright © 2011 <a href="#">Light House</a>. All Rights Reserved</div>
+    <div id="copyright">Vacaumaroc.com © 2012
+
+      <p>Vous cherchez une location de vacances au Maroc ?</p>
+    </div>
 
     <div class="clear"></div>
   </div><!-- end #centercolumn -->

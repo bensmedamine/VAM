@@ -45,6 +45,7 @@
 
   </div><!-- end #footer-left -->
   <div id="footer-right">
+    <h2>Suivez-nous sur facebook</h2>
     <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/300x250.gif" alt="" />
     <h2>NewsLetter</h2>
     <form method="get" action="" id="newsLetter" />
