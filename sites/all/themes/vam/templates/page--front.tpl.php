@@ -46,8 +46,8 @@
     <div class="centercolumn">
       <div id="copyright"><a href="/" title="Vacaumaroc.com">Vacaumaroc.com</a> © 2012.</div>
 
-      <p style="font-size: 18px;">Vous cherchez une location de vacances au Maroc ?</p>
-      <p style="font-size: 15px;">Lorem ipsum dolor sit amet</p>
+      <p style="font-size: 18px;">Vous cherchez une location de vacances au Maroc ?<br />
+      <span style="font-size: 15px;">Lorem ipsum dolor sit amet</span></p>
     </div>
 
   </div>

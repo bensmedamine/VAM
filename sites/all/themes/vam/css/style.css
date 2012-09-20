@@ -579,8 +579,8 @@ tr.odd td {
 
 /** CUSTOM **/
 .font-size-12 p {font-size: 12px;}
-.locations-par-villes ul li{display: inline-block;}
+.locations-par-villes ul li{display: inline-block; margin-right: 20px !important;}
 .locations-par-villes ul li a{font-size: 11px; margin-right: 20px !important; width: 115px;}
 .last-announcement h3 {text-align: justify; font-size: 18px;}
 #vam-footer{background:url(../images/bg-copyright.gif); margin-top: 30px; padding: 10px 0px;}
-#vam-footer p {margin: 10px 0;}
+#vam-footer p {line-height: 20px; margin: 10px 0;}
