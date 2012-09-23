@@ -13,4 +13,32 @@ function vam_css_alter(&$css) {
   $css = array_diff_key($css, $exclude);
 }
 
+function vam_breadcrumb($variables) {
+  $breadcrumb = $variables['breadcrumb'];
+
+  // Adding the title of the current page to the breadcrumb.
+//  if (arg(0) == 'node') {
+//    $breadcrumb[] = drupal_get_title();
+//  }
+  if (empty($breadcrumb[1])) {
+    $breadcrumb[] = drupal_get_title();
+  }
+
+  if (!empty($breadcrumb)) {
+    // Provide a navigational heading to give context for breadcrumb links to
+    // screen-reader users. Make the heading invisible with .element-invisible.
+    $last = array_pop($breadcrumb);
+    $output = 'Vous êtes ici : ';
+    if (!empty($breadcrumb)) {
+      $output .= implode(" » ", $breadcrumb);
+      $output .= '<span class="last">  » ' . $last . "</span>";
+    }
+    else {
+      $output .= '<span class="last">' . $last . "</span>";
+    }
+
+    return $output;
+  }
+}
+
 ?>

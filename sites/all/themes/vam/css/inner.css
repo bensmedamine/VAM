@@ -9,8 +9,6 @@ USE THIS STYLE SHEET FOR INNER PAGE
 #before-content{ background:url(../images/bg-shadow.gif) bottom #f4f4f4 no-repeat;  display:block; padding:19px 20px 30px 20px; margin-bottom:28px;}
 #before-content h2{ font-size:22px; color:#14bbea; border-bottom:1px solid #d8d8d8; padding-bottom:5px;}
 
-#breadcrumb{padding-bottom:22px; font-size:11px; color:#818181}
-
 /* Pagenavi */
 #pagenavi{vertical-align:middle; clear:both; margin-top:0px; text-align:right; color:#14bbea;}
 #pagenavi a{
@@ -45,8 +43,10 @@ USE THIS STYLE SHEET FOR INNER PAGE
 .list_img{ width:131px; float:left; padding-top:2px;}
 .list_text{ width:420px; margin-left:10px; float:left;}
 .title_property2{border-bottom:1px solid #d8d8d8; padding-bottom:3px; margin-bottom:20px; float:left; width:570px;}
-.title_property2 h2{ font-size:12px; float:left; margin:0px; }
+.title_property2 h2{ font-size:16px; float:left; margin:0px; }
+.title_property2 h2 a {color: #272727;}
 .title_property2 .star{ float:right; background:url(../images/icon-star.png) no-repeat 0 7px; padding-left:18px; padding-top:5px;}
+.title_property2 .timer{ float:right; background:url(../images/timer.png) no-repeat 0 4px; padding-left:19px; padding-top:5px;}
 
 /* Property Detail */
 #property-detail ul.box_text{ margin:0px!important; padding:0px!important;  }

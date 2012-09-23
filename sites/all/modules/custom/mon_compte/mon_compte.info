@@ -1,0 +1,5 @@
+name = VAM Mon compte
+description = VAM User account manager
+package = VAM
+core = 7.x
+version = 7.x-1.0

@@ -5,10 +5,11 @@
         <li class="widget-container">
           <h2 class="widget-title">Plan du site</h2>
           <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Locations vacances</a></li>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/locations-vacances">Locations vacances</a></li>
             <li><a href="#">Déposer une annonce</a></li>
-            <li><a href="#">Mon compte</a></li>
+            <li><a href="#">Inscription</a></li>
+            <li><a href="/mon-compte">Mon compte</a></li>
             <li><a href="#">Contactez-nous</a></li>
           </ul>
         </li>

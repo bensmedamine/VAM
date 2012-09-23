@@ -35,22 +35,17 @@
 
 <div id="bottom-container">
   <div class="centercolumn">
-
     <?php print render($page['vam_footer']); ?>
   </div><!-- end #centercolumn -->
 
   <div class="clear"></div>
 
-
   <div id="vam-footer">
     <div class="centercolumn">
       <div id="copyright"><a href="/" title="Vacaumaroc.com">Vacaumaroc.com</a> © 2012.</div>
       <?php print render($page['vam_txt_referencement']); ?>
-
     </div>
-
   </div>
-
 
 </div><!-- end #bottom-container -->
 

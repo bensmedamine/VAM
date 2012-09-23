@@ -37,7 +37,7 @@ hr {
 	background-color:#cdcdcd;
 	background-repeat:repeat-x
 }
-input[type=text], textarea
+input[type=text], textarea, input[type=password]
 {
 	border:solid 1px #e7e7e7;
 	margin:4px 4px 8px 0px; 
@@ -400,9 +400,10 @@ ul.disc li{
 .sidebar ul{list-style-type:none; padding:0 ; margin:0; list-style-position:outside}
 .sidebar ul li{list-style-type:none; padding:0 ; margin:0; font-size:11px;}
 .sidebar ul li li, .slide-text li.arrow{background:url(../images/arrow.png) no-repeat 0 6px; padding:0 0 5px 15px; }
-.sidebar ul li li{display:inline-block; zoom:1; display:inline; vertical-align:top;  width:115px; margin-right:18px;}
+.sidebar ul li li{display:inline-block !important; zoom:1; display:inline; vertical-align:top; width:115px; margin-right:18px;}
 .sidebar ul li a, .sidebar ul li a:visited, .widget-container ul li a, .slide-text li.arrow a{color:#7e7e7e; font-size:12px; }
 .sidebar ul li a:hover, .widget-container ul li a:hover, .slide-text li.arrow a:hover{color:#9e9d9d; text-decoration:none;}
+.sidebar a {font-size:11px !important;}
 
 .widget-container{margin-bottom:40px !important;}
 
@@ -579,8 +580,17 @@ tr.odd td {
 
 /** CUSTOM **/
 .font-size-12 p {font-size: 12px;}
-.locations-par-villes ul li{display: inline-block; margin-right: 20px !important;}
+.locations-par-villes ul li{background: url("../images/dot.png") no-repeat scroll left 7px transparent !important; display: inline-block; margin-right: 25px !important; padding: 0 0 7px 15px !important;}
 .locations-par-villes ul li a{font-size: 11px; margin-right: 20px !important; width: 115px;}
 .last-announcement h3 {text-align: justify; font-size: 18px;}
 #vam-footer{background:url(../images/bg-copyright.gif); margin-top: 30px; padding: 10px 0px;}
 #vam-footer p {line-height: 20px; margin: 10px 0;}
+.normal {margin: 10px 0;}
+#breadcrumb{margin-bottom: 10px; font-size: 12px;}
+
+/** Forms **/
+.form-required{color: #F24024;}
+.form-item label{display: inline-block; width: 150px;}
+.form-item input, .form-item textarea {background: none repeat scroll 0 0 #F6F6F6; border: 1px solid #DCDCDC; font-family: inherit;}
+.form-item .description{text-align: justify; margin-bottom: 15px;}
+.form-actions input[type=submit]{ padding:3px 10px; text-align:center; font-size:16px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; font-family: inherit; font-size: 13px;}

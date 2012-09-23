@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ * @author BENSLIMANE Med Amine
+ * @param array $form Form array
+ * @param array $form_state Form values array
+ * @param string $form_id Form ID
+ */
+function mon_compte_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  switch ($form_id) {
+    case 'user_login' :
+
+      unset($form['name']['#description']);
+      unset($form['pass']['#description']);
+      $form['name']['#title'] = 'E-mail';
+      $form['actions']['#suffix'] = '<p class="normal">' . l('&rarr; Créer un nouveau compte', 'inscription', array('html' => TRUE)) . '</p>';
+      $form['actions']['#suffix'] .= '<p class="normal">' . l('&rarr; Vous avez oublié votre mot de passe ?', 'user/password', array('html' => TRUE)) . '</p>';
+
+      break;
+    case 'user_pass' :
+
+      $form['name']['#title'] = 'E-mail';
+      $form['name']['#description'] = 'Vous avez perdu votre mot de passe? Il vous suffit de saisir votre adresse e-mail d\'inscription. Vous recevrez un e-mail contenant un lien vous permettant de changer votre mot de passe.';
+
+      break;
+  }
+}
+
+?>

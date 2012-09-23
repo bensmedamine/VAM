@@ -1,0 +1,5 @@
+name = VAM Announcement Module
+description = Announcement Module
+package = VAM
+core = 7.x
+version = 7.x-1.x
