@@ -20,6 +20,12 @@ function blocks_theme() {
     'txt_referencement' => array(
       'template' => 'themes/txt_referencement'
     ),
+    'sidebar_filters' => array(
+      'template' => 'themes/sidebar_filters'
+    ),
+    'sidebar_pub' => array(
+      'template' => 'themes/sidebar_pub'
+    ),
   );
 }
 
@@ -48,6 +54,14 @@ function blocks_block_info() {
     'info' => t('VAM texte Referencement bas page'),
      //'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['vam_sidebar_filters'] = array(
+    'info' => t('VAM Les filters du sidebar'),
+     'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['vam_sidebar_pub'] = array(
+    'info' => t('VAM Sidebar pub 300x250'),
+     //'cache' => DRUPAL_NO_CACHE,
+  );
   return $blocks;
 }
 
@@ -71,6 +85,12 @@ function blocks_block_view($block_name = '') {
       break;
     case 'vam_referencement':
       $content = theme('txt_referencement');
+      break;
+    case 'vam_sidebar_filters':
+      $content = theme('sidebar_filters');
+      break;
+    case 'vam_sidebar_pub':
+      $content = theme('sidebar_pub');
       break;
   }
 

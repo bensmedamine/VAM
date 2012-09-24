@@ -25,3 +25,4 @@ regions[accroches] = Accroches
 regions[last_announcements] = Last announcements
 regions[vam_footer] = VAM Footer
 regions[vam_txt_referencement] = VAM texte Referencement bas page
+regions[vam_sidebar] = VAM Sidebar

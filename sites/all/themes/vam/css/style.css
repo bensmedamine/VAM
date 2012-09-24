@@ -587,6 +587,7 @@ tr.odd td {
 #vam-footer p {line-height: 20px; margin: 10px 0;}
 .normal {margin: 10px 0;}
 #breadcrumb{margin-bottom: 10px; font-size: 12px;}
+.fs-18 {font-size: 18px;}
 
 /** Forms **/
 .form-required{color: #F24024;}

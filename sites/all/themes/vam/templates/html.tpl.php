@@ -45,6 +45,11 @@
 
   <head profile="<?php print $grddl_profile; ?>">
     <?php print $head; ?>
+    <?php if($is_front): ?>
+    <?php //Le module Metatag doit être installé et les champs (title, description et keywords) doivent être renseignés ! ?>
+      <?php print (render($metatags['description']['#attached'])); ?>
+      <?php print (render($metatags['keywords']['#attached'])); ?>
+    <?php endif; ?>
     <title><?php print $head_title; ?></title>
     <?php print $styles; ?>
     <?php print $scripts; ?>

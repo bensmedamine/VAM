@@ -24,16 +24,14 @@ function annonces_theme() {
   );
 }
 
-
-
 function locations_vacances() {
-  
+  global $theme_path;
+
   $breadcrumb = drupal_get_breadcrumb();
   $breadcrumb[] = 'Locations vacances';
   drupal_set_breadcrumb($breadcrumb);
-  
 
-  drupal_add_css(drupal_get_path('theme', 'vam').'/css/inner.css');
+  drupal_add_css($theme_path . '/css/inner.css');
   return theme('listing_annonces', array());
 }
 

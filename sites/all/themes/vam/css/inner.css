@@ -10,9 +10,8 @@ USE THIS STYLE SHEET FOR INNER PAGE
 #before-content h2{ font-size:22px; color:#14bbea; border-bottom:1px solid #d8d8d8; padding-bottom:5px;}
 
 /* Pagenavi */
-#pagenavi{vertical-align:middle; clear:both; margin-top:0px; text-align:right; color:#14bbea;}
+#pagenavi{vertical-align:middle; clear:both; margin-top:0px; text-align:right;}
 #pagenavi a{
-	color:#14bbea;
 	padding:5px 5px;
 }
 #pagenavi a:hover{color:#14bbea; }

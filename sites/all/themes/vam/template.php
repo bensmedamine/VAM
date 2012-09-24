@@ -41,4 +41,13 @@ function vam_breadcrumb($variables) {
   }
 }
 
+function vam_preprocess_html(&$vars) {
+  if ($vars['is_front']) {
+    //Le module Metatag doit être installé et les champs (title, description et keywords) doivent être renseignés !
+    $vars['head_title'] = $vars['page']['content']['metatags']['global:frontpage']['title']['#attached']['metatag_set_preprocess_variable'][1][2]['title'];
+    unset($vars['page']['content']['metatags']['global:frontpage']['title']);
+    $vars['metatags'] = $vars['page']['content']['metatags']['global:frontpage'];
+  }
+}
+
 ?>
