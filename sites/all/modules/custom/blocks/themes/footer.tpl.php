@@ -48,7 +48,7 @@
   <div id="footer-right">
     <h2>Suivez-nous sur facebook</h2>
     <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/300x250.gif" alt="" />
-    <h2>NewsLetter</h2>
+    <h2>Restez informer sur les nouvelles locations<br /> vacances au Maroc. <span class="blue">Inscription gratuite</span></h2>
     <form method="get" action="" id="newsLetter" />
     <div><input type="text" class="inputbox" value="Saisissez votre adresse mail..." onblur="if (this.value == ''){this.value = 'Saisissez votre adresse mail...'; }" onfocus="if (this.value == 'Saisissez votre adresse mail...') {this.value = ''; }" /><br />
       <input type="submit" name="submit" class="button" value="Inscription" /></div>
