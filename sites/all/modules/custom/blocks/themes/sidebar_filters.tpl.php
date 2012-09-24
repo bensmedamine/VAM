@@ -24,7 +24,7 @@
 </li>
 
 <li class="widget-container widget_categories">
-  <h2 class="widget-title">Par type du bien</h2>
+  <h2 class="widget-title">Par type de bien</h2>
   <ul>
     <li><a href="#">Single Family Home</a></li>
     <li><a href="#">Commercial </a></li>
