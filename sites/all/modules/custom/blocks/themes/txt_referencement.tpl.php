@@ -1,2 +1,2 @@
 <p style="font-size: 18px;">Vous cherchez une location de vacances au Maroc ?<br />
-  <span style="font-size: 15px;">Lorem ipsum dolor sit amet</span></p>
+  <span style="font-size: 14px; text-align: justify;">vacaumaroc.com vous aide à trouver votre location de vacances dans votre ville de destination et avec les caractéristiques de votre choix grâce à notre catalogue <a href="#">Locations vacances au Maroc</a> et à nos filtres de recherche très optimisées <a href="#">Locations vacances Marrakech</a></span></p>

@@ -106,7 +106,7 @@
   <div id="maincontent">
     <div id="content">
       
-      <?php if (arg(0) != 'locations-vacances'): ?>
+      <?php if (arg(0) != 'locations-vacances-maroc'): ?>
         <h2 class="underline"><?php print $title; ?></h2>
       <?php endif; ?>
 

@@ -5,12 +5,12 @@
         <li class="widget-container">
           <h2 class="widget-title">Plan du site</h2>
           <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/locations-vacances">Locations vacances</a></li>
-            <li><a href="#">Déposer une annonce</a></li>
-            <li><a href="#">Inscription</a></li>
-            <li><a href="/mon-compte">Mon compte</a></li>
-            <li><a href="#">Contactez-nous</a></li>
+            <li><a href="/" title="Accueil">Accueil</a></li>
+            <li><a href="/locations-vacances-maroc" title="Locations vacances au Maroc">Locations vacances</a></li>
+            <li><a href="/deposer-une-annonce" title="Déposer une annonce">Déposer une annonce</a></li>
+            <li><a href="/inscription" title="Inscription">Inscription</a></li>
+            <li><a href="/mon-compte" title="Mon compte">Mon compte</a></li>
+            <li><a href="#" title="Contactez-nous">Contactez-nous</a></li>
           </ul>
         </li>
       </ul>
@@ -48,7 +48,7 @@
   <div id="footer-right">
     <h2>Suivez-nous sur facebook</h2>
     <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/300x250.gif" alt="" />
-    <h2>Restez informer sur les nouvelles locations<br /> vacances au Maroc. <span class="blue">Inscription gratuite</span></h2>
+    <h2>Restez informer sur les nouvelles locations<br /> vacances au Maroc. <span class="blue">Inscription gratuite !</span></h2>
     <form method="get" action="" id="newsLetter" />
     <div><input type="text" class="inputbox" value="Saisissez votre adresse mail..." onblur="if (this.value == ''){this.value = 'Saisissez votre adresse mail...'; }" onfocus="if (this.value == 'Saisissez votre adresse mail...') {this.value = ''; }" /><br />
       <input type="submit" name="submit" class="button" value="Inscription" /></div>

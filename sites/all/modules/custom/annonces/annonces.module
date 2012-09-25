@@ -4,9 +4,14 @@
  * Implements hook_menu().
  */
 function annonces_menu() {
-  $items['locations-vacances'] = array(
+  $items['locations-vacances-maroc'] = array(
     'title' => 'Locations vacances au Maroc',
     'page callback' => 'locations_vacances',
+    'access callback' => TRUE,
+  );
+  $items['deposer-une-annonce'] = array(
+    'title' => 'Déposer une annonce',
+    'page callback' => 'deposer_annonce',
     'access callback' => TRUE,
   );
 
@@ -21,6 +26,9 @@ function annonces_theme() {
     'listing_annonces' => array(
       'template' => 'themes/listing_annonces'
     ),
+    'deposer_annonce' => array(
+      'template' => 'themes/deposer_annonce'
+    ),
   );
 }
 
@@ -28,11 +36,16 @@ function locations_vacances() {
   global $theme_path;
 
   $breadcrumb = drupal_get_breadcrumb();
-  $breadcrumb[] = 'Locations vacances';
+  $breadcrumb[] = 'Locations vacances au Maroc';
   drupal_set_breadcrumb($breadcrumb);
 
   drupal_add_css($theme_path . '/css/inner.css');
   return theme('listing_annonces', array());
+}
+
+function deposer_annonce() {
+  
+  return theme('deposer_annonce');
 }
 
 ?>

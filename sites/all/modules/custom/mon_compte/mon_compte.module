@@ -9,8 +9,25 @@ function mon_compte_menu() {
     'page callback' => 'inscription',
     'access callback' => TRUE,
   );
+  
+  $items['annonces-manager'] = array(
+    'title' => 'Annonces manager',
+    'page callback' => 'annonces_manager',
+    'access callback' => TRUE,
+  );
 
   return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mon_compte_theme() {
+  return array(
+    'inscription' => array(
+      'template' => 'themes/inscription'
+    ),
+  );
 }
 
 /**
@@ -43,29 +60,155 @@ function mon_compte_form_alter(&$form, &$form_state, $form_id) {
 
 function inscription() {
 
-  $node = node_load(1);
+  $js = 'jQuery(function($){
+            $("#edit-agence").hide();
+            $(".form-item-type-annonceur input").click(function() {
+              if($(this).val() == 1){
+                $("#edit-agence").show();
+              }else
+                $("#edit-agence").hide();
+            });
+            
+          });';
 
-  $user_message = t('Check out my latest comment on vacaumaroc.com..');
-  $attachment = array(
-    'name' => $node->title,
-    'href' => url('node/' . $node->nid, array('absolute' => TRUE)),
-    'description' => $node->body['und'][0]['value'],
-    'properties' => array(t('In reply to') => array('text' => $node->title, 'href' => url("node/" . $node->nid, array('absolute' => TRUE)))),
+  drupal_add_js($js, 'inline');
+
+  return theme('inscription', array('form' => drupal_get_form('inscription_form')));
+}
+
+function inscription_form() {
+  $form = array();
+  $form['informations_d_identification'] = array(
+    '#markup' => '<h3>Informations d’identification</h3>',
   );
-  $actions = array();
-  $actions[] = array(
-    'text' => t('Read More'),
-    'href' => url('node/' . $a1['nid'], array('absolute' => TRUE))
+  $form['type_annonceur'] = array(
+    '#type' => 'radios',
+    '#title' => t('Vous êtes'),
+    '#required' => TRUE,
+    '#options' => array('Particulier', 'Prefessionnel'),
+      //'#default_value' => ,
   );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => ('E-mail'),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+      //'#default_value' => ,
+  );
+  $form['informations_contact'] = array(
+    '#markup' => '<h3 class="top-20">Informations de contact</h3>',
+  );
+  $form['civilite'] = array(
+    '#type' => 'radios',
+    '#title' => t('Civilité'),
+    '#required' => TRUE,
+    '#options' => array('M.', 'Mme'),
+      //'#default_value' => ,
+  );
+  $form['nom'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Nom'),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+      //'#default_value' => ,
+  );
+  $form['prenom'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Prénom'),
+    '#size' => 60,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+      //'#default_value' => ,
+  );
+  $form['tel'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Tél.'),
+    '#size' => 20,
+    '#maxlength' => 20,
+    '#required' => TRUE,
+      //'#default_value' => ,
+  );
+
+  $form['agence'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+    '#collapsed' => FALSE,
+  );
+
+  $form['agence']['informations_agence'] = array(
+    '#markup' => '<h3 class="top-20">Informations agence</h3>',
+  );
+  $form['agence']['nom_agence'] = array(
+    '#type' => 'textfield',
+    '#title' => ('Nom de l\'agence <span title="Ce champ est obligatoire." class="form-required">*</span>'),
+    '#size' => 60,
+    '#maxlength' => 128,
+      //'#default_value' => ,
+  );
+  $form['agence']['ville_agence'] = array(
+    '#type' => 'select',
+    '#title' => ('Ville <span title="Ce champ est obligatoire." class="form-required">*</span>'),
+    '#options' => array(
+      0 => t('No'),
+      1 => t('Yes'),
+    ),
+      //'#default_value' => ,
+  );
+  $form['agence']['adresse_agence'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Adresse'),
+    '#size' => 60,
+    '#maxlength' => 128,
+      //'#default_value' => ,
+  );
+  $form['agence']['cp_agence'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Code postal'),
+    '#size' => 20,
+    '#maxlength' => 11,
+      //'#default_value' => ,
+  );
+  $form['agence']['tel_agence'] = array(
+    '#type' => 'textfield',
+    '#title' => ('Téléphone <span title="Ce champ est obligatoire." class="form-required">*</span>'),
+    '#size' => 20,
+    '#maxlength' => 20,
+      //'#default_value' => ,
+  );
+  $form['agence']['site_web_agence'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Site web'),
+    '#size' => 60,
+    '#maxlength' => 128,
+      //'#default_value' => ,
+  );
+
+  $form['agence']['logo_agence'] = array(
+    '#type' => 'file',
+    '#title' => t('Logo'),
+    '#size' => 35,
+    '#attributes' => array('class' => array('has-description')),
+    '#description' => 'Formats autorisés : JPG, JPEG, PNG ou GIF',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Envoyé'),
+    '#attributes' => array('class' => array('custom-submitt-button top-20')),
+  );
+  return $form;
+}
+
+function inscription_form_validate($form, &$form_state) {
   
+}
+
+function inscription_form_submit($form, &$form_state) {
+
   echo '<pre>';
-  //print_r($attachment);
+  print_r($_FILES);
   echo '</pre>';
-  
-  print fb_stream_publish_dialog(array('user_message' => $user_message,
-    'attachment' => $attachment,
-    'action_links' => $actions,
-  ));
   die('DEBUG MODE');
 }
 
