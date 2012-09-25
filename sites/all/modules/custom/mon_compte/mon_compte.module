@@ -1,4 +1,10 @@
 <?php
+function mon_compte_init() {
+  $arg1 = arg(1);
+  if (arg(0) == "user" && empty($arg1) && user_is_logged_in()) {
+    drupal_goto('annonces-manager');
+  }
+}
 
 /**
  * Implements hook_menu().
@@ -11,9 +17,10 @@ function mon_compte_menu() {
   );
   
   $items['annonces-manager'] = array(
-    'title' => 'Annonces manager',
+    'title' => 'Mes annonces management',
     'page callback' => 'annonces_manager',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
+    'file' => 'annonces.manager.inc',
   );
 
   return $items;
@@ -26,6 +33,9 @@ function mon_compte_theme() {
   return array(
     'inscription' => array(
       'template' => 'themes/inscription'
+    ),
+    'annonces_manager' => array(
+      'template' => 'themes/annonces_manager'
     ),
   );
 }
