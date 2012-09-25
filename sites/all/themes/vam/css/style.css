@@ -590,6 +590,8 @@ tr.odd td {
 .fs-18 {font-size: 18px;}
 .top-20{margin-top: 20px;}
 
+.sidebar li.tableau-de-bord li {width: 100%; display: block; background: none;}
+
 /** Forms **/
 .form-required{color: #F24024;}
 .form-item label{display: inline-block; width: 150px;}

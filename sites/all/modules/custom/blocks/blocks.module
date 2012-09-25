@@ -26,6 +26,9 @@ function blocks_theme() {
     'sidebar_pub' => array(
       'template' => 'themes/sidebar_pub'
     ),
+    'tableau_de_bord' => array(
+      'template' => 'themes/tableau_de_bord'
+    ),
   );
 }
 
@@ -62,6 +65,10 @@ function blocks_block_info() {
     'info' => t('VAM Sidebar pub 300x250'),
      //'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['vam_tableau_de_bord'] = array(
+    'info' => t('VAM Tableau de bord'),
+     //'cache' => DRUPAL_NO_CACHE,
+  );
   return $blocks;
 }
 
@@ -91,6 +98,9 @@ function blocks_block_view($block_name = '') {
       break;
     case 'vam_sidebar_pub':
       $content = theme('sidebar_pub');
+      break;
+    case 'vam_tableau_de_bord':
+      $content = theme('tableau_de_bord');
       break;
   }
 
