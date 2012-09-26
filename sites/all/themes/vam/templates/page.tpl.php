@@ -109,6 +109,8 @@
       <?php if (arg(0) != 'locations-vacances-maroc'): ?>
         <h2 class="underline"><?php print $title; ?></h2>
       <?php endif; ?>
+        
+      <?php print render($messages); ?>
 
       <?php print render($page['content']); ?>
 

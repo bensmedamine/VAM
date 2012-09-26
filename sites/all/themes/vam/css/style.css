@@ -605,6 +605,7 @@ tr.odd td {
 .form-item input[type=radio] {background: none; border: none;}
 
 .form-item select{font-family: inherit; padding: 3px 5px; width: 300px; border: 1px solid #DCDCDC;}
+.form-item .error{border: 1px solid red;}
 
 #inscription-form div.description{color: #F24024; margin-bottom: 0; margin-left: 154px; padding-top: 5px;}
 #inscription-form .form-type-radio label{width: 75px !important;}

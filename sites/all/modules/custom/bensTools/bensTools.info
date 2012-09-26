@@ -1,0 +1,5 @@
+name = Drupal 7 Tools
+description = Med Amine BENSLIMANE Drupal 7 Tools
+package = VAM
+core = 7.x
+version = 7.x-1.x

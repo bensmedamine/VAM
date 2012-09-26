@@ -39,7 +39,7 @@ function blocks_block_info() {
   $blocks = array();
   $blocks['vam_villes_slider'] = array(
     'info' => t('VAM Villes slider'),
-     'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['vam_accroches'] = array(
     'info' => t('VAM Accroches'),
@@ -47,27 +47,27 @@ function blocks_block_info() {
   );
   $blocks['vam_last_announcements'] = array(
     'info' => t('VAM Last announcements'),
-     'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['vam_footer'] = array(
     'info' => t('VAM Footer'),
-     //'cache' => DRUPAL_NO_CACHE,
+      //'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['vam_referencement'] = array(
     'info' => t('VAM texte Referencement bas page'),
-     //'cache' => DRUPAL_NO_CACHE,
+      //'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['vam_sidebar_filters'] = array(
     'info' => t('VAM Les filters du sidebar'),
-     'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['vam_sidebar_pub'] = array(
     'info' => t('VAM Sidebar pub 300x250'),
-     //'cache' => DRUPAL_NO_CACHE,
+      //'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['vam_tableau_de_bord'] = array(
     'info' => t('VAM Tableau de bord'),
-     //'cache' => DRUPAL_NO_CACHE,
+      //'cache' => DRUPAL_NO_CACHE,
   );
   return $blocks;
 }
@@ -76,6 +76,7 @@ function blocks_block_info() {
  * Implements hook_block_view().
  */
 function blocks_block_view($block_name = '') {
+  global $theme_path, $user;
 
   switch ($block_name) {
     case 'vam_villes_slider':
@@ -100,7 +101,9 @@ function blocks_block_view($block_name = '') {
       $content = theme('sidebar_pub');
       break;
     case 'vam_tableau_de_bord':
-      $content = theme('tableau_de_bord');
+      $user = user_load($user->uid);
+      $user_name = $user->field_civilite['und'][0]['value'] . ' ' . strtoupper($user->field_nom['und'][0]['value']) . ' ' . ucwords($user->field_prenom['und'][0]['value']);
+      $content = theme('tableau_de_bord', array('theme_path' => $theme_path, 'user_name' => $user_name));
       break;
   }
 

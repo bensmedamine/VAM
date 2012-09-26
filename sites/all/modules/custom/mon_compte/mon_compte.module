@@ -1,4 +1,5 @@
 <?php
+
 function mon_compte_init() {
   $arg1 = arg(1);
   if (arg(0) == "user" && empty($arg1) && user_is_logged_in()) {
@@ -15,7 +16,13 @@ function mon_compte_menu() {
     'page callback' => 'inscription',
     'access callback' => TRUE,
   );
-  
+
+  $items['inscription/succes'] = array(
+    'title' => 'Inscription réussite avec succès',
+    'page callback' => 'inscription_succes',
+    'access callback' => TRUE,
+  );
+
   $items['annonces-manager'] = array(
     'title' => 'Mes annonces management',
     'page callback' => 'annonces_manager',
@@ -36,6 +43,9 @@ function mon_compte_theme() {
     ),
     'annonces_manager' => array(
       'template' => 'themes/annonces_manager'
+    ),
+    'inscription_succes' => array(
+      'template' => 'themes/inscription_succes'
     ),
   );
 }
@@ -73,7 +83,7 @@ function inscription() {
   $js = 'jQuery(function($){
             $("#edit-agence").hide();
             $(".form-item-type-annonceur input").click(function() {
-              if($(this).val() == 1){
+              if($(this).val() == 58){
                 $("#edit-agence").show();
               }else
                 $("#edit-agence").hide();
@@ -82,7 +92,6 @@ function inscription() {
           });';
 
   drupal_add_js($js, 'inline');
-
   return theme('inscription', array('form' => drupal_get_form('inscription_form')));
 }
 
@@ -95,7 +104,7 @@ function inscription_form() {
     '#type' => 'radios',
     '#title' => t('Vous êtes'),
     '#required' => TRUE,
-    '#options' => array('Particulier', 'Prefessionnel'),
+    '#options' => load_select_from_tax(4),
       //'#default_value' => ,
   );
   $form['email'] = array(
@@ -113,7 +122,7 @@ function inscription_form() {
     '#type' => 'radios',
     '#title' => t('Civilité'),
     '#required' => TRUE,
-    '#options' => array('M.', 'Mme'),
+    '#options' => array('Mr' => 'Mr', 'Mme' => 'Mme'),
       //'#default_value' => ,
   );
   $form['nom'] = array(
@@ -160,10 +169,7 @@ function inscription_form() {
   $form['agence']['ville_agence'] = array(
     '#type' => 'select',
     '#title' => ('Ville <span title="Ce champ est obligatoire." class="form-required">*</span>'),
-    '#options' => array(
-      0 => t('No'),
-      1 => t('Yes'),
-    ),
+    '#options' => load_select_from_tax(2, TRUE),
       //'#default_value' => ,
   );
   $form['agence']['adresse_agence'] = array(
@@ -200,6 +206,7 @@ function inscription_form() {
     '#title' => t('Logo'),
     '#size' => 35,
     '#attributes' => array('class' => array('has-description')),
+    '#required' => FALSE,
     '#description' => 'Formats autorisés : JPG, JPEG, PNG ou GIF',
   );
   $form['submit'] = array(
@@ -211,15 +218,127 @@ function inscription_form() {
 }
 
 function inscription_form_validate($form, &$form_state) {
-  
+  $data = $form_state['values'];
+
+  if (!empty($data['email'])) {
+    // Validate email
+    if (!valid_email_address($data['email'])) {
+      form_set_error('email', t('Veuillez saisir une adresse e-mail valide.'));
+    }
+    // Email existe
+    else {
+      $user = user_load_by_mail($data['email']);
+      if (!empty($user)) {
+        form_set_error('email', t('Cette adresse e-mail existe déjà, veuillez saisir une autre adresse e-mail.'));
+      }
+    }
+  }
+
+  // Upload files if any
+  if (!empty($_FILES['files']['name']['logo_agence'])) {
+
+    $file = inscription_upload_file('logo_agence', 'public://');
+
+    if (empty($file)) {
+      form_set_error('logo_agence', t('Veuillez mettre une photo de type (jpg, jpeg) ayant une taille de 200Ko ou moins.'));
+    }
+    else {
+      $form_state['values']['fid_logo_agence'] = $file->fid;
+    }
+  }
+
+//  // Upload files if any
+//  if (!empty($_FILES['files']['name']['logo_agence'])) {
+//    $files = array();
+//    foreach ($_FILES['files']['name'] as $k => $v) {
+//      if (!empty($v)) {
+//        $file = inscription_upload_file($k, 'public://');
+//
+//        if (empty($file)) {
+//          form_set_error($k, t('Veuillez mettre une photo de type (jpg, jpeg) ayant une taille de 200Ko ou moins.'));
+//        }
+//        else {
+//          $files[] = $file;
+//        }
+//      }
+//    }
+//
+//    if (!empty($files)) {
+//      foreach ($files as $k => $v) {
+//        $form_state['values']['fid_' . $v->source] = $v->fid;
+//      }
+//    }
+//  }
 }
 
 function inscription_form_submit($form, &$form_state) {
+  $data = $form_state['values'];
+//  echo '<pre>';
+//  print_r($form_state['values']);
+//  echo '</pre>';
+//  die('DEBUG MODE');
+  $pass = user_password();
+  $account = array(
+    'name' => $data['email'],
+    'mail' => $data['email'],
+    'init' => $data['email'],
+    'pass' => $pass,
+    'status' => 1,
+    'field_type_annonceur' => array(LANGUAGE_NONE => array(array('tid' => $data['type_annonceur']))),
+    'field_civilite' => array(LANGUAGE_NONE => array(array('value' => $data['civilite']))),
+    'field_nom' => array(LANGUAGE_NONE => array(array('value' => $data['nom']))),
+    'field_prenom' => array(LANGUAGE_NONE => array(array('value' => $data['prenom']))),
+    'field_tel' => array(LANGUAGE_NONE => array(array('value' => $data['tel']))),
+  );
+  //Si l'annonceur est un professionel
+  if ($data['type_annonceur'] == 58) {
+    $account['field_nom_agence'] = array(LANGUAGE_NONE => array(array('value' => $data['nom_agence'])));
+    $account['field_ville'] = array(LANGUAGE_NONE => array(array('tid' => $data['ville_agence'])));
+    if (!empty($data['adresse_agence']))
+      $account['field_adresse'] = array(LANGUAGE_NONE => array(array('value' => $data['adresse_agence'])));
+    if (!empty($data['cp_agence']))
+      $account['field_code_postal_agence'] = array(LANGUAGE_NONE => array(array('value' => $data['cp_agence'])));
+    $account['field_tel_agence'] = array(LANGUAGE_NONE => array(array('value' => $data['tel_agence'])));
+    if (!empty($data['site_web_agence']))
+      $account['field_site_web'] = array(LANGUAGE_NONE => array(array('value' => $data['site_web_agence'])));
+    if (!empty($data['fid_logo_agence']))
+      $account['field_image'] = array(LANGUAGE_NONE => array(array('fid' => $data['fid_logo_agence'])));
+  }
 
-  echo '<pre>';
-  print_r($_FILES);
-  echo '</pre>';
-  die('DEBUG MODE');
+  $user = user_save(drupal_anonymous_user(), $account);
+  $_SESSION['inscription']['user']['mail'] = $user->mail;
+  //TODO: Delete the line bellow
+  $_SESSION['inscription']['user']['pass'] = $pass;
+  drupal_goto('inscription/succes');
+}
+
+function inscription_succes() {
+
+  $mail = $_SESSION['inscription']['user']['mail'];
+
+  if (empty($mail)) {
+    drupal_goto('inscription');
+  }
+  unset($_SESSION['inscription']['user']['mail']);
+  //TODO: Delete the edit bellow
+  return theme('inscription_succes', array('mail' => $mail, 'pass' => $_SESSION['inscription']['user']['pass']));
+}
+
+function inscription_upload_file($file, $savepath) {
+  $limits = array();
+  $limits['extensions'] = array('jpg jpeg');
+  $limits['file_size'] = 200 * 1024;
+
+  $validators = array(
+    'file_validate_extensions' => $limits['extensions'],
+    'file_validate_size' => array(
+      $limits['file_size']
+    ),
+  );
+
+  $file = file_save_upload($file, $validators, $savepath);
+
+  return $file;
 }
 
 ?>

@@ -1,0 +1,15 @@
+<?php
+
+function load_select_from_tax($vid, $add_selectionner = false, $default_option = '- Sélectionner -') {
+  $tax = taxonomy_get_tree($vid);
+  $options = array();
+  if ($add_selectionner) {
+    $options[''] = $default_option;
+  }
+  foreach ($tax as $term) {
+    $options[$term->tid] = $term->name;
+  }
+  return $options;
+}
+
+?>
