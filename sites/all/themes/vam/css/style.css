@@ -45,6 +45,10 @@ input[type=text], textarea, input[type=password]
 	color:#797979;
 	vertical-align:middle; 
 	font-size:11px;}
+input[type=file] {
+    padding:5px;
+    font-size:11px;
+}
 fieldset {border: none;}
 /*** END OF GLOBAL  ***/
 
@@ -606,6 +610,8 @@ tr.odd td {
 
 .form-item select{font-family: inherit; padding: 3px 5px; width: 300px; border: 1px solid #DCDCDC;}
 .form-item .error{border: 1px solid red;}
+input.invalid {margin-bottom: 2px;}
+label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5px; width: 100%;}
 
-#inscription-form div.description{color: #F24024; margin-bottom: 0; margin-left: 154px; padding-top: 5px;}
+#inscription-form div.description{color: #F24024; margin-bottom: 0; margin-left: 154px; padding-top: 3px;}
 #inscription-form .form-type-radio label{width: 75px !important;}

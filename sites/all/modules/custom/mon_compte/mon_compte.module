@@ -79,15 +79,52 @@ function mon_compte_form_alter(&$form, &$form_state, $form_id) {
 }
 
 function inscription() {
+  global $theme_path;
+  
+  drupal_add_js($theme_path.'/js/jquery.qtip-1.0.0.min.js');
+  drupal_add_js($theme_path.'/js/jquery.validate.min.js');
+  drupal_add_js($theme_path.'/js/messages_fr.js');
 
   $js = 'jQuery(function($){
             $("#edit-agence").hide();
-            $(".form-item-type-annonceur input").click(function() {
+            $(".form-item-type-annonceur input").live("click", function() {
               if($(this).val() == 58){
                 $("#edit-agence").show();
               }else
                 $("#edit-agence").hide();
             });
+            
+            if ($("input[name=type_annonceur]:checked").val() == 58){
+              $("#edit-type-annonceur-58").trigger("click");
+            }
+            
+            $("#inscription-form").validate({
+              errorClass: "invalid",
+              validClass: "",
+              errorPlacement: function(error, element) {
+                if (element.attr("name") == "type_annonceur" || element.attr("name") == "civilite" )
+                  error.appendTo( element.parent("div").parent("div") );
+                else
+                  error.insertAfter(element);
+              },
+              rules: {
+                  type_annonceur: "required",
+                  civilite: "required",
+                  email: {
+                    required: true,
+                    email: true
+                  },
+                  tel: "digits",
+                  cp_agence: "digits",
+                  tel_agence: "digits",
+                  site_web_agence: "url"
+                },
+              messages: {
+
+               }
+            });
+            
+            
             
           });';
 
@@ -164,12 +201,14 @@ function inscription_form() {
     '#title' => ('Nom de l\'agence <span title="Ce champ est obligatoire." class="form-required">*</span>'),
     '#size' => 60,
     '#maxlength' => 128,
+    '#attributes' => array('class' => array('required')),
       //'#default_value' => ,
   );
   $form['agence']['ville_agence'] = array(
     '#type' => 'select',
     '#title' => ('Ville <span title="Ce champ est obligatoire." class="form-required">*</span>'),
     '#options' => load_select_from_tax(2, TRUE),
+    '#attributes' => array('class' => array('required')),
       //'#default_value' => ,
   );
   $form['agence']['adresse_agence'] = array(
@@ -191,6 +230,7 @@ function inscription_form() {
     '#title' => ('Téléphone <span title="Ce champ est obligatoire." class="form-required">*</span>'),
     '#size' => 20,
     '#maxlength' => 20,
+    '#attributes' => array('class' => array('required')),
       //'#default_value' => ,
   );
   $form['agence']['site_web_agence'] = array(
