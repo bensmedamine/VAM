@@ -10,7 +10,7 @@
       <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/marrakech.jpg" alt="" />
       <div class="farme-slide-text">
         <ul class="slide-text">
-          <div class="slider-city">Marrakech <span>710 annonces</span></div>
+          <div class="slider-city">Marrakech <span class="blue">710 annonces</span></div>
           <li class="arrow"><span class="left"><a href="#">Villa de 4 chambres a 15 min du centre ville</a></span>&nbsp;</li>
           <li class="arrow"><span class="left"><a href="#">Villa entre les mains de nature tout compris</a></span>&nbsp;</li>
           <li class="arrow"><span class="left"><a href="#">Location vacances appartement avec piscine</a></span>&nbsp;</li>
@@ -28,7 +28,7 @@
       <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/marrakech.jpg" alt="" />
       <div class="farme-slide-text">
         <ul class="slide-text">
-          <div class="slider-city">Marrakech 2 <span>710 annonces</span></div>
+          <div class="slider-city">Marrakech 2 <span class="blue">710 annonces</span></div>
           <li class="arrow"><span class="left"><a href="#">Villa de 4 chambres a 15 min du centre ville</a></span>&nbsp;</li>
           <li class="arrow"><span class="left"><a href="#">Villa entre les mains de nature tout compris</a></span>&nbsp;</li>
           <li class="arrow"><span class="left"><a href="#">Location vacances appartement avec piscine</a></span>&nbsp;</li>

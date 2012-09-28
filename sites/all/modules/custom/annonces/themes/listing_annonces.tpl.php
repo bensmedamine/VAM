@@ -7,7 +7,7 @@
   <div class="clear"></div>
   <div class="list_img"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp2-img1.jpg" alt="" /></div>
   <div class="list_text">
-    <strong class="blue">Marrakech</strong><br />
+    <strong class="blue">Marrakech</strong><span class="prix-nuit blue"><strong>350 Dhs / Nuit</strong></span><br />
     Particulier | Appartement<br />
     <br />
     A marrakech appartement meublé a 400dhs/nuit sur bd hassan 2 a 500 m de la gare du train et a coté de aswak salam , meublé climatisée sécurisée 24/24 dont 2 chambres à couché ...

@@ -378,7 +378,7 @@ ul.slide-text li{ text-align:right!important; clear:both; border-bottom:1px soli
 #content.full{float:none; padding:0px; width:100%;}
 #sideright{float:left; width:290px;}
 
-.blue{color:#F24024;}
+.blue{color:#F24024 !important;}
 .black{ color:#171717;}
 .underline{ border-bottom:1px solid #d8d8d8; padding-bottom:5px;}
 
@@ -593,7 +593,7 @@ tr.odd td {
 #breadcrumb{margin-bottom: 10px; font-size: 12px;}
 .fs-18 {font-size: 18px;}
 .top-20{margin-top: 20px;}
-
+.prix-nuit{float: right; font-size: 12px;}
 .sidebar li.tableau-de-bord li {width: 100%; display: block; background: none;}
 
 /** Forms **/
