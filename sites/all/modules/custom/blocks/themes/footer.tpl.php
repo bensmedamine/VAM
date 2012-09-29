@@ -18,27 +18,19 @@
     <div class="one_half last">
       <ul>
         <li class="widget-container locations-par-villes">
-          <h2 class="widget-title">Locations vacances au Maroc par ville</h2>
+          <h2 class="widget-title">Top <?php print count($villes); ?> villes destinations vacances au Maroc</h2>
           <ul>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
-            <li><a href="#">Promitions (700)</a></li>
+            <?php foreach ($villes as $ville): ?>
+              <?php
+              /*
+                echo '<pre>';
+                print_r($ville);
+                echo '</pre>';
+                die('DEBUG MODE'); */
+              ?>
+              <?php $name = taxonomy_term_load($ville->tid)->name; ?>
+              <li><?php print l($name . ' <span class="count blue">(' . $ville->total . ')</span>', 'taxonomy/term/' . $ville->tid, array('html' => true, 'attributes' => array('title' => $name))); ?></li>
+            <?php endforeach; ?>
           </ul>
         </li>
       </ul>

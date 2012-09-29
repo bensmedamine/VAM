@@ -40,11 +40,24 @@ function locations_vacances() {
   drupal_set_breadcrumb($breadcrumb);
 
   drupal_add_css($theme_path . '/css/inner.css');
-  return theme('listing_annonces', array());
+
+  $query = new EntityFieldQuery();
+  $entities = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'annonce')
+      ->propertyCondition('status', 1)
+      ->propertyOrderBy('created', 'DESC')
+      ->pager(10)
+      ->execute();
+
+  $nodes = node_load_multiple(array_keys($entities['node']));
+
+  $output = theme('listing_annonces', array('nodes' => $nodes, 'total' => $query->pager['total']));
+  $output .= theme('pager', array('tags' => array()));
+  return $output;
 }
 
 function deposer_annonce() {
-  
+
   return theme('deposer_annonce');
 }
 

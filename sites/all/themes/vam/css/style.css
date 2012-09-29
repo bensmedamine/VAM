@@ -584,7 +584,7 @@ tr.odd td {
 
 /** CUSTOM **/
 .font-size-12 p ,.fs-12 {font-size: 12px;}
-.locations-par-villes ul li{background: url("../images/dot.png") no-repeat scroll left 7px transparent !important; display: inline-block; margin-right: 25px !important; padding: 0 0 7px 15px !important;}
+.locations-par-villes ul li{background: url("../images/dot.png") no-repeat scroll left 7px transparent !important; display: inline-block; margin-right: 25px !important; padding: 0 0 7px 15px !important; width: 115px;}
 .locations-par-villes ul li a{font-size: 11px; margin-right: 20px !important; width: 115px;}
 .last-announcement h3 {text-align: justify; font-size: 18px;}
 #vam-footer{background:url(../images/bg-copyright.gif); margin-top: 30px; padding: 10px 0px;}
@@ -595,6 +595,7 @@ tr.odd td {
 .top-20{margin-top: 20px;}
 .prix-nuit{float: right; font-size: 12px;}
 .sidebar li.tableau-de-bord li {width: 100%; display: block; background: none;}
+.pager li {float: left; list-style: none outside none; margin-right: 10px;}
 
 /** Forms **/
 .form-required{color: #F24024;}

@@ -1,94 +1,47 @@
-<h2 class="underline"><?php print drupal_get_title(); ?> <span class="fs-18 blue">1569 trouvées</span></h2>
 
-<div class="list_properties">
-  <div class="title_property2">
-    <h2><a href="#">Appartement meublé a louer pour courte duré</a></h2> <span class="timer">Il y a 1 jour 16 heures | <strong>4</strong> vues</span>
-  </div><!-- end .title_property2 -->
-  <div class="clear"></div>
-  <div class="list_img"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp2-img1.jpg" alt="" /></div>
-  <div class="list_text">
-    <strong class="blue">Marrakech</strong><span class="prix-nuit blue"><strong>350 Dhs / Nuit</strong></span><br />
-    Particulier | Appartement<br />
-    <br />
-    A marrakech appartement meublé a 400dhs/nuit sur bd hassan 2 a 500 m de la gare du train et a coté de aswak salam , meublé climatisée sécurisée 24/24 dont 2 chambres à couché ...
 
-  </div><!-- end .list_text -->
-  <div class="clear"></div>
-</div><!-- end .list_properties -->
+<h2 class="underline"><?php print drupal_get_title(); ?> <span class="fs-18 blue"><?php print $total; ?> trouvées</span></h2>
 
-<div class="list_properties">
-  <div class="title_property2">
-    <h2>8311 Paseo Vista Dr Las Vegas, NV 89312</h2> <span class="star">Save Listing</span>
-  </div><!-- end .title_property2 -->
-  <div class="clear"></div>
-  <div class="list_img"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp2-img2.jpg" alt="" /></div>
-  <div class="list_text">
-    <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp-logo.gif" alt="" class="alignright" />
-    <strong>$ 2,325,000</strong><br />
-    4 Bed | 5 Bath | 3,390 Sq Ft | 0.21 Acres<br />
-    <br />
-    Single Family Home<br />
-    Brokered By: Premier East Group<br />
-    <span class="blue">Open House: Fri 2/18, 2pm - 4pm</span>
-  </div><!-- end .list_text -->
-  <div class="clear"></div>
-</div><!-- end .list_properties -->
 
-<div class="list_properties">
-  <div class="title_property2">
-    <h2>6541 West 7th Street Los Angeles, CA 90044</h2> <span class="star">Save Listing</span>
-  </div><!-- end .title_property2 -->
-  <div class="clear"></div>
-  <div class="list_img"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp2-img3.jpg" alt="" /></div>
-  <div class="list_text">
-    <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp-logo.gif" alt="" class="alignright" />
-    <strong>$ 2,025,000</strong><br />
-    4 Bed | 5 Bath | 3,390 Sq Ft | 0.21 Acres<br />
-    <br />
-    Single Family Home<br />
-    Brokered By: Premier East Group<br />
-    <span class="blue">Open House: Fri 2/18, 2pm - 4pm</span>
-  </div><!-- end .list_text -->
-  <div class="clear"></div>
-</div><!-- end .list_properties -->
+<?php foreach ($nodes as $key => $node): ?>
+  <?php
+  /* echo '<pre>';
+    print_r($node);
+    echo '</pre>';
+    die('DEBUG MODE'); */
+  ?>
 
-<div class="list_properties">
-  <div class="title_property2">
-    <h2>8311 Paseo Vista Dr Las Vegas, NV 89312</h2> <span class="star">Save Listing</span>
-  </div><!-- end .title_property2 -->
-  <div class="clear"></div>
-  <div class="list_img"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp2-img2.jpg" alt="" /></div>
-  <div class="list_text">
-    <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp-logo.gif" alt="" class="alignright" />
-    <strong>$ 2,325,000</strong><br />
-    4 Bed | 5 Bath | 3,390 Sq Ft | 0.21 Acres<br />
-    <br />
-    Single Family Home<br />
-    Brokered By: Premier East Group<br />
-    <span class="blue">Open House: Fri 2/18, 2pm - 4pm</span>
-  </div><!-- end .list_text -->
-  <div class="clear"></div>
-</div><!-- end .list_properties -->
-
-<div class="list_properties">
-  <div class="title_property2">
-    <h2>6541 West 7th Street Los Angeles, CA 90044</h2> <span class="star">Save Listing</span>
-  </div><!-- end .title_property2 -->
-  <div class="clear"></div>
-  <div class="list_img"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp2-img3.jpg" alt="" /></div>
-  <div class="list_text">
-    <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp-logo.gif" alt="" class="alignright" />
-    <strong>$ 2,025,000</strong><br />
-    4 Bed | 5 Bath | 3,390 Sq Ft | 0.21 Acres<br />
-    <br />
-    Single Family Home<br />
-    Brokered By: Premier East Group<br />
-    <span class="blue">Open House: Fri 2/18, 2pm - 4pm</span>
-  </div><!-- end .list_text -->
-  <div class="clear"></div>
-</div><!-- end .list_properties -->
-<div class="clear"></div>
-
-<div id="pagenavi">
-  <a href="#" class="current">1</a>&nbsp;|&nbsp;<a href="#">2</a>&nbsp;|&nbsp;<a href="#">Next &gt;</a>					
-</div><!-- #pagenavi -->
+  <div id="annonce-<?php print $key; ?>" class="list_properties">
+    <div class="title_property2">
+      <?php print l('<h2>' . $node->title . '</h2>', 'node/' . $node->nid, array('html' => true, 'attributes' => array('title' => $node->title))); ?><span class="timer">Il y a <?php print format_interval(REQUEST_TIME - $node->created); ?> | <strong><?php print $node->field_vues['und'][0]['value']; ?></strong> vues</span>
+    </div><!-- end .title_property2 -->
+    <div class="clear"></div>
+    <?php $img_uri = @$node->field_photos['und'][0]['uri']; ?>
+    <?php
+    if (empty($img_uri)) {
+      $img_uri = 'public://no-photo.gif';
+    }
+    ?>
+    <div class="list_img"><?php print l(theme('image_style', array('style_name' => 'thumb_131x85', 'path' => ($img_uri), 'alt' => $node->title)), 'node/' . $node->nid, array('html' => true, 'attributes' => array('title' => $node->title))); ?></div>
+    <div class="list_text">
+      <?php if ($node->field_type_annonceur['und'][0]['tid'] == 58): ?>
+        <img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/content/pp-logo.gif" alt="" class="alignright" />
+      <?php endif; ?>
+      <strong class="blue"><?php print taxonomy_term_load($node->field_ville['und'][0]['tid'])->name; ?></strong>
+      <?php if (!empty($node->field_prix_nuitee)): ?>
+        <span class="prix-nuit blue"><strong><?php print $node->field_prix_nuitee['und'][0]['value']; ?> Dhs / Nuit</strong></span>
+      <?php endif; ?>
+      <br />
+      <?php print taxonomy_term_load($node->field_type_annonceur['und'][0]['tid'])->name; ?> | <?php print taxonomy_term_load($node->field_type_du_bien['und'][0]['tid'])->name; ?><br />
+      <br />
+      <?php $description = $node->field_description['und'][0]['value']; ?>
+      <?php
+      if (strlen($description) > 185) {
+        $description = substr($description, 0, 182) . ' ...';
+      }
+      ?>
+  <?php print $description; ?>
+    </div><!-- end .list_text -->
+    <div class="clear"></div>
+  </div><!-- end .list_properties -->
+<?php endforeach; ?>

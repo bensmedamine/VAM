@@ -1,9 +1,9 @@
 <?php
 /**
- * Permet de cropper une image au format png/jpg et gif au format souhaité
+ * Permet de cropper une image au format png/jpg et gif au format souhaitÃ©
  *
- * Si la largeur ou la hauteur est mise à 0 la dimension sera automatiquement calculé
- * de manière à garder le ratio de l'image
+ * Si la largeur ou la hauteur est mise Ã  0 la dimension sera automatiquement calculÃ©
+ * de maniÃ¨re Ã  garder le ratio de l'image
  *
  * @param string $img Fichier image d'origine (doit avoir une extension)
  * @param string $dest Fichier de destination (avec l'extension .jpg)
@@ -13,7 +13,7 @@
 function crop($img,$dest,$largeur=0,$hauteur=0,$qualite=100){
         $dimension=getimagesize($img);
         $ratio = $dimension[0] / $dimension[1];
-        // Création des miniatures
+        // CrÃ©ation des miniatures
         if($largeur==0 && $hauteur==0){ $largeur = $dimension[0]; $hauteur = $dimension[1]; }
           else if($hauteur==0){ $hauteur = round($largeur / $ratio); }
         else if($largeur==0){ $largeur = round($hauteur * $ratio); }

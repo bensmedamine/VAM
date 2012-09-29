@@ -89,7 +89,9 @@ function blocks_block_view($block_name = '') {
       $content = theme('last_announcements');
       break;
     case 'vam_footer':
-      $content = theme('footer');
+      $villes = db_query('SELECT COUNT(field_ville_tid) total, field_ville_tid tid FROM vam_field_data_field_ville GROUP BY field_ville_tid ORDER BY total DESC LIMIT 20')
+          ->fetchAll();
+      $content = theme('footer', array('villes' => $villes));
       break;
     case 'vam_referencement':
       $content = theme('txt_referencement');
