@@ -39,7 +39,7 @@ function blocks_block_info() {
   $blocks = array();
   $blocks['vam_villes_slider'] = array(
     'info' => t('VAM Villes slider'),
-    'cache' => DRUPAL_NO_CACHE,
+    //'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['vam_accroches'] = array(
     'info' => t('VAM Accroches'),
@@ -80,7 +80,15 @@ function blocks_block_view($block_name = '') {
 
   switch ($block_name) {
     case 'vam_villes_slider':
-      $content = theme('villes_slider');
+      $query = new EntityFieldQuery();
+      $entities = $query->entityCondition('entity_type', 'taxonomy_term')
+          ->propertyCondition('vid', 2)
+          ->fieldCondition('field_show_in_front', 'value', 1)
+          ->fieldCondition('field_image', 'fid', '', '!=')
+          ->propertyOrderBy('weight')
+          ->execute();
+
+      $content = theme('villes_slider', array('villes' => $entities['taxonomy_term']));
       break;
     case 'vam_accroches':
       $content = theme('accroches');
@@ -89,7 +97,7 @@ function blocks_block_view($block_name = '') {
       $content = theme('last_announcements');
       break;
     case 'vam_footer':
-      $villes = db_query('SELECT COUNT(field_ville_tid) total, field_ville_tid tid FROM vam_field_data_field_ville GROUP BY field_ville_tid ORDER BY total DESC LIMIT 20')
+      $villes = db_query('SELECT COUNT(field_ville_tid) total, field_ville_tid tid FROM vam_field_data_field_ville GROUP BY field_ville_tid HAVING COUNT(field_ville_tid) > 3 ORDER BY total DESC LIMIT 20')
           ->fetchAll();
       $content = theme('footer', array('villes' => $villes));
       break;

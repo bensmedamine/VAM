@@ -21,13 +21,6 @@
           <h2 class="widget-title">Top <?php print count($villes); ?> villes destinations vacances au Maroc</h2>
           <ul>
             <?php foreach ($villes as $ville): ?>
-              <?php
-              /*
-                echo '<pre>';
-                print_r($ville);
-                echo '</pre>';
-                die('DEBUG MODE'); */
-              ?>
               <?php $name = taxonomy_term_load($ville->tid)->name; ?>
               <li><?php print l($name . ' <span class="count blue">(' . $ville->total . ')</span>', 'taxonomy/term/' . $ville->tid, array('html' => true, 'attributes' => array('title' => $name))); ?></li>
             <?php endforeach; ?>

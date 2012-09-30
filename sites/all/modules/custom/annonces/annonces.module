@@ -61,4 +61,25 @@ function deposer_annonce() {
   return theme('deposer_annonce');
 }
 
+function get_annonces_par_ville($tid, $nbr) {
+
+  $query = new EntityFieldQuery();
+  $entities = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'annonce')
+      ->propertyCondition('status', 1)
+      ->fieldCondition('field_ville', 'tid', $tid)
+      ->propertyOrderBy('created', 'DESC')
+      ->range(0, $nbr)
+      ->execute();
+
+  $nodes = node_load_multiple(array_keys($entities['node']));
+  return $nodes;
+}
+
+function get_count_annonces_par_ville($tid) {
+  $count = db_query('SELECT COUNT(field_ville_tid) total FROM vam_field_data_field_ville WHERE field_ville_tid = :tid', array(':tid' => $tid))
+      ->fetch();
+  return $count->total;
+}
+
 ?>
