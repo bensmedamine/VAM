@@ -1,16 +1,5 @@
-
-
 <h2 class="underline"><?php print drupal_get_title(); ?> <span class="fs-18 blue"><?php print $total; ?> trouvées</span></h2>
-
-
 <?php foreach ($nodes as $key => $node): ?>
-  <?php
-  /* echo '<pre>';
-    print_r($node);
-    echo '</pre>';
-    die('DEBUG MODE'); */
-  ?>
-
   <div id="annonce-<?php print $key; ?>" class="list_properties">
     <div class="title_property2">
       <?php print l('<h2>' . $node->title . '</h2>', 'node/' . $node->nid, array('html' => true, 'attributes' => array('title' => $node->title))); ?><span class="timer">Il y a <?php print format_interval(REQUEST_TIME - $node->created); ?> | <strong><?php print $node->field_vues['und'][0]['value']; ?></strong> vues</span>

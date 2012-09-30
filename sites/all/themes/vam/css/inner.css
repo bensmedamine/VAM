@@ -80,7 +80,7 @@ USE THIS STYLE SHEET FOR INNER PAGE
 #slideshow_detail span {display:none}
 #wrapper {width:620px; margin:0; display:none; }
 #wrapper * {margin:0; padding:0}
-#fullsize {position:relative; width:620px; height:360px; padding:0px 0px 10px 0px; background:url(../images/slider-shadow2.png) bottom no-repeat;}
+#fullsize {background: url("../images/slider-shadow2.png") no-repeat center bottom; height: 336px; margin: 0 auto; padding: 0 0 10px; position: relative; width: 500px;}
 #information {position:absolute; bottom:0; width:620px; height:0; background:url(../images/slider-detail/opacity.png) repeat;  color:#fff; overflow:hidden; z-index:200; display:none; }
 #information h3 {padding:4px 8px 3px; font-size:14px; display:none;}
 #information p {padding:0 8px 8px;}

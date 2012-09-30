@@ -9,6 +9,9 @@ function vam_css_alter(&$css) {
     'modules/system/system.menus.css' => FALSE,
     'modules/system/system.theme.css' => FALSE,
     'misc/ui/jquery.ui.theme.css' => FALSE,
+    'modules/comment/comment.css' => FALSE,
+    'modules/logintoboggan/logintoboggan.css' => FALSE,
+    'modules/ctools/css/ctools.css' => FALSE,
   );
   $css = array_diff_key($css, $exclude);
 }

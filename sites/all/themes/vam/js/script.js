@@ -36,7 +36,7 @@ TINY.slideshow_detail.prototype={
 			a.t=$$('h3',h)[0].innerHTML;
 			a.d=$$('p',h)[0].innerHTML;
 			a.l=$$('a',h)[0]?$$('a',h)[0].href:'';
-			a.p=$$('span',h)[0].innerHTML;
+			a.p=$$('img',h)[0].src;
 			if(this.thumbs){
 				var g=$$('img',h)[0];
 				this.p.appendChild(g);

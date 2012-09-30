@@ -61,6 +61,13 @@ function deposer_annonce() {
   return theme('deposer_annonce');
 }
 
+/**
+ * Implementation of hook_query_TAG_alter
+ */
+function annonces_query_random_alter($query) {
+  $query->orderRandom();
+}
+
 function get_annonces_par_ville($tid, $nbr) {
 
   $query = new EntityFieldQuery();
@@ -68,7 +75,7 @@ function get_annonces_par_ville($tid, $nbr) {
       ->entityCondition('bundle', 'annonce')
       ->propertyCondition('status', 1)
       ->fieldCondition('field_ville', 'tid', $tid)
-      ->propertyOrderBy('created', 'DESC')
+      ->addTag('random')
       ->range(0, $nbr)
       ->execute();
 
