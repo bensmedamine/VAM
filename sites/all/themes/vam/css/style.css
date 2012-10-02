@@ -1,4 +1,4 @@
-/* 
+/*
 
 Lighthouse - CSS File
 
@@ -41,10 +41,10 @@ hr {
 input[type=text], textarea, input[type=password]
 {
     border:solid 1px #e7e7e7;
-    margin:4px 4px 8px 0px; 
+    margin:4px 4px 8px 0px;
     padding:5px;
     color:#797979;
-    vertical-align:middle; 
+    vertical-align:middle;
     font-size:11px;}
 input[type=file] {
     padding:5px;
@@ -102,8 +102,8 @@ img.alignnone {
 }
 
 
-img.alignleft, 
-img.alignright, 
+img.alignleft,
+img.alignright,
 img.aligncenter,
 img.alignnone{
     margin-bottom: 10px;
@@ -195,7 +195,7 @@ code {
     color:#171717; text-decoration:none!important;
 }
 .menu li li {
-    border-bottom:1px solid #e2e2e2; 
+    border-bottom:1px solid #e2e2e2;
 }
 .menu ul a {
     background:#f4f4f4;
@@ -548,8 +548,8 @@ ul.box_text .left{float:left; font-weight:bold;}
 }
 
 /* HIGHLIGHT */
-.highlight1{padding:1px 4px;background-color:yellow;color:#111;}	
-.highlight2{padding:1px 4px;background-color:#111;color:#eee;}	
+.highlight1{padding:1px 4px;background-color:yellow;color:#111;}
+.highlight2{padding:1px 4px;background-color:#111;color:#eee;}
 
 
 /* TABBLES */
@@ -593,6 +593,7 @@ tr.odd td {
 .normal {margin: 10px 0;}
 #breadcrumb{margin-bottom: 10px; font-size: 12px;}
 .fs-18 {font-size: 18px;}
+.fs-15{font-size: 15px;}
 .top-20{margin-top: 20px;}
 .prix-nuit{float: right; font-size: 12px;}
 .sidebar li.tableau-de-bord li {width: 100%; display: block; background: none;}
@@ -617,3 +618,14 @@ label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5p
 
 #inscription-form div.description{color: #F24024; margin-bottom: 0; margin-left: 154px; padding-top: 3px;}
 #inscription-form .form-type-radio label{width: 75px !important;}
+
+/** **/
+.image_carousel{width: 620px; background: url("../images/slider-shadow2.png") no-repeat center bottom; height: 162px;}
+#foo { height: 163px; }
+#foo a {display: block; float: left; width: 300px; padding: 0 5px;}
+#foo img{border: 1px solid #E7E7E7;}
+.slider-navigation{margin-top: 13px;}
+.count-img{vertical-align: bottom;}
+#header-annonce {margin-bottom: 20px; overflow: hidden;}
+#header-annonce .fb-like{float: left;}
+#header-annonce .transform{float: right;}

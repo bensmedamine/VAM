@@ -38,6 +38,8 @@
  * @see template_process()
  */
 ?>
+
+  <?php die('tax') ?>
 <div id="taxonomy-term-<?php print $term->tid; ?>" class="<?php print $classes; ?>">
 
   <?php if (!$page): ?>

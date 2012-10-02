@@ -134,10 +134,7 @@ function parse_annonce($url) {
 function save_annonce($annonce) {
   global $url_racine, $limit, $compteur, $biens;
 
-
   print_r($annonce);
-
-
 
   if (!is_post_exist($annonce['ref_annonce'])) {
     $node = new stdClass();
@@ -150,7 +147,7 @@ function save_annonce($annonce) {
 
     $node->created = $annonce['date_annonce'];
     $node->uid = 1;
-    //On détermine le type de bien 
+    //On détermine le type de bien
     $field_type_du_bien = 60;
     foreach ($biens as $key => $value) {
       $pos = stripos($annonce['title'], $key);
@@ -200,11 +197,11 @@ function save_annonce($annonce) {
       $i++;
     }
 
+    node_save($node);
 
     print_r($node);
-    echo '<pre>';
+    echo '</pre>';
 
-    node_save($node);
     $compteur++;
     if ($compteur == $limit || $compteur > $limit) {
       die('THE END OF ' . $limit);

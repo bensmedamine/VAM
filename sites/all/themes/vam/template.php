@@ -20,12 +20,20 @@ function vam_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
 
   // Adding the title of the current page to the breadcrumb.
-//  if (arg(0) == 'node') {
-//    $breadcrumb[] = drupal_get_title();
-//  }
+  if (arg(0) == 'node') {
+    $node = node_load(arg(1));
+    if ($node->type == 'annonce') {
+      $breadcrumb[] = l('Location vacances', 'locations-vacances-maroc', array('attributes' => array('title' => 'Location vacances Maroc')));
+      $breadcrumb[] = taxonomy_term_load($node->field_ville['und'][0]['tid'])->name;
+      $breadcrumb[] = taxonomy_term_load($node->field_type_du_bien['und'][0]['tid'])->name;
+      $breadcrumb[] = drupal_get_title();
+    }
+  }
+
   if (empty($breadcrumb[1])) {
     $breadcrumb[] = drupal_get_title();
   }
+
 
   if (!empty($breadcrumb)) {
     // Provide a navigational heading to give context for breadcrumb links to

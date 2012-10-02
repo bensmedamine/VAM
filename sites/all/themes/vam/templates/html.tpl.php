@@ -41,27 +41,35 @@
  */
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
   "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
+<html xmlns:fb="http://ogp.me/ns/fb#" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
 
   <head profile="<?php print $grddl_profile; ?>">
     <?php print $head; ?>
-    <?php if($is_front): ?>
-    <?php //Le module Metatag doit être installé et les champs (title, description et keywords) doivent être renseignés ! ?>
+    <?php if ($is_front): ?>
+      <?php //Le module Metatag doit être installé et les champs (title, description et keywords) doivent être renseignés ! ?>
       <?php print (render($metatags['description']['#attached'])); ?>
       <?php print (render($metatags['keywords']['#attached'])); ?>
     <?php endif; ?>
     <title><?php print $head_title; ?></title>
     <?php print $styles; ?>
     <?php print $scripts; ?>
+    <div id="fb-root"></div>
     <script type="text/javascript">
       Cufon.replace('h1') ('h2') ('h3') ('h4') ('h5') ('h6') ('.slider-button a') ('.slider-city') ('.button') ('.prix-nuit') ('.transform') ('#navigation li a', {hover: true});
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=381928508528441";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
     </script>
     <!--[if IE 6]>
     <script src="js/DD_belatedPNG.js"></script>
     <script>
       DD_belatedPNG.fix('img');
     </script>
-    <![endif]--> 
+    <![endif]-->
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes; ?>>
     <?php print $page_top; ?>

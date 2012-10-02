@@ -77,6 +77,9 @@
  * @see template_process()
  */
 drupal_add_css(drupal_get_path('theme', 'vam') . '/css/inner.css');
+drupal_add_css(drupal_get_path('theme', 'vam') . '/css/colorbox.css');
+drupal_add_js(drupal_get_path('theme', 'vam') . '/js/jquery.carouFredSel-6.0.2.js');
+drupal_add_js(drupal_get_path('theme', 'vam') . '/js/jquery.colorbox-min.js');
 ?>
 
 <?php /* echo '<pre>';
@@ -117,35 +120,56 @@ drupal_add_css(drupal_get_path('theme', 'vam') . '/css/inner.css');
   </div> */ ?>
 
 
+<div id="header-annonce">
+<div class="fb-like" data-href="<?php print url('node/' . $node->nid, array('absolute' => TRUE)); ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend"></div>
+<div class="fs-15 transform">Publié il y a <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue"><?php print $node->field_vues['und'][0]['value']; ?> vues</span></div>
+</div>
+  <?php if (count($node->field_photos)): ?>
+  <div class="image_carousel clearboth">
+    <div id="foo">
+      <?php foreach ($node->field_photos['und'] as $img): ?>
+        <?php print l(theme('image_style', array('style_name' => 'thumb_300x150', 'path' => $img['uri'], 'alt' => $node->title)), file_create_url($img['uri']), array('html' => true, 'attributes' => array('title' => $node->title, 'class' => 'group'))); ?>
+      <?php endforeach; ?>
+    </div>
+    <div class="clearboth"></div>
+    <p class="slider-navigation"><strong><?php print count($node->field_photos['und']); ?></strong> <img class="count-img" src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/photos.png"> <a class="prev" id="foo_prev" href="#"><span>Suivant</span></a>
+      <a class="next" id="foo_next" href="#"><span>| Précedent</span></a> <small>Cliquez sur l'image pour l'agrandir. </small></p>
+  </div>
+  <br /><br />
+  <?php if (count($node->field_photos['und']) == 1): ?>
+    <style type="text/css">
+      .image_carousel{background: none;}
+    </style>
+  <?php endif; ?>
+<?php endif; ?>
+
+<script type="text/javascript">
+  jQuery(function($){
+    $(".group").colorbox({rel:'group'});
+    $("#foo").carouFredSel({
+      circular    : false,
+      infinite    : true,
+      auto : true,
+      prev : {
+        button      : "#foo_prev",
+        items       : 1
+      },
+      next : {
+        button      : "#foo_next",
+        items       : 1
+      }
+    });
+  });
+
+</script>
 
 
 
-<!-- BEGIN SLIDE -->
-<div id="slider_annonces_container">
-
-  <div id="slideshow">  
-    <?php foreach ($node->field_photos['und'] as $img): ?>
-      <div class="cycle">
-        <?php print theme('image_style', array('style_name' => 'thum500x366', 'path' => ($img['uri']), 'alt' => $node->title)); ?>
-      </div><!-- end cycle -->
-    <?php endforeach; ?>
-  </div><!-- end #slideshow -->
-  
-  <div id="slideshow_navigation">
-    <div id=""></div>
-  </div><!-- end slideshow navigation -->
-</div><!-- end #slide -->
-<!-- END OF SLIDE -->
 
 
 
-
-
-
-
-<div class="clear"><br /><br /></div>
-
-<h2 class="underline">Description du logement</h2>
+<div class="clear"></div>
+<h2 class="underline top-20">Description du logement</h2>
 <div id="property-detail">
   <div class="one_half">
     <ul class="box_text">
@@ -155,7 +179,7 @@ drupal_add_css(drupal_get_path('theme', 'vam') . '/css/inner.css');
       <li><span class="left">Nombre de chambres</span>		Single Family Home</li>
       <li><span class="left">Neighbothood	</span>	Not Available</li>
       <li><span class="left">Stories</span>			Not Available</li>
-    </ul>	
+    </ul>
   </div>
   <div class="one_half last">
     <ul class="box_text">
@@ -165,7 +189,7 @@ drupal_add_css(drupal_get_path('theme', 'vam') . '/css/inner.css');
       <li><span class="left">Year Built</span>				1980</li>
       <li><span class="left">Style</span>					Villa</li>
       <li><span class="left">Garage</span>				2</li>
-    </ul>	
+    </ul>
   </div>
   <ul class="box_text">
     <li><span class="left">Property Features	</span>	<span class="right">Status: Active, Area: Las Vegas, View, 2 convered parking, Cooling Features, Community Security, Lot Features: Back yard, fenced yard, front yard,wall street, other structural features, Parking Features: Gated, Garage Is Detached, Side by side, Country: Las Vegas, Approximately 6000 acre(s), 7 total full bath(s), Pool Features: Heated, 2 car garage(s), View: Pool View, Lot size is 20 or more acres, Zoning: LAR1, Swimming pool(s), Dinning room, Den,Hardwood floors, Living Room.</span></li>
@@ -175,7 +199,7 @@ drupal_add_css(drupal_get_path('theme', 'vam') . '/css/inner.css');
     <li><span class="left">Roofing	</span> <span class="right">Tile</span></li>
     <li><span class="left">Interior Features</span><span class="right">	Built-In Gas Range, Cooktop - Gas, Gas Grill, Microwave, Carpet Flooring, Mixed 					Flooring Materials, Tile Flooring, 220V Throughout, Crown Moldings, High Ceilings (9 Feet+), Hot Tub, Security System - Owned, DINING ROOM/AREA FEATURES: Breakfast Counter / Bar, Country Kitchen, Formal Dining Rm, Living Room, KITCHEN FEATURES: Counter Top, Island, BATHROOM FEATURES: Dual Entry (Jack &amp; Jill) Bath, BEDROOM FEATURES: Master Suite, LAUNDRY LOCATION: 					Inside </span></li>
     <li><span class="left">Exterior Features</span>	<span class="right">Private Spa, Front Sprinkler, Rear Sprinkler, Sprinkler System, Concrete Slab Patio, Deck(s), Enclosed Patio, Porch - Front</span></li>
-  </ul>	
+  </ul>
 </div>
 
 <div class="clear"><br /><br /></div>
