@@ -197,9 +197,15 @@ function save_annonce($annonce) {
       $i++;
     }
 
-    node_save($node);
+    try {
+      node_save($node);
 
-    print_r($node);
+      print_r($node);
+    } catch (Exception $exc) {
+      echo $exc->getTraceAsString();
+    }
+
+
     echo '</pre>';
 
     $compteur++;
