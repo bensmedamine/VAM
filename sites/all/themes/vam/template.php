@@ -23,9 +23,9 @@ function vam_breadcrumb($variables) {
   if (arg(0) == 'node') {
     $node = node_load(arg(1));
     if ($node->type == 'annonce') {
-      $breadcrumb[] = l('Location vacances', 'locations-vacances-maroc', array('attributes' => array('title' => 'Location vacances Maroc')));
-      $breadcrumb[] = taxonomy_term_load($node->field_ville['und'][0]['tid'])->name;
-      $breadcrumb[] = taxonomy_term_load($node->field_type_du_bien['und'][0]['tid'])->name;
+      $breadcrumb[] = l('Locations vacances Maroc', 'locations-vacances-maroc', array('attributes' => array('title' => 'Location vacances Maroc')));
+      $breadcrumb[] = l(taxonomy_term_load($node->field_ville['und'][0]['tid'])->name, 'taxonomy/term/' . $node->field_ville['und'][0]['tid']);
+      $breadcrumb[] = l(taxonomy_term_load($node->field_type_du_bien['und'][0]['tid'])->name, 'taxonomy/term/' . $node->field_type_du_bien['und'][0]['tid']);
       $breadcrumb[] = drupal_get_title();
     }
   }

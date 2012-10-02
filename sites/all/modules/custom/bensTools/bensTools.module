@@ -12,4 +12,36 @@ function load_select_from_tax($vid, $add_selectionner = false, $default_option =
   return $options;
 }
 
+function bensTools_menu_alter(&$items) {
+  $items['taxonomy/term/%taxonomy_term']['page callback'] = 'locations_vacances_taxonomy_redirect'; // modules: annonces
+  unset($items['taxonomy/term/%taxonomy_term']['file']);
+}
+
+/**
+ * Implements hook_menu().
+ */
+function bensTools_menu() {
+  $items['page-non-trouvee'] = array(
+    'title' => 'Page non trouvée',
+    'page callback' => 'page_non_trouvee',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bensTools_theme() {
+  return array(
+    'page_non_trouvee' => array(
+      'template' => 'themes/page_non_trouvee'
+    ),
+  );
+}
+
+function page_non_trouvee() {
+  return theme('page_non_trouvee');
+}
+
 ?>

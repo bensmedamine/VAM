@@ -9,6 +9,13 @@ function annonces_menu() {
     'page callback' => 'locations_vacances',
     'access callback' => TRUE,
   );
+
+  $items['locations-vacances-maroc/%/%'] = array(
+    'page callback' => 'locations_vacances_recherche',
+    'access callback' => TRUE,
+  );
+
+
   $items['deposer-une-annonce'] = array(
     'title' => 'Déposer une annonce',
     'page callback' => 'deposer_annonce',
@@ -32,24 +39,42 @@ function annonces_theme() {
   );
 }
 
-function locations_vacances() {
+function locations_vacances($option = array()) {
   global $theme_path;
 
   $breadcrumb = drupal_get_breadcrumb();
-  $breadcrumb[] = 'Locations vacances au Maroc';
+
+  if (empty($breadcrumb[1]))
+    $breadcrumb[] = empty($option) ? 'Locations vacances Maroc' : l('Locations vacances Maroc', 'locations-vacances-maroc');
+  if (!empty($option['ville']['breadcrumb'])) {
+    $breadcrumb[] = 'Villes';
+    $breadcrumb[] = $option['ville']['breadcrumb'];
+  }
+  if (!empty($option['bien']['breadcrumb'])) {
+    $breadcrumb[] = 'Logements';
+    $breadcrumb[] = $option['bien']['breadcrumb'];
+  }
   drupal_set_breadcrumb($breadcrumb);
 
   drupal_add_css($theme_path . '/css/inner.css');
 
   $query = new EntityFieldQuery();
-  $entities = $query->entityCondition('entity_type', 'node')
+  $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'annonce')
       ->propertyCondition('status', 1)
       ->propertyOrderBy('created', 'DESC')
-      ->pager(10)
-      ->execute();
+      ->pager(10);
 
-  $nodes = node_load_multiple(array_keys($entities['node']));
+  if (!empty($option['ville']['tid'])) {
+    $query->fieldCondition('field_ville', 'tid', $option['ville']['tid']);
+  }
+  if (!empty($option['bien']['tid'])) {
+    $query->fieldCondition('field_type_du_bien', 'tid', $option['bien']['tid']);
+  }
+
+  $entities = $query->execute();
+
+  $nodes = node_load_multiple(@array_keys(@$entities['node']));
 
   $output = theme('listing_annonces', array('nodes' => $nodes, 'total' => $query->pager['total']));
   $output .= theme('pager', array('tags' => array()));
@@ -87,6 +112,47 @@ function get_count_annonces_par_ville($tid) {
   $count = db_query('SELECT COUNT(field_ville_tid) total FROM vam_field_data_field_ville WHERE field_ville_tid = :tid', array(':tid' => $tid))
       ->fetch();
   return $count->total;
+}
+
+function locations_vacances_taxonomy_redirect() {
+  $option = array();
+  $term = taxonomy_term_load(arg(2));
+  if (@$term->vocabulary_machine_name) {
+    switch ($term->vocabulary_machine_name) {
+      case 'villes':
+        $option['ville']['breadcrumb'] = $term->name;
+        $option['ville']['tid'] = $term->tid;
+        break;
+      case 'type_du_bien':
+        $option['bien']['breadcrumb'] = $term->name;
+        $option['bien']['tid'] = $term->tid;
+        break;
+    }
+  }else
+    drupal_not_found();
+
+  return locations_vacances($option);
+}
+
+function locations_vacances_recherche() {
+  for ($i = 1; $i <= 2; $i++) {
+    $term = current(taxonomy_get_term_by_name(arg($i)));
+    if (@$term->vocabulary_machine_name) {
+      switch ($term->vocabulary_machine_name) {
+        case 'villes':
+          $option['ville']['breadcrumb'] = $term->name;
+          $option['ville']['tid'] = $term->tid;
+          break;
+        case 'type_du_bien':
+          $option['bien']['breadcrumb'] = $term->name;
+          $option['bien']['tid'] = $term->tid;
+          break;
+      }
+    }else
+      drupal_not_found();
+  }
+  drupal_set_title($option['ville']['breadcrumb'] . ' » ' . $option['bien']['breadcrumb']);
+  return locations_vacances($option);
 }
 
 ?>
