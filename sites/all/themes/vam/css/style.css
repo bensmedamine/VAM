@@ -619,7 +619,7 @@ label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5p
 #inscription-form div.description{color: #F24024; margin-bottom: 0; margin-left: 154px; padding-top: 3px;}
 #inscription-form .form-type-radio label{width: 75px !important;}
 
-/** **/
+/** détails annonce **/
 .image_carousel{width: 620px; background: url("../images/slider-shadow2.png") no-repeat center bottom; height: 162px;}
 #foo { height: 163px; }
 #foo a {display: block; float: left; width: 300px; padding: 0 5px;}
@@ -629,3 +629,9 @@ label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5p
 #header-annonce {margin-bottom: 20px; overflow: hidden;}
 #header-annonce .fb-like{float: left;}
 #header-annonce .transform{float: right;}
+
+/* */
+#search-form-front{clear: both;}
+#search-form-front .form-item  {width: 300px; float: left; margin-right: 10px;}
+#search-form-front select, #search-form-front input {margin: 0;}
+#search-form-front label {display: block !important; float: left; margin-bottom: 5px; font-size: 14px;}

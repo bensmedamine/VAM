@@ -20,12 +20,15 @@
 
   <div id="maincontent">
     <div id="content" class="full">
-      <?php print render($page['accroches']); ?>
+      <?php print render($page['vam_front_search']); ?>
       <br class="clear" />
       <br />
       <br />
-
       <?php print render($page['last_announcements']); ?>
+      <br class="clear" />
+      <br />
+      <br />
+      <?php print render($page['accroches']); ?>
 
     </div><!-- end #content -->
     <div class="clear"></div>
