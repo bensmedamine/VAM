@@ -77,54 +77,21 @@
  * @see template_process()
  */
 drupal_add_css(drupal_get_path('theme', 'vam') . '/css/inner.css');
-drupal_add_css(drupal_get_path('theme', 'vam') . '/css/colorbox.css');
-drupal_add_js(drupal_get_path('theme', 'vam') . '/js/jquery.carouFredSel-6.0.2.js');
-drupal_add_js(drupal_get_path('theme', 'vam') . '/js/jquery.colorbox-min.js');
+$edit_link = null;
+if ($is_admin) {
+  $edit_link = '<a class="blue fs-18 transform" href="/node/' . $node->nid . '/edit" target="_blank" > Modifier l\'annonce</a>';
+}
 ?>
-
-<?php /* echo '<pre>';
-  print_r($node->field_photos['und']);
-  echo '</pre>';
-  die('DEBUG MODE'); */ ?>
-
-
-<?php /* <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-
-  <?php print $user_picture; ?>
-
-  <?php print render($title_prefix); ?>
-  <?php if (!$page): ?>
-  <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-  <?php endif; ?>
-  <?php print render($title_suffix); ?>
-
-  <?php if ($display_submitted): ?>
-  <div class="submitted">
-  <?php print $submitted; ?>
-  </div>
-  <?php endif; ?>
-
-  <div class="content"<?php print $content_attributes; ?>>
-  <?php
-  // We hide the comments and links now so that we can render them later.
-  hide($content['comments']);
-  hide($content['links']);
-  print render($content);
-  ?>
-  </div>
-
-  <?php print render($content['links']); ?>
-
-  <?php print render($content['comments']); ?>
-
-  </div> */ ?>
-
-
 <div id="header-annonce">
-<div class="fb-like" data-href="<?php print url('node/' . $node->nid, array('absolute' => TRUE)); ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend"></div>
-<div class="fs-15 transform">Publié il y a <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue"><?php print $node->field_vues['und'][0]['value']; ?> vues</span></div>
+  <div class="fb-like" data-href="<?php print url('node/' . $node->nid, array('absolute' => TRUE)); ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend"></div>
+  <div class="fs-15 transform">Publié il y a <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue"><?php print $node->field_vues['und'][0]['value']; ?> vues</span></div>
 </div>
-  <?php if (count($node->field_photos)): ?>
+<?php if (count($node->field_photos)): ?>
+  <?php
+  drupal_add_css(drupal_get_path('theme', 'vam') . '/css/colorbox.css');
+  drupal_add_js(drupal_get_path('theme', 'vam') . '/js/jquery.carouFredSel-6.0.2.js');
+  drupal_add_js(drupal_get_path('theme', 'vam') . '/js/jquery.colorbox-min.js');
+  ?>
   <div class="image_carousel clearboth">
     <div id="foo">
       <?php foreach ($node->field_photos['und'] as $img): ?>
@@ -141,109 +108,107 @@ drupal_add_js(drupal_get_path('theme', 'vam') . '/js/jquery.colorbox-min.js');
       .image_carousel{background: none;}
     </style>
   <?php endif; ?>
-<?php endif; ?>
-
-<script type="text/javascript">
-  jQuery(function($){
-    $(".group").colorbox({rel:'group'});
-    $("#foo").carouFredSel({
-      circular    : false,
-      infinite    : true,
-      auto : true,
-      prev : {
-        button      : "#foo_prev",
-        items       : 1
-      },
-      next : {
-        button      : "#foo_next",
-        items       : 1
-      }
+  <script type="text/javascript">
+    jQuery(function($){
+      $(".group").colorbox({rel:'group'});
+      $("#foo").carouFredSel({
+        circular    : false,
+        infinite    : true,
+        auto : true,
+        prev : {
+          button      : "#foo_prev",
+          items       : 1
+        },
+        next : {
+          button      : "#foo_next",
+          items       : 1
+        }
+      });
     });
-  });
-
-</script>
-
-
-
-
-
-
+  </script>
+<?php endif; ?>
 <div class="clear"></div>
-<h2 class="underline top-20">Description du logement</h2>
+<h2 class="top-20 underline">Déscription du logement</h2>
 <div id="property-detail">
   <div class="one_half">
     <ul class="box_text">
-      <li><span class="left">Prix nuitée	</span>			5 bed</li>
-      <li><span class="left">Type de logement</span>			2,700 sq ft</li>
-      <li><span class="left">Ville</span>				$ 2,200,000</li>
-      <li><span class="left">Nombre de chambres</span>		Single Family Home</li>
-      <li><span class="left">Neighbothood	</span>	Not Available</li>
-      <li><span class="left">Stories</span>			Not Available</li>
+      <li><span class="left">Prix nuitée</span><?php print !empty($node->field_prix_nuitee['und'][0]['value']) ? '<span class="blue transform fs-12">' . $node->field_prix_nuitee['und'][0]['value'] . ' DHS</span>' : 'non disponible'; ?></li>
+      <li><span class="left">Superficie</span><?php print !empty($node->field_surface['und'][0]['value']) ? $node->field_surface['und'][0]['value'] . ' m²' : 'non disponible'; ?></li>
+      <li><span class="left">Nombre de pièces</span><?php print !empty($node->field_nbr_chambres['und'][0]['value']) ? $node->field_nbr_chambres['und'][0]['value'] : 'non disponible'; ?></li>
     </ul>
   </div>
-  <div class="one_half last">
-    <ul class="box_text">
-      <li><span class="left">Baths</span>				7 bath</li>
-      <li><span class="left">Lot Size	</span>			0,19 Acres</li>
-      <li><span class="left">Price/sqft</span>				$ 688</li>
-      <li><span class="left">Year Built</span>				1980</li>
-      <li><span class="left">Style</span>					Villa</li>
-      <li><span class="left">Garage</span>				2</li>
-    </ul>
-  </div>
-  <ul class="box_text">
-    <li><span class="left">Property Features	</span>	<span class="right">Status: Active, Area: Las Vegas, View, 2 convered parking, Cooling Features, Community Security, Lot Features: Back yard, fenced yard, front yard,wall street, other structural features, Parking Features: Gated, Garage Is Detached, Side by side, Country: Las Vegas, Approximately 6000 acre(s), 7 total full bath(s), Pool Features: Heated, 2 car garage(s), View: Pool View, Lot size is 20 or more acres, Zoning: LAR1, Swimming pool(s), Dinning room, Den,Hardwood floors, Living Room.</span></li>
-    <li><span class="left">Fireplace Features</span> <span class="right">Gas Fuel, LOCATION: Living Room, Master Badroom</span></li>
-    <li><span class="left">Heating Features</span> <span class="right">HEATING TYPE: Central Furnace, Yes</span></li>
-    <li><span class="left">Ex. Construction	</span> <span class="right">Stucco</span></li>
-    <li><span class="left">Roofing	</span> <span class="right">Tile</span></li>
-    <li><span class="left">Interior Features</span><span class="right">	Built-In Gas Range, Cooktop - Gas, Gas Grill, Microwave, Carpet Flooring, Mixed 					Flooring Materials, Tile Flooring, 220V Throughout, Crown Moldings, High Ceilings (9 Feet+), Hot Tub, Security System - Owned, DINING ROOM/AREA FEATURES: Breakfast Counter / Bar, Country Kitchen, Formal Dining Rm, Living Room, KITCHEN FEATURES: Counter Top, Island, BATHROOM FEATURES: Dual Entry (Jack &amp; Jill) Bath, BEDROOM FEATURES: Master Suite, LAUNDRY LOCATION: 					Inside </span></li>
-    <li><span class="left">Exterior Features</span>	<span class="right">Private Spa, Front Sprinkler, Rear Sprinkler, Sprinkler System, Concrete Slab Patio, Deck(s), Enclosed Patio, Porch - Front</span></li>
-  </ul>
+  <div class="clear"></div>
+  <h3 class="top-20 desc"><span class="blue"><?php print $node->field_type_du_bien['und'][0]['taxonomy_term']->name; ?></span> pour location vacances à <span class="blue"><?php print $node->field_ville['und'][0]['taxonomy_term']->name; ?></span></h3>
+  <p class="fs-12"><?php print str_replace("\n", '<br />', $node->field_description['und'][0]['value']); ?></p>
 </div>
-
 <div class="clear"><br /><br /></div>
 
-<h2 class="underline">Annonceur particulier</h2>
-<?php /* <iframe width="620" height="353" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=222+North+Canon+Drive+%23202,+Beverly+Hills+&amp;aq=&amp;sll=34.066623,-118.386612&amp;sspn=0.005022,0.011362&amp;ie=UTF8&amp;hq=&amp;hnear=222+N+Canon+Dr,+Beverly+Hills,+Los+Angeles,+California+90210&amp;ll=34.068423,-118.398505&amp;spn=0.020085,0.045447&amp;z=14&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=222+North+Canon+Drive+%23202,+Beverly+Hills+&amp;aq=&amp;sll=34.066623,-118.386612&amp;sspn=0.005022,0.011362&amp;ie=UTF8&amp;hq=&amp;hnear=222+N+Canon+Dr,+Beverly+Hills,+Los+Angeles,+California+90210&amp;ll=34.068423,-118.398505&amp;spn=0.020085,0.045447&amp;z=14" style="color:#0000FF;text-align:left">View Larger Map</a></small> */ ?>
-
+<h2 class="underline">Annonceur <?php print $node->field_type_annonceur['und'][0]['taxonomy_term']->name; ?></h2>
+<p class="fs-18 transform telephone"><?php print ($node->field_prenom['und'][0]['value']); ?> : <?php print ($node->field_tel['und'][0]['value']); ?></p>
 <div class="clear"><br /><br /></div>
 
-<h2 class="underline">Contact Informations</h2>
-<form method="post" action="" id="contact-information" />
-<fieldset>
+<?php /*
+  <h2 class="underline">Contacter l'annoceur</h2>
+  <form method="post" action="" id="contact-information" />
+  <fieldset>
   <ul>
-    <li>
-      <label>My First Name</label><br />
-      <input type="text" size="28" />
-    </li>
-    <li>
-      <label>My Last Name</label><br />
-      <input type="text" size="28" />
-    </li>
+  <li>
+  <label>Votre nom et prénom</label><br />
+  <input type="text" size="28" />
+  </li>
+  <li>
+  <label>E-mail</label><br />
+  <input type="text" size="28" />
+  </li>
   </ul>
-  <label>My Email</label><br />
-  <input type="text" size="39" /><br />
-  <label>My Number (optional)</label><br />
-  <input type="text" size="39" /><br />
-  <label>Type of Information</label><br />
-  <input type="text" size="109" /><br />
-  <label>Questions &amp; Comments (optional)</label><br />
-  <textarea cols="78" rows="3"> </textarea><br />
+  <label>Message</label><br />
+  <textarea cols="78" rows="3">Bonjour, je suis intéressé par votre offre …</textarea><br />
   <ul>
-    <li>
-      <label>Preferred Respons Time</label><br />
-      <input type="text" size="28" />
-    </li>
-    <li>
-      <label>Preferred Contact Time</label><br />
-      <input type="text" size="28" />
-    </li>
+  <li>
+  <label>Preferred Respons Time</label><br />
+  <input type="text" size="28" />
+  </li>
+  <li>
+  <label>Preferred Contact Time</label><br />
+  <input type="text" size="28" />
+  </li>
   </ul>
   <label>Estimated Timeframe for Buying or Selling</label><br />
   <input type="text" size="39" /><br /><br />
-  <input type="submit" name="submit" class="button" value="request more details" /><br />
-  <small>We will never share your personal information. <a href="#">Privacy Policy</a></small>
-</fieldset>
-</form>
+  <input type="submit" name="submit" class="button" value="Envoyer ma demande" /><br />
+  </fieldset>
+  </form>
 
+  <?php if ($edit_link): ?>
+  <p class="top-20"><?php print $edit_link; ?></p>
+  <?php endif; ?>
+  <div class="clear"><br /><br /></div>
+ */ ?>
+
+<h2 class="underline">Annonces similaires</h2>
+<ul class="four_column_properties last-announcement">
+  <li>
+    <a title="Studio meublé au maarif" href="/annonce-location-vacances-maroc/casablanca/studio/studio-meuble-au-maarif-0"><img width="184" height="119" alt="Studio meublé au maarif" src="http://vacaumaroc.dev/sites/default/files/styles/thumb_184x119/public/img_annonces/studio-meuble-au-maarif_3.jpg" typeof="foaf:Image"></a>      <h3><a title="Studio meublé au maarif" href="/annonce-location-vacances-maroc/casablanca/studio/studio-meuble-au-maarif-0"><cufon class="cufon cufon-canvas" alt="Studio " style="width: 57px; height: 18px;"><canvas width="71" height="21" style="width: 71px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>Studio </cufontext></cufon><cufon class="cufon cufon-canvas" alt="meublé " style="width: 66px; height: 18px;"><canvas width="80" height="21" style="width: 80px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>meublé </cufontext></cufon><cufon class="cufon cufon-canvas" alt="au " style="width: 25px; height: 18px;"><canvas width="39" height="21" style="width: 39px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>au </cufontext></cufon><cufon class="cufon cufon-canvas" alt="maarif" style="width: 52px; height: 18px;"><canvas width="65" height="21" style="width: 65px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>maarif</cufontext></cufon></a></h3>
+    <ul class="box_text">
+      <li><span class="left">Ajouté il y a</span> 1 semaine 8 heures</li>
+      <li><span class="left">Ville</span> Casablanca</li>
+      <li><span class="left">Logement</span> Studio</li>
+    </ul>
+  </li>
+  <li>
+    <a title="Appartement meublé a louer marrakech" href="/annonce-location-vacances-maroc/marrackech/appartement/appartement-meuble-a-louer-marrakech"><img width="184" height="119" alt="Appartement meublé a louer marrakech" src="http://vacaumaroc.dev/sites/default/files/styles/thumb_184x119/public/img_annonces//appartement-meuble-a-louer-marrakech.jpg" typeof="foaf:Image"></a>      <h3><a title="Appartement meublé a louer marrakech" href="/annonce-location-vacances-maroc/marrackech/appartement/appartement-meuble-a-louer-marrakech"><cufon class="cufon cufon-canvas" alt="Appartement " style="width: 110px; height: 18px;"><canvas width="124" height="21" style="width: 124px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>Appartement </cufontext></cufon><cufon class="cufon cufon-canvas" alt="meublé " style="width: 66px; height: 18px;"><canvas width="80" height="21" style="width: 80px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>meublé </cufontext></cufon><cufon class="cufon cufon-canvas" alt="a " style="width: 15px; height: 18px;"><canvas width="29" height="21" style="width: 29px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>a </cufontext></cufon><cufon class="cufon cufon-canvas" alt="louer " style="width: 47px; height: 18px;"><canvas width="61" height="21" style="width: 61px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>louer </cufontext></cufon><cufon class="cufon cufon-canvas" alt="marrakech" style="width: 84px; height: 18px;"><canvas width="93" height="21" style="width: 93px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>marrakech</cufontext></cufon></a></h3>
+    <ul class="box_text">
+      <li><span class="left">Ajouté il y a</span> 1 semaine 8 heures</li>
+      <li><span class="left">Ville</span> Marrackech</li>
+      <li><span class="left">Logement</span> Appartement</li>
+    </ul>
+  </li>
+  <li>
+    <a title="Appartement meublé 250dh à agadir" href="/annonce-location-vacances-maroc/agadir/appartement/appartement-meuble-250dh-a-agadir"><img width="184" height="119" alt="Appartement meublé 250dh à agadir" src="http://vacaumaroc.dev/sites/default/files/styles/thumb_184x119/public/img_annonces//appartement-meuble-250dh-a-agadir.jpg" typeof="foaf:Image"></a>      <h3><a title="Appartement meublé 250dh à agadir" href="/annonce-location-vacances-maroc/agadir/appartement/appartement-meuble-250dh-a-agadir"><cufon class="cufon cufon-canvas" alt="Appartement " style="width: 110px; height: 18px;"><canvas width="124" height="21" style="width: 124px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>Appartement </cufontext></cufon><cufon class="cufon cufon-canvas" alt="meublé " style="width: 66px; height: 18px;"><canvas width="80" height="21" style="width: 80px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>meublé </cufontext></cufon><cufon class="cufon cufon-canvas" alt="250dh " style="width: 57px; height: 18px;"><canvas width="71" height="21" style="width: 71px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>250dh </cufontext></cufon><cufon class="cufon cufon-canvas" alt="à " style="width: 15px; height: 18px;"><canvas width="29" height="21" style="width: 29px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>à </cufontext></cufon><cufon class="cufon cufon-canvas" alt="agadir" style="width: 51px; height: 18px;"><canvas width="63" height="21" style="width: 63px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>agadir</cufontext></cufon></a></h3>
+    <ul class="box_text">
+      <li><span class="left">Ajouté il y a</span> 1 semaine 16 heures</li>
+      <li><span class="left">Ville</span> Agadir</li>
+      <li><span class="left">Logement</span> Appartement</li>
+    </ul>
+  </li>
+</ul>

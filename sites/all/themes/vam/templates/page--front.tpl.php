@@ -3,7 +3,7 @@
   <div class="centercolumn">
     <div id="header">
       <div id="logo">
-        <h1><a href="/"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/logo.png" alt="Locations vacances au Maroc" /></a></h1>
+        <a href="/"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/logo.png" alt="Locations vacances au Maroc" /></a>
       </div><!-- end #logo -->
       <div id="navigation">
         <?php print render($page['menu']); ?>

@@ -1,4 +1,4 @@
-<h2 class="underline"><?php print drupal_get_title(); ?> <span class="fs-18 blue"><?php print $total; ?> trouvées</span></h2>
+<h1 class="underline top-5"><?php print drupal_get_title(); ?> <span class="fs-18 blue"><?php print $total; ?> annonces trouvées</span></h1>
 <?php foreach ($nodes as $key => $node): ?>
   <div id="annonce-<?php print $key; ?>" class="list_properties">
     <div class="title_property2">
@@ -18,7 +18,7 @@
       <?php endif; ?>
       <strong class="blue"><?php print taxonomy_term_load($node->field_ville['und'][0]['tid'])->name; ?></strong>
       <?php if (!empty($node->field_prix_nuitee)): ?>
-        <span class="prix-nuit blue"><strong><?php print $node->field_prix_nuitee['und'][0]['value']; ?> Dhs / Nuit</strong></span>
+      <span class="prix-nuit blue"><strong class="fs-15"><?php print $node->field_prix_nuitee['und'][0]['value']; ?> Dhs la nuitée</strong></span>
       <?php endif; ?>
       <br />
       <?php print taxonomy_term_load($node->field_type_annonceur['und'][0]['tid'])->name; ?> | <?php print taxonomy_term_load($node->field_type_du_bien['und'][0]['tid'])->name; ?><br />

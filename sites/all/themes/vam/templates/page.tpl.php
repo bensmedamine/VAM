@@ -88,7 +88,7 @@
   <div class="centercolumn">
     <div id="header">
       <div id="logo">
-        <h1><a href="/"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/logo.png" alt="Locations vacances au Maroc" /></a></h1>
+        <a href="/"><img src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/logo.png" alt="Locations vacances au Maroc" /></a>
       </div><!-- end #logo -->
       <div id="navigation">
         <?php print render($page['menu']); ?>
@@ -105,11 +105,11 @@
   <?php endif; ?>
   <div id="maincontent">
     <div id="content">
-      
+
       <?php if (arg(0) != 'locations-vacances-maroc' && arg(0) != 'taxonomy'): ?>
-        <h2 class="underline"><?php print $title; ?></h2>
+        <h1 class="underline top-5"><?php print $title; ?></h1>
       <?php endif; ?>
-        
+
       <?php print render($messages); ?>
 
       <?php print render($page['content']); ?>
@@ -121,7 +121,7 @@
     <div class="sidebar_right">
       <div class="sidebar">
         <?php if ($page['vam_sidebar']): ?>
-          <ul>				
+        <ul>
             <?php print render($page['vam_sidebar']); ?>
           </ul>
         <?php endif; ?>
