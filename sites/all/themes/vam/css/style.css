@@ -635,3 +635,10 @@ label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5p
 #search-form-front .form-item  {width: 300px; float: left; margin-right: 10px;}
 #search-form-front select, #search-form-front input {margin: 0;}
 #search-form-front label {display: block !important; float: left; margin-bottom: 5px; font-size: 14px;}
+.form-item-type-de-bien label {background: url('/sites/default/files/pictos/home.png') no-repeat 0 0; padding-left: 20px;}
+.form-item-ville label {background: url('/sites/default/files/pictos/marker.png') no-repeat 0 0; padding-left: 20px;}
+#search-form-front .form-item-prix-nuitee-max {width: 180px;}
+.form-item-prix-nuitee-max label {background: url('/sites/default/files/pictos/price_tag.png') no-repeat 0 0; padding-left: 20px; width: 100%}
+.dhs{font-weight: bold; font-size: 8px;}
+#edit-quick-search{float: left;}
+#front-search-button input {float: right; margin-top: 25px; width: 115px;}

@@ -1,5 +1,5 @@
 <div class="title_featured">
-  <h2>Les dernières annonces <span class="blue"><?php print $total; ?> en ligne</span></h2><a href="/locations-vacances-maroc" class="featured">Voir toutes les annonces locations vacances</a>
+  <h2>Les dernières annonces <span class="blue"><?php print $total; ?> en ligne</span></h2><a href="/locations-vacances-maroc" class="featured fs-12">Voir toutes les annonces locations vacances</a>
 </div>
 <ul class="four_column_properties last-announcement">
   <?php $i = 0; ?>

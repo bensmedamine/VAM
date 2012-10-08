@@ -132,8 +132,8 @@ drupal_add_js(drupal_get_path('theme', 'vam') . '/js/jquery.colorbox-min.js');
       <?php endforeach; ?>
     </div>
     <div class="clearboth"></div>
-    <p class="slider-navigation"><strong><?php print count($node->field_photos['und']); ?></strong> <img class="count-img" src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/photos.png"> <a class="prev" id="foo_prev" href="#"><span>Suivant</span></a>
-      <a class="next" id="foo_next" href="#"><span>| Précedent</span></a> <small>Cliquez sur l'image pour l'agrandir. </small></p>
+    <p class="slider-navigation"><strong><?php print count($node->field_photos['und']); ?></strong> <img class="count-img" src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/photos.png"> <a class="prev" id="foo_prev" href="#"><span>&larr;</span></a>
+      <a class="next" id="foo_next" href="#"><span>| &rarr;</span></a> <small>Cliquez sur l'image pour l'agrandir. </small></p>
   </div>
   <br /><br />
   <?php if (count($node->field_photos['und']) == 1): ?>

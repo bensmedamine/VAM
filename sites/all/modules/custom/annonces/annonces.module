@@ -136,7 +136,7 @@ function locations_vacances_taxonomy_redirect() {
 
 function locations_vacances_recherche() {
   for ($i = 1; $i <= 2; $i++) {
-    $term = current(taxonomy_get_term_by_name(arg($i)));
+    $term = current(taxonomy_get_term_by_name(str_replace('-', ' ', arg($i))));
     if (@$term->vocabulary_machine_name) {
       switch ($term->vocabulary_machine_name) {
         case 'villes':
