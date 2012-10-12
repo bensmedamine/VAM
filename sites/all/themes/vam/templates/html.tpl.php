@@ -54,17 +54,14 @@
     <?php print $styles; ?>
     <?php print $scripts; ?>
     <div id="fb-root"></div>
-    <script type="text/javascript">
-      //Cufon.replace('h1') ('h2') ('h3') ('h4') ('h5') ('h6') ('.slider-button a') ('.slider-city') ('.button') ('.prix-nuit') ('.transform') ('#navigation li a', {hover: true});
-      Cufon.replace('.cufon');
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=381928508528441";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <!--[if IE 6]>
     <script src="js/DD_belatedPNG.js"></script>
     <script>
@@ -76,6 +73,5 @@
     <?php print $page_top; ?>
     <?php print $page; ?>
     <?php print $page_bottom; ?>
-    <script type="text/javascript"> Cufon.now(); </script> <!-- to fix cufon problems in IE browser -->
   </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 drupal_add_js(drupal_get_path('theme', 'vam') . '/js/cufon-yui.js');
 drupal_add_js(drupal_get_path('theme', 'vam') . '/js/PT_Sans_400.font.js');
+drupal_add_js('Cufon.replace(".cufon");', 'inline');
 ?>
 <div id="top-container">
   <div class="centercolumn">
@@ -54,4 +55,5 @@ drupal_add_js(drupal_get_path('theme', 'vam') . '/js/PT_Sans_400.font.js');
   </div>
 
 </div><!-- end #bottom-container -->
+<script type="text/javascript"> Cufon.now(); </script> <!-- to fix cufon problems in IE browser -->
 

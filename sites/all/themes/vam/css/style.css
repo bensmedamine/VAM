@@ -669,10 +669,11 @@ label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5p
 .slider-navigation{margin-top: 13px;}
 .count-img{vertical-align: bottom;}
 #header-annonce {margin-bottom: 20px; overflow: hidden;}
-#header-annonce .fb-like{float: left;}
-#header-annonce .transform{float: right;}
+.fb-like{float: right; margin-top: 8px;}
+#header-annonce span{float: right;}
 h3.desc{margin-bottom: 10px;}
 .telephone{padding: 5px 0px 5px 30px; background: url("/sites/default/files/pictures/telephone.png") no-repeat scroll 0px 2px transparent;}
+#header-annonce .info-annoce{font-family: PTSansNarrowRegular; font-size: 16px;}
 
 /* */
 #search-form-front{clear: both;}

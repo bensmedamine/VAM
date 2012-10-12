@@ -79,12 +79,11 @@
 drupal_add_css(drupal_get_path('theme', 'vam') . '/css/inner.css');
 $edit_link = null;
 if ($is_admin) {
-  $edit_link = '<a class="blue fs-18 transform" href="/node/' . $node->nid . '/edit" target="_blank" > Modifier l\'annonce</a>';
+  $edit_link = '<a class="blue fs-18" href="/node/' . $node->nid . '/edit" target="_blank" > Modifier l\'annonce</a>';
 }
 ?>
 <div id="header-annonce">
-  <div class="fb-like" data-href="<?php print url('node/' . $node->nid, array('absolute' => TRUE)); ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend"></div>
-  <div class="fs-15 transform">Disponible peduis <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue"><?php print $node->field_vues['und'][0]['value']; ?> vues</span></div>
+  <div class="info-annoce">Disponible peduis <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue">Consulter <?php print $node->field_vues['und'][0]['value']; ?> fois</span></div>
 </div>
 <?php if (count($node->field_photos)): ?>
   <?php
@@ -102,7 +101,7 @@ if ($is_admin) {
     <p class="slider-navigation"><strong><?php print count($node->field_photos['und']); ?></strong> <img class="count-img" src="/<?php print drupal_get_path('theme', 'vam'); ?>/images/photos.png"> <a class="prev" id="foo_prev" href="#"><span>&larr;</span></a>
       <a class="next" id="foo_next" href="#"><span>| &rarr;</span></a> <small>Cliquez sur l'image pour l'agrandir. </small></p>
   </div>
-  <br /><br />
+  <div class="fb-like" data-href="<?php print url('node/' . $node->nid, array('absolute' => TRUE)); ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend"></div>
   <?php if (count($node->field_photos['und']) == 1): ?>
     <style type="text/css">
       .image_carousel{background: none;}
@@ -132,19 +131,19 @@ if ($is_admin) {
 <div id="property-detail">
   <div class="one_half">
     <ul class="box_text">
-      <li><span class="left">Prix nuitée</span><?php print !empty($node->field_prix_nuitee['und'][0]['value']) ? '<span class="blue transform fs-12">' . $node->field_prix_nuitee['und'][0]['value'] . ' DHS</span>' : 'non disponible'; ?></li>
+      <li><span class="left">Prix nuitée</span><?php print !empty($node->field_prix_nuitee['und'][0]['value']) ? '<span class="blue fs-12">' . $node->field_prix_nuitee['und'][0]['value'] . ' DHS</span>' : 'non disponible'; ?></li>
       <li><span class="left">Superficie</span><?php print !empty($node->field_surface['und'][0]['value']) ? $node->field_surface['und'][0]['value'] . ' m²' : 'non disponible'; ?></li>
       <li><span class="left">Nombre de pièces</span><?php print !empty($node->field_nbr_chambres['und'][0]['value']) ? $node->field_nbr_chambres['und'][0]['value'] : 'non disponible'; ?></li>
     </ul>
   </div>
-  <div class="clear"></div>
-  <h3 class="top-20 desc"><span class="blue"><?php print $node->field_type_du_bien['und'][0]['taxonomy_term']->name; ?></span> pour location vacances à <span class="blue"><?php print $node->field_ville['und'][0]['taxonomy_term']->name; ?></span></h3>
+  <div class="clear"><br /><br /></div>
+  <h3 class="desc"><span class="blue"><?php print $node->field_type_du_bien['und'][0]['taxonomy_term']->name; ?></span> pour location vacances à <span class="blue"><?php print $node->field_ville['und'][0]['taxonomy_term']->name; ?></span></h3>
   <p class="fs-12"><?php print str_replace("\n", '<br />', $node->field_description['und'][0]['value']); ?></p>
 </div>
 <div class="clear"><br /><br /></div>
 
 <h2 class="underline">Annonceur <?php print $node->field_type_annonceur['und'][0]['taxonomy_term']->name; ?></h2>
-<p class="fs-18 transform telephone"><?php print ($node->field_prenom['und'][0]['value']); ?> : <?php print ($node->field_tel['und'][0]['value']); ?></p>
+<p class="fs-18 telephone"><?php print ($node->field_prenom['und'][0]['value']); ?> : <?php print ($node->field_tel['und'][0]['value']); ?></p>
 <div class="clear"><br /></div>
 
 <?php /*
