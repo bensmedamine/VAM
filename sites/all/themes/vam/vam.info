@@ -6,13 +6,10 @@ engine = phptemplate
 
 stylesheets[all][] = css/style.css
 
-scripts[] = js/cufon-yui.js
-scripts[] = js/PT_Sans_400.font.js
 scripts[] = js/jquery.cycle.all.min.js
 scripts[] = js/hoverIntent.js
 scripts[] = js/superfish.js
 scripts[] = js/supersubs.js
-scripts[] = js/jquery.cycle.all.min.js
 
 regions[page_top] = Haut de page
 regions[help] = Aide
