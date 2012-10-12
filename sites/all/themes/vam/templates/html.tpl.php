@@ -55,7 +55,8 @@
     <?php print $scripts; ?>
     <div id="fb-root"></div>
     <script type="text/javascript">
-      Cufon.replace('h1') ('h2') ('h3') ('h4') ('h5') ('h6') ('.slider-button a') ('.slider-city') ('.button') ('.prix-nuit') ('.transform') ('#navigation li a', {hover: true});
+      //Cufon.replace('h1') ('h2') ('h3') ('h4') ('h5') ('h6') ('.slider-button a') ('.slider-city') ('.button') ('.prix-nuit') ('.transform') ('#navigation li a', {hover: true});
+      Cufon.replace('.cufon');
         (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;

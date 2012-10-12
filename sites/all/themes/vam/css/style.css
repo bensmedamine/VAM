@@ -4,6 +4,46 @@ Lighthouse - CSS File
 
 */
 
+/*** @FONT-FACE  ***/
+
+@font-face {
+    font-family: 'PTSansNarrowRegular';
+    src: url('fonts/PTN57F-webfont.eot');
+    src: url('fonts/PTN57F-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/PTN57F-webfont.woff') format('woff'),
+         url('fonts/PTN57F-webfont.ttf') format('truetype'),
+         url('fonts/PTN57F-webfont.svg#PTSansNarrowRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'PTSansItalic';
+    src: url('fonts/PTS56F-webfont.eot');
+    src: url('fonts/PTS56F-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/PTS56F-webfont.woff') format('woff'),
+         url('fonts/PTS56F-webfont.ttf') format('truetype'),
+         url('fonts/PTS56F-webfont.svg#PTSansItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'PTSansRegular';
+    src: url('fonts/PTS55F-webfont.eot');
+    src: url('fonts/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/PTS55F-webfont.woff') format('woff'),
+         url('fonts/PTS55F-webfont.ttf') format('truetype'),
+         url('fonts/PTS55F-webfont.svg#PTSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
 
 /*** GLOBAL  ***/
 body {
@@ -363,8 +403,9 @@ ul.slide-text li{ text-align:right!important; clear:both; border-bottom:1px soli
 .farme-slide-text .left{ float:left; color:#171717;}
 
 .frame-price{ margin-top:21px;}
-.slider-button a{ background:#F24024; font-size:16px; line-height:30px; color:#fff; width:100%; height:31px; text-align:center; float:left; text-decoration:none;}
-.slider-city{ font-size:32px; color:#171717; margin-bottom: 15px;}
+.slider-button a{ background:#F24024; font-size:16px; line-height:30px; color:#fff; width:100%; height:31px; text-align:center; float:left; text-decoration:none; font-family: PTSansRegular;}
+.slider-city{margin-bottom: 15px;}
+.slider-city span.city{font-size:32px; color:#171717;}
 .slider-city span{font-size: 15px; color: #7E7E7E;}
 
 /* END SLIDER */
@@ -465,7 +506,7 @@ p:last-child { margin-bottom:0px!important;}
 #footer-left .one_fourth{margin-right:3.5%; float:left; }
 
 #newsLetter .inputbox{ border:1px solid #dddddd; padding:8px; margin-right:0px; width:250px; font-family: inherit; }
-#newsLetter .button{ width:94px; padding:3px 0px; text-align:center; font-size:16px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; margin-left:175px!important;}
+#newsLetter .button{ width:94px; padding:3px 0px; text-align:center; font-size:16px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; margin-left:175px!important; font-family: PTSansNarrowRegular;}
 
 
 
@@ -605,14 +646,14 @@ tr.odd td {
 .form-item label{display: inline-block; width: 150px;}
 .form-item input, .form-item textarea {background: none repeat scroll 0 0 #F6F6F6; border: 1px solid #DCDCDC; font-family: inherit;}
 .form-item .description{text-align: justify; margin-bottom: 15px;}
-.form-actions input[type=submit], .custom-submitt-button{ padding:3px 10px; text-align:center; font-size:16px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; font-family: inherit; font-size: 13px;}
+.form-actions input[type=submit], .custom-submitt-button{ padding:3px 10px; text-align:center; font-size:16px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; font-family: PTSansNarrowRegular; font-size: 16px;}
 
 .form-type-radios, .form-type-select {margin-bottom: 5px;}
 .form-type-radios label:first-child {float: left;}
 .form-radios div{display: inline;}
 .form-item input[type=radio] {background: none; border: none;}
 
-.form-item select{font-family: inherit; padding: 3px 5px; width: 300px; border: 1px solid #DCDCDC;}
+.form-item select{font-family: inherit; padding: 3px 5px; width: 300px; border: 1px solid #DCDCDC; font-family: PTSansRegular;}
 .form-item .error{border: 1px solid red;}
 input.invalid {margin-bottom: 2px;}
 label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5px; width: 100%;}
@@ -644,4 +685,7 @@ h3.desc{margin-bottom: 10px;}
 .form-item-prix-nuitee-max label {background: url('/sites/default/files/pictos/price_tag.png') no-repeat 0 0; padding-left: 20px; width: 100%}
 .dhs{font-weight: bold; font-size: 8px;}
 #edit-quick-search{float: left;}
-#front-search-button input {float: right; margin-top: 25px; width: 115px;}
+#front-search-button input {float: right; margin-top: 25px; width: 115px; font-family: PTSansRegular;}
+
+#navigation li a{font-family: PTSansNarrowRegular; font-size: 18px;}
+.slider-city .blue, h2, h3{font-family: PTSansRegular;}

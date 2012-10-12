@@ -84,7 +84,7 @@ if ($is_admin) {
 ?>
 <div id="header-annonce">
   <div class="fb-like" data-href="<?php print url('node/' . $node->nid, array('absolute' => TRUE)); ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend"></div>
-  <div class="fs-15 transform">Publié il y a <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue"><?php print $node->field_vues['und'][0]['value']; ?> vues</span></div>
+  <div class="fs-15 transform">Disponible peduis <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue"><?php print $node->field_vues['und'][0]['value']; ?> vues</span></div>
 </div>
 <?php if (count($node->field_photos)): ?>
   <?php
