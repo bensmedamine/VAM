@@ -127,8 +127,8 @@ if ($is_admin) {
     });
   </script>
 <?php endif; ?>
-<div class="clear"></div>
-<h2 class="top-20 underline">Déscription du logement</h2>
+<div class="clear"><br /></div>
+<h2 class="top-20 underline">Déscription du logement <?php print $edit_link; ?></h2>
 <div id="property-detail">
   <div class="one_half">
     <ul class="box_text">
@@ -145,7 +145,7 @@ if ($is_admin) {
 
 <h2 class="underline">Annonceur <?php print $node->field_type_annonceur['und'][0]['taxonomy_term']->name; ?></h2>
 <p class="fs-18 transform telephone"><?php print ($node->field_prenom['und'][0]['value']); ?> : <?php print ($node->field_tel['und'][0]['value']); ?></p>
-<div class="clear"><br /><br /></div>
+<div class="clear"><br /></div>
 
 <?php /*
   <h2 class="underline">Contacter l'annoceur</h2>
