@@ -7,43 +7,17 @@ Lighthouse - CSS File
 /*** @FONT-FACE  ***/
 
 @font-face {
-    font-family: 'PTSansNarrowRegular';
-    src: url('fonts/PTN57F-webfont.eot');
-    src: url('fonts/PTN57F-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/PTN57F-webfont.woff') format('woff'),
-         url('fonts/PTN57F-webfont.ttf') format('truetype'),
-         url('fonts/PTN57F-webfont.svg#PTSansNarrowRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Merriweather Bold'), local('Merriweather-Bold'), url('fonts/merriweather_bold.woff') format('woff');
 }
-
 @font-face {
-    font-family: 'PTSansItalic';
-    src: url('fonts/PTS56F-webfont.eot');
-    src: url('fonts/PTS56F-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/PTS56F-webfont.woff') format('woff'),
-         url('fonts/PTS56F-webfont.ttf') format('truetype'),
-         url('fonts/PTS56F-webfont.svg#PTSansItalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Merriweather'), url('fonts/merriweather.woff') format('woff');
 }
-
-@font-face {
-    font-family: 'PTSansRegular';
-    src: url('fonts/PTS55F-webfont.eot');
-    src: url('fonts/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/PTS55F-webfont.woff') format('woff'),
-         url('fonts/PTS55F-webfont.ttf') format('truetype'),
-         url('fonts/PTS55F-webfont.svg#PTSansRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-
-
 
 /*** GLOBAL  ***/
 body {
@@ -98,8 +72,8 @@ fieldset {border: none;}
 h1, h2, h3, h4, h5, h6{ font-weight:normal; color:#272727; font-family:Verdana, Arial, Tahoma;}
 h1, h2, h3{margin-bottom:20px;}
 h4, h5, h6{margin-bottom:15px;}
-h1 {font-size:28px; line-height:28px;}
-h2 {font-size:26px; line-height:26px;}
+h1 {font-size:24px; line-height:24px; font-family: Merriweather;}
+h2 {font-size:22px; line-height:22px;}
 h3 {font-size:20px; line-height:22px;}
 h4 {font-size:16px; line-height:20px;}
 h5 {font-size:14px; line-height:18px;}
@@ -403,9 +377,9 @@ ul.slide-text li{ text-align:right!important; clear:both; border-bottom:1px soli
 .farme-slide-text .left{ float:left; color:#171717;}
 
 .frame-price{ margin-top:21px;}
-.slider-button a{ background:#F24024; font-size:16px; line-height:30px; color:#fff; width:100%; height:31px; text-align:center; float:left; text-decoration:none; font-family: PTSansRegular;}
+.slider-button a{ background:#F24024; font-size:14px; line-height:30px; color:#fff; width:100%; height:31px; text-align:center; float:left; text-decoration:none; font-family: Merriweather;}
 .slider-city{margin-bottom: 15px;}
-.slider-city span.city{font-size:32px; color:#171717;}
+.slider-city span.city{font-size:32px; color:#171717; font-family: Merriweather;}
 .slider-city span{font-size: 15px; color: #7E7E7E;}
 
 /* END SLIDER */
@@ -442,7 +416,7 @@ ul.disc li{
 /*== sideright & widget ==*/
 
 .sidebar_right{ width:300px; float:right; margin-top: 7px;}
-.sidebar .widget-title{font-size:26px; line-height:26px; margin-bottom:10px; border-bottom:1px solid #d8d8d8; padding-bottom:5px;}
+.sidebar .widget-title{font-size:22px; line-height:22px; margin-bottom:10px; border-bottom:1px solid #d8d8d8; padding-bottom:5px;}
 .sidebar ul{list-style-type:none; padding:0 ; margin:0; list-style-position:outside}
 .sidebar ul li{list-style-type:none; padding:0 ; margin:0; font-size:11px;}
 .sidebar ul li li, .slide-text li.arrow{background:url(../images/arrow.png) no-repeat 0 6px; padding:0 0 5px 15px; }
@@ -506,7 +480,7 @@ p:last-child { margin-bottom:0px!important;}
 #footer-left .one_fourth{margin-right:3.5%; float:left; }
 
 #newsLetter .inputbox{ border:1px solid #dddddd; padding:8px; margin-right:0px; width:250px; font-family: inherit; }
-#newsLetter .button{ width:94px; padding:3px 0px; text-align:center; font-size:16px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; margin-left:175px!important; font-family: PTSansNarrowRegular;}
+#newsLetter .button{ width:94px; padding:3px 0px; text-align:center; font-size:14px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; margin-left:175px!important; font-family: Merriweather;}
 
 
 
@@ -628,7 +602,7 @@ tr.odd td {
 .font-size-12 p ,.fs-12 {font-size: 12px;}
 .locations-par-villes ul li{background: url("../images/dot.png") no-repeat scroll left 7px transparent !important; display: inline-block; padding: 0 0 7px 15px !important; width: 135px;}
 .locations-par-villes ul li a{font-size: 11px;}
-.last-announcement h3 {text-align: justify; font-size: 18px;}
+.last-announcement h3 {font-size: 16px;}
 #vam-footer{background:url(../images/bg-copyright.gif); margin-top: 30px; padding: 10px 0px;}
 #vam-footer p {line-height: 20px; margin: 10px 0;}
 .normal {margin: 10px 0;}
@@ -646,14 +620,14 @@ tr.odd td {
 .form-item label{display: inline-block; width: 150px;}
 .form-item input, .form-item textarea {background: none repeat scroll 0 0 #F6F6F6; border: 1px solid #DCDCDC; font-family: inherit;}
 .form-item .description{text-align: justify; margin-bottom: 15px;}
-.form-actions input[type=submit], .custom-submitt-button{ padding:3px 10px; text-align:center; font-size:16px; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; font-family: PTSansNarrowRegular; font-size: 16px;}
+.form-actions input[type=submit], .custom-submitt-button{ padding:3px 10px; text-align:center; color:#fff; background-color:#F24024; border:0px;  cursor:pointer; font-family: Merriweather; font-size: 14px;}
 
 .form-type-radios, .form-type-select {margin-bottom: 5px;}
 .form-type-radios label:first-child {float: left;}
 .form-radios div{display: inline;}
 .form-item input[type=radio] {background: none; border: none;}
 
-.form-item select{font-family: inherit; padding: 3px 5px; width: 300px; border: 1px solid #DCDCDC; font-family: PTSansRegular;}
+.form-item select{font-family: inherit; padding: 3px 5px; width: 300px; border: 1px solid #DCDCDC; font-family: Verdana,Arial,Tahoma;}
 .form-item .error{border: 1px solid red;}
 input.invalid {margin-bottom: 2px;}
 label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5px; width: 100%;}
@@ -673,7 +647,6 @@ label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5p
 #header-annonce span{float: right;}
 h3.desc{margin-bottom: 10px;}
 .telephone{padding: 5px 0px 5px 30px; background: url("/sites/default/files/pictures/telephone.png") no-repeat scroll 0px 2px transparent;}
-#header-annonce .info-annoce{font-family: PTSansNarrowRegular; font-size: 16px;}
 
 /* */
 #search-form-front{clear: both;}
@@ -686,7 +659,8 @@ h3.desc{margin-bottom: 10px;}
 .form-item-prix-nuitee-max label {background: url('/sites/default/files/pictos/price_tag.png') no-repeat 0 0; padding-left: 20px; width: 100%}
 .dhs{font-weight: bold; font-size: 8px;}
 #edit-quick-search{float: left;}
-#front-search-button input {float: right; margin-top: 25px; width: 115px; font-family: PTSansRegular;}
+#front-search-button input {float: right; margin-top: 25px; width: 115px; font-family: Merriweather;}
 
-#navigation li a{font-family: PTSansNarrowRegular; font-size: 18px;}
-.slider-city .blue, h2, h3{font-family: PTSansRegular;}
+#navigation li a{font-family: Merriweather; font-size: 13px;}
+.slider-city .blue, h2, h3{font-family: Merriweather;}
+.num {font-family: Verdana,Arial,Tahoma;}

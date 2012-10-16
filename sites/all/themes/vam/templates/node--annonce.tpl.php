@@ -83,7 +83,7 @@ if ($is_admin) {
 }
 ?>
 <div id="header-annonce">
-  <div class="info-annoce">Disponible peduis <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue">Consulter <?php print $node->field_vues['und'][0]['value']; ?> fois</span></div>
+  <div class="fs-12">Disponible peduis <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue">Consulter <?php print $node->field_vues['und'][0]['value']; ?> fois</span></div>
 </div>
 <?php if (count($node->field_photos)): ?>
   <?php

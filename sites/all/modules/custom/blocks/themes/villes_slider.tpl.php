@@ -24,7 +24,7 @@
         <img src="<?php print file_create_url($ville->field_image['und'][0]['uri']) ?>" alt="Locations vacances <?php print $ville->name; ?>" />
         <div class="farme-slide-text">
           <ul class="slide-text">
-            <div class="slider-city"><span class="city cufon"><?php print $ville->name; ?></span> <span class="blue"><?php print get_count_annonces_par_ville($ville->tid); ?> annonces</span></div>
+            <div class="slider-city"><span class="city"><?php print $ville->name; ?></span> <span class="blue"><?php print get_count_annonces_par_ville($ville->tid); ?> annonces</span></div>
             <?php $annonces_ville = get_annonces_par_ville($ville->tid, 5); ?>
             <?php foreach ($annonces_ville as $annonce): ?>
               <li class="arrow"><span class="left"><a href="<?php print url('node/' . $annonce->nid); ?>" title="<?php print $annonce->title; ?>"><?php print $annonce->title; ?></a></span>&nbsp;</li>

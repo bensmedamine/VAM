@@ -7,7 +7,7 @@
     <?php $i++; ?>
     <li <?php print $i == 4 || $i == 8 ? 'class="nomargin"' : ''; ?> <?php print $i == 5 ? 'class="clearboth"' : ''; ?>>
       <?php print l(theme('image_style', array('style_name' => 'thumb_184x119', 'path' => ($node->field_photos['und'][0]['uri']), 'alt' => $node->title)), 'node/' . $node->nid, array('html' => true, 'attributes' => array('title' => $node->title))); ?>
-      <h3 class="cufon"><?php print l($node->title, 'node/' . $node->nid, array('html' => true, 'attributes' => array('title' => $node->title))); ?></h3>
+      <h3 ><?php print l($node->title, 'node/' . $node->nid, array('html' => true, 'attributes' => array('title' => $node->title))); ?></h3>
       <ul class="box_text">
         <?php /* if (!empty($node->field_prix_nuitee['und'][0]['value'])): ?>
           <li class="transform" style="font-size: 16px; color: #000000; text-align: left !important;"><?php print $node->field_prix_nuitee['und'][0]['value']; ?> DHS la nuitée</li>

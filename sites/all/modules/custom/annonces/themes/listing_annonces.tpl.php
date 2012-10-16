@@ -18,7 +18,7 @@
       <?php endif; ?>
       <strong class="blue"><?php print taxonomy_term_load($node->field_ville['und'][0]['tid'])->name; ?></strong>
       <?php if (!empty($node->field_prix_nuitee)): ?>
-      <span class="prix-nuit blue"><span class="fs-15"><?php print $node->field_prix_nuitee['und'][0]['value']; ?> Dhs la nuitée</span></span>
+      <span class="prix-nuit blue"><span class="fs-12"><?php print $node->field_prix_nuitee['und'][0]['value']; ?> Dhs la nuitée</span></span>
       <?php endif; ?>
       <br />
       <?php print taxonomy_term_load($node->field_type_annonceur['und'][0]['tid'])->name; ?> | <?php print taxonomy_term_load($node->field_type_du_bien['und'][0]['tid'])->name; ?><br />

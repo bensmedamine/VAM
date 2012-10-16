@@ -1,8 +1,3 @@
-<?php
-drupal_add_js(drupal_get_path('theme', 'vam') . '/js/cufon-yui.js');
-drupal_add_js(drupal_get_path('theme', 'vam') . '/js/PT_Sans_400.font.js');
-drupal_add_js('Cufon.replace(".cufon");', 'inline');
-?>
 <div id="top-container">
   <div class="centercolumn">
     <div id="header">
