@@ -1,5 +1,5 @@
 <li class="widget-container widget_categories">
-  <h2 class="widget-title">Filtrer par ville</h2>
+  <h2 class="widget-title">Top destinations vacances</h2>
   <ul>
     <li><a href="#">Resources</a></li>
     <li><a href="#">House Remodeling</a></li>
