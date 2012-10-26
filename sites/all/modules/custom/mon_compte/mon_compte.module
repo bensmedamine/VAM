@@ -89,7 +89,7 @@ function mon_compte_form_alter(&$form, &$form_state, $form_id) {
 function inscription() {
   global $theme_path;
 
-  drupal_add_js($theme_path . '/js/jquery.qtip-1.0.0.min.js');
+  drupal_add_js($theme_path . '/js/jquery.filestyle.js');
   drupal_add_js($theme_path . '/js/jquery.validate.min.js');
   drupal_add_js($theme_path . '/js/messages_fr.js');
 
@@ -132,7 +132,12 @@ function inscription() {
                }
             });
             
-            
+            $("#edit-logo-agence").filestyle({ 
+              image: "'.$theme_path.'/images/choose-file.gif",
+              imageheight : 35,
+              imagewidth : 82,
+              width : 250
+            });
             
           });';
 
@@ -252,9 +257,9 @@ function inscription_form() {
   $form['agence']['logo_agence'] = array(
     '#type' => 'file',
     '#title' => t('Logo'),
-    '#size' => 35,
     '#attributes' => array('class' => array('has-description')),
     '#required' => FALSE,
+     '#size' => FALSE,
     '#description' => 'Formats autorisés : JPG, JPEG, PNG ou GIF',
   );
   $form['submit'] = array(

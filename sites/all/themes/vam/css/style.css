@@ -41,7 +41,7 @@ hr {
     background-color:#cdcdcd;
     background-repeat:repeat-x
 }
-input[type=text], textarea, input[type=password]
+input[type=text], textarea, input[type=password], input.form-file
 {
     border:solid 1px #e7e7e7;
     margin:4px 4px 8px 0px;
