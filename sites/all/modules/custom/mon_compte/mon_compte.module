@@ -29,7 +29,12 @@ function mon_compte_menu() {
     'access callback' => 'user_is_logged_in',
     'file' => 'annonces.manager.inc',
   );
-
+  $items['modifier-mes-coordonnees'] = array(
+    'title' => 'Modifier mes coordonnées',
+    'page callback' => 'modifier_mes_coordonnees',
+    'access callback' => 'user_is_logged_in',
+    'file' => 'compte.fo.inc',
+  );
   return $items;
 }
 
@@ -46,6 +51,9 @@ function mon_compte_theme() {
     ),
     'inscription_succes' => array(
       'template' => 'themes/inscription_succes'
+    ),
+    'mes_coordonnees' => array(
+      'template' => 'themes/mes_coordonnees'
     ),
   );
 }
@@ -80,10 +88,10 @@ function mon_compte_form_alter(&$form, &$form_state, $form_id) {
 
 function inscription() {
   global $theme_path;
-  
-  drupal_add_js($theme_path.'/js/jquery.qtip-1.0.0.min.js');
-  drupal_add_js($theme_path.'/js/jquery.validate.min.js');
-  drupal_add_js($theme_path.'/js/messages_fr.js');
+
+  drupal_add_js($theme_path . '/js/jquery.qtip-1.0.0.min.js');
+  drupal_add_js($theme_path . '/js/jquery.validate.min.js');
+  drupal_add_js($theme_path . '/js/messages_fr.js');
 
   $js = 'jQuery(function($){
             $("#edit-agence").hide();
