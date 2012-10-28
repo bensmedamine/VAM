@@ -82,6 +82,15 @@ if ($is_admin) {
   $edit_link = '<a class="blue fs-18" href="/node/' . $node->nid . '/edit" target="_blank" > Modifier l\'annonce</a>';
 }
 ?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    
 <div id="header-annonce">
   <div class="fs-12">Disponible peduis <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue">Consulter <?php print $node->field_vues['und'][0]['value']; ?> fois</span></div>
 </div>
@@ -184,7 +193,7 @@ if ($is_admin) {
   <div class="clear"><br /><br /></div>
  */ ?>
 
-<h2 class="underline">Annonces similaires</h2>
+<h2 class="underline">Autres annonces location <?php print strtolower($node->field_type_du_bien['und'][0]['taxonomy_term']->name); ?> à <?php print $node->field_ville['und'][0]['taxonomy_term']->name; ?></h2>
 <ul class="four_column_properties last-announcement">
   <li>
     <a title="Studio meublé au maarif" href="/annonce-location-vacances-maroc/casablanca/studio/studio-meuble-au-maarif-0"><img width="184" height="119" alt="Studio meublé au maarif" src="http://vacaumaroc.dev/sites/default/files/styles/thumb_184x119/public/img_annonces/studio-meuble-au-maarif_3.jpg" typeof="foaf:Image"></a>      <h3><a title="Studio meublé au maarif" href="/annonce-location-vacances-maroc/casablanca/studio/studio-meuble-au-maarif-0"><cufon class="cufon cufon-canvas" alt="Studio " style="width: 57px; height: 18px;"><canvas width="71" height="21" style="width: 71px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>Studio </cufontext></cufon><cufon class="cufon cufon-canvas" alt="meublé " style="width: 66px; height: 18px;"><canvas width="80" height="21" style="width: 80px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>meublé </cufontext></cufon><cufon class="cufon cufon-canvas" alt="au " style="width: 25px; height: 18px;"><canvas width="39" height="21" style="width: 39px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>au </cufontext></cufon><cufon class="cufon cufon-canvas" alt="maarif" style="width: 52px; height: 18px;"><canvas width="65" height="21" style="width: 65px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>maarif</cufontext></cufon></a></h3>

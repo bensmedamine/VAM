@@ -1,9 +1,3 @@
-/*
-
-Lighthouse - CSS File
-
-*/
-
 /*** @FONT-FACE  ***/
 
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300");
@@ -621,7 +615,7 @@ tr.odd td {
 input.invalid {margin-bottom: 2px;}
 label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5px; width: 100%;}
 
-#inscription-form div.description{color: #F24024; margin-bottom: 0; margin-left: 154px; padding-top: 3px;}
+.form-item div.description{color: #F24024; margin-bottom: 0; margin-left: 154px; padding-top: 3px;}
 #inscription-form .form-type-radio label{width: 75px !important;}
 
 /** détails annonce **/
@@ -655,6 +649,8 @@ h3.desc{margin-bottom: 10px;}
 .num {font-family: Verdana,Arial,Tahoma;}
 
 #content .acces-deny {font-family: 'Open Sans',sans-serif; font-weight: 400; font-size: 16px;}
+
+#block-blocks-vam-front-search h2 span.blue {font-weight: 400;}
 
 #block-blocks-vam-last-announcements a.featured{font-family: 'Open Sans',sans-serif; font-size: 14px; font-weight: 400;} 
 #block-blocks-vam-last-announcements h3 a {font-weight: 300;}

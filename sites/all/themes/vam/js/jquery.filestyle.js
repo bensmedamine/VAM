@@ -40,7 +40,7 @@
                                 "overflow": "hidden"
                             });
                             
-            var filename = $('<input class="file">')
+            var filename = $('<input disabled="disabled" class="file">')
                              .addClass($(self).attr("class"))
                              .css({
                                  "display": "inline",
