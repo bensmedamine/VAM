@@ -1,3 +1,4 @@
+<?php  drupal_add_js($directory . '/js/jquery.cycle.all.min.js'); ?>
 <div id="top-container">
   <div class="centercolumn">
     <div id="header">

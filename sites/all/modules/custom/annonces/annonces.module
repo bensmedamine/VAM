@@ -87,13 +87,46 @@ function locations_vacances($option = array()) {
 }
 
 function ajax_set_annonce_picture() {
+  // Upload files if any
+  if (!empty($_FILES['files']['name']['photo'])) {
 
-  echo '<pre><div>';
-  print_r($_FILES);
-  echo '<br>';
-  print_r($_POST);
-  echo '</pre>';
-  die('DEBUG MODE');
+    $file = annonce_upload_img('photo', 'public://img_annonces/temp/');
+
+    if ($file) {
+      print json_encode(array(
+            'fid' => $file->fid,
+            'filename' => $file->filename,
+            'uri' => $file->uri,
+            'error' => 0,
+          ));
+    }
+  }
+  else {
+    print json_encode(array(
+          'error' => 1,
+        ));
+  }
+
+  die();
+}
+
+function annonce_upload_img($file, $savepath) {
+  $limits = array();
+
+
+  $limits['extensions'] = array('jpg jpeg gif png');
+  $limits['file_size'] = 2000 * 1024;
+
+  $validators = array(
+    'file_validate_extensions' => $limits['extensions'],
+    'file_validate_size' => array(
+      $limits['file_size']
+    ),
+  );
+
+  $file = file_save_upload($file, $validators, $savepath);
+
+  return $file;
 }
 
 function deposer_annonce() {
@@ -108,48 +141,125 @@ function deposer_annonce() {
     drupal_add_js($theme_path . '/js/jquery.validate.min.js');
     drupal_add_js($theme_path . '/js/messages_fr.js');
     $js = 'jQuery(function($){
-          
-$("#edit-photo").live("change", function(){
 
-alert($("#edit-photo").val());
+          $("#picture-loader").hide();
+          var img_annonces_url = "' . url('sites/default/files/img_annonces/temp/') . '";
+          var count_pictures = 0;
+          var user_pictures = new Array();
 
-    $.ajaxFileUpload({
-    
-        url:"' . url('ajax-set-annonce-picture') . '",
-        secureuri:false,
-        fileElementId:"edit-photo",
-        dataType: "html",
-        
-        success: function (data) {
-           alert(data);
-        },
-        error: function (data, status, e){
-        
-           alert(e);
-        }
-    })
-		
-});
-            
+          function set_picture_message(msg){
+            $("#picture-message").html(msg);
+            $("input.form-file").val("");
+            return true;
+          }
+
+          function arrayUnset(array, value){
+              array.splice(array.indexOf(value), 1);
+          }
+
+          $(".supprimer-user-picture").live("click", function(){
+              var html = "<p><img src=\"' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '\"></p>";
+              var alt = $(this).parents("div.photo").find("img").eq(0).attr("alt");
+              $(this).parents("div.photo").addClass("empty").html(html);
+              if (alt.length) {
+                arrayUnset(user_pictures , alt);
+              }
+              if (count_pictures > 0 ) {
+                count_pictures--;
+              }
+              return false;
+          });
+
+
+          //traitement des photos
+          $("#edit-photo").live("change", function(){
+
+              var value = $(this).val();
+
+              //Vérification de l extension
+              var ext = value.split(".").pop().toLowerCase();
+              var check = ($.inArray(ext, ["gif","png","jpg","jpeg"]) == -1) ? false : true;
+              if (!check) {
+                set_picture_message("L\'extension de la photo est non valide.");
+                return false;
+              }
+
+              //Vérification du count
+              if(count_pictures > 5) {
+                set_picture_message("Le nombre max des images autorisé atteint");
+                return false;
+              }
+
+              //is picture existe
+              var founded = false;
+              $(user_pictures).each(function (index, elem) {
+                  if(elem == value) {
+                    founded = true;
+                  }
+              });
+              if (founded) {
+                set_picture_message("La photo existe déjà");
+                return false;
+              }
+
+              //Ecriture du nom de fichier sur le input
+              $(".js-input-for-file").val(value);
+
+              		$("#picture-loader").ajaxStart(function(){
+                    $(this).show();
+                  }).ajaxComplete(function(){
+                    $(this).hide();
+                  });
+
+                  $.ajaxFileUpload({
+
+                      url:"' . url('ajax-set-annonce-picture') . '",
+                      secureuri:false,
+                      fileElementId:"edit-photo",
+                      dataType: "json",
+
+                      success: function (data) {
+                        var photo = JSON.parse(data);
+                        if(photo.error == 1) {
+                          set_picture_message("Veuillez mettre une photo de type (JPG, JPEG, PNG ou GIF) de 2Mo max");
+                          return false;
+                        }
+
+                        count_pictures++;
+                        user_pictures.push(value);
+                        var uri = photo.uri;
+                        var html = "<p><img src=\'"+img_annonces_url+photo.filename+"\' alt=\'"+photo.filename+"\' with=\'131\' height=\'85\'></p>";
+                        html += "<input type=\'hidden\' value=\'"+photo.fid+"\' name=\'pictures[]\'>";
+                        html += "<a href=\'#\' title=\'Supprimer\' class=\'supprimer-user-picture\'><img src=\"' . url('sites/default/files/pictos/delete.png') . '\" alt=\'Supprimer\'></a>";
+                        set_picture_message("");
+                        $("#photos-annonces .empty").eq(0).removeClass("empty").html(html);
+                      },
+                      error: function (data, status, e){
+                        set_picture_message("Une erreur est survenue lors du téléchargement");
+                      }
+                  })
+
+              });
+
             $("#nouvelle-annonce").validate({
               errorClass: "invalid",
               validClass: "",
-             
+
               rules: {
-               
+
                 },
               messages: {
 
                }
             });
-            
-            $("#edit-photo").filestyle({ 
+
+            $("#edit-photo").filestyle({
               image: "' . $theme_path . '/images/choose-file.gif",
               imageheight : 35,
               imagewidth : 82,
               width : 250
             });
-            
+
           });';
 
     drupal_add_js($js, 'inline');
@@ -230,7 +340,7 @@ function locations_vacances_recherche() {
 
 /**
   Déposer une annonce functions
- * 
+ *
  */
 function nouvelle_annonce() {
   $form = array();
@@ -249,15 +359,41 @@ function nouvelle_annonce() {
     '#markup' => '<h3 class="top-20">Photos</h3>',
   );
 
-
   $form['photo'] = array(
     '#type' => 'file',
     '#title' => t('Ajouter une photo'),
     '#attributes' => array('class' => array('has-description')),
     '#required' => FALSE,
     '#size' => FALSE,
+    '#suffix' => '<img id="picture-loader" src="'.url('sites/default/files/pictos/ajax-loader.gif').'"><label id="picture-message" class="invalid"></label>',
     '#description' => 'Formats autorisés : JPG, JPEG, PNG ou GIF',
   );
+
+  $form['uploads'] = array(
+    '#markup' => '
+      <div id="photos-annonces">
+          <div id="photo-1" class="photo empty">
+            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+          </div>
+          <div id="photo-2" class="photo empty">
+            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+          </div>
+          <div id="photo-3" class="photo empty">
+            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+          </div>
+          <div id="photo-4" class="photo empty">
+            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+          </div>
+          <div id="photo-5" class="photo empty">
+            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+          </div>
+          <div id="photo-6" class="photo empty">
+            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+          </div>
+      </div>',
+  );
+
+
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Envoyé'),
@@ -267,7 +403,7 @@ function nouvelle_annonce() {
 }
 
 function nouvelle_annonce_validate($form, &$form_state) {
-  
+
 }
 
 function nouvelle_annonce_submit($form, &$form_state) {
@@ -275,7 +411,7 @@ function nouvelle_annonce_submit($form, &$form_state) {
   echo '<pre>';
   print_r($form_state['values']);
   print '<br>';
-  print_r($_FILES);
+  print_r($_POST['pictures']);
   echo '</pre>';
   die('DEBUG MODE');
 }

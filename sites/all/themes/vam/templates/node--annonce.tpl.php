@@ -76,7 +76,7 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
-drupal_add_css(drupal_get_path('theme', 'vam') . '/css/inner.css');
+drupal_add_css($directory . '/css/inner.css');
 $edit_link = null;
 if ($is_admin) {
   $edit_link = '<a class="blue fs-18" href="/node/' . $node->nid . '/edit" target="_blank" > Modifier l\'annonce</a>';
@@ -90,7 +90,7 @@ if ($is_admin) {
   js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-    
+
 <div id="header-annonce">
   <div class="fs-12">Disponible peduis <?php print format_interval(REQUEST_TIME - $node->created); ?> <span class="blue">Consulter <?php print $node->field_vues['und'][0]['value']; ?> fois</span></div>
 </div>

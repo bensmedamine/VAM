@@ -1,6 +1,6 @@
 /*
  * Style File - jQuery plugin for styling file input elements
- *  
+ *
  * Copyright (c) 2007-2008 Mika Tuupola
  *
  * Licensed under the MIT license:
@@ -14,20 +14,20 @@
  */
 
 (function($) {
-    
+
     $.fn.filestyle = function(options) {
-                
+
         /* TODO: This should not override CSS. */
         var settings = {
             width : 250
         };
-                
+
         if(options) {
             $.extend(settings, options);
         };
-                        
+
         return this.each(function() {
-            
+
             var self = this;
             var wrapper = $("<div>")
                             .css({
@@ -39,8 +39,8 @@
                                 "position": "absolute",
                                 "overflow": "hidden"
                             });
-                            
-            var filename = $('<input disabled="disabled" class="file">')
+
+            var filename = $('<input disabled="disabled" class="file js-input-for-file">')
                              .addClass($(self).attr("class"))
                              .css({
                                  "display": "inline",
@@ -61,21 +61,21 @@
 
             if ($.browser.mozilla) {
                 if (/Win/.test(navigator.platform)) {
-                    $(self).css("margin-left", "-117px");                    
+                    $(self).css("margin-left", "-117px");
                 } else {
-                    $(self).css("margin-left", "-168px");                    
+                    $(self).css("margin-left", "-168px");
                 };
             } else {
-                $(self).css("margin-left", settings.imagewidth - settings.width + "px");                
+                $(self).css("margin-left", settings.imagewidth - settings.width + "px");
             };
 
             $(self).bind("change", function() {
                 filename.val($(self).val());
             });
-      
+
         });
-        
+
 
     };
-    
+
 })(jQuery);

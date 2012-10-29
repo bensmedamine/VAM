@@ -117,7 +117,7 @@ function inscription() {
               errorClass: "invalid",
               validClass: "",
               errorPlacement: function(error, element) {
-                if (element.attr("name") == "type_annonceur" || element.attr("name") == "civilite" )
+                if (element.attr("name") == "type_annonceur" || element.attr("name") == "civilite" || element.attr("name") == "files[logo_agence]" )
                   error.appendTo( element.parent("div").parent("div") );
                 else
                   error.insertAfter(element);
@@ -132,7 +132,6 @@ function inscription() {
                   tel: "digits",
                   cp_agence: "digits",
                   tel_agence: "digits",
-
                   site_web_agence: "url",
                   "files[logo_agence]": "check_ext_photo"
                 },
@@ -140,7 +139,7 @@ function inscription() {
 
                }
             });
-            $("#edit-logo-agence").filestyle({ 
+            $("#edit-logo-agence").filestyle({
               image: "'.$theme_path.'/images/choose-file.gif",
               imageheight : 35,
               imagewidth : 82,
@@ -301,7 +300,7 @@ function inscription_form_validate($form, &$form_state) {
 
     if (empty($file)) {
 
-      form_set_error('logo_agence', t('Veuillez mettre une photo de type (JPG, JPEG, PNG ou GIF) ayant une taille de 200Ko ou moins.'));
+      form_set_error('logo_agence', t('Veuillez mettre une photo de type (JPG, JPEG, PNG ou GIF) ayant une taille de 1Mo ou moins.'));
     }
     else {
       $form_state['values']['fid_logo_agence'] = $file->fid;
@@ -388,7 +387,7 @@ function inscription_upload_file($file, $savepath) {
 
 
   $limits['extensions'] = array('jpg jpeg gif png');
-  $limits['file_size'] = 1 * 1024;
+  $limits['file_size'] = 1000 * 1024;
 
   $validators = array(
     'file_validate_extensions' => $limits['extensions'],
