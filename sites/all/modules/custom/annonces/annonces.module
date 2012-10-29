@@ -149,7 +149,6 @@ function deposer_annonce() {
 
           function set_picture_message(msg){
             $("#picture-message").html(msg);
-            $("input.form-file").val("");
             return true;
           }
 
@@ -158,7 +157,7 @@ function deposer_annonce() {
           }
 
           $(".supprimer-user-picture").live("click", function(){
-              var html = "<p><img src=\"' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '\"></p>";
+              var html = "<p><img src=\"' . url('sites/default/files/pictures/no_ads_picture.gif') . '\"></p>";
               var alt = $(this).parents("div.photo").find("img").eq(0).attr("alt");
               $(this).parents("div.photo").addClass("empty").html(html);
               if (alt.length) {
@@ -207,6 +206,7 @@ function deposer_annonce() {
 
               		$("#picture-loader").ajaxStart(function(){
                     $(this).show();
+                    set_picture_message("");
                   }).ajaxComplete(function(){
                     $(this).hide();
                   });
@@ -373,22 +373,22 @@ function nouvelle_annonce() {
     '#markup' => '
       <div id="photos-annonces">
           <div id="photo-1" class="photo empty">
-            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+            <p><img src="' . url('sites/default/files/pictures/no_ads_picture.gif') . '"></p>
           </div>
           <div id="photo-2" class="photo empty">
-            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+            <p><img src="' . url('sites/default/files/pictures/no_ads_picture.gif') . '"></p>
           </div>
           <div id="photo-3" class="photo empty">
-            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+            <p><img src="' . url('sites/default/files/pictures/no_ads_picture.gif') . '"></p>
           </div>
           <div id="photo-4" class="photo empty">
-            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+            <p><img src="' . url('sites/default/files/pictures/no_ads_picture.gif') . '"></p>
           </div>
           <div id="photo-5" class="photo empty">
-            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+            <p><img src="' . url('sites/default/files/pictures/no_ads_picture.gif') . '"></p>
           </div>
           <div id="photo-6" class="photo empty">
-            <p><img src="' . url('sites/default/files/styles/thumb_131x85/public/no-photo.gif') . '"></p>
+            <p><img src="' . url('sites/default/files/pictures/no_ads_picture.gif') . '"></p>
           </div>
       </div>',
   );
