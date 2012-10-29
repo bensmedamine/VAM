@@ -50,5 +50,4 @@
   </div>
 
 </div><!-- end #bottom-container -->
-<script type="text/javascript"> Cufon.now(); </script> <!-- to fix cufon problems in IE browser -->
 

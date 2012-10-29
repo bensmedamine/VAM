@@ -29,7 +29,12 @@ function mon_compte_menu() {
     'access callback' => 'user_is_logged_in',
     'file' => 'annonces.manager.inc',
   );
-
+  $items['modifier-mes-coordonnees'] = array(
+    'title' => 'Modifier mes coordonnées',
+    'page callback' => 'modifier_mes_coordonnees',
+    'access callback' => 'user_is_logged_in',
+    'file' => 'compte.fo.inc',
+  );
   return $items;
 }
 
@@ -47,6 +52,9 @@ function mon_compte_theme() {
     'inscription_succes' => array(
       'template' => 'themes/inscription_succes'
     ),
+    'mes_coordonnees' => array(
+      'template' => 'themes/mes_coordonnees'
+    ),
   );
 }
 
@@ -58,7 +66,6 @@ function mon_compte_theme() {
  * @param string $form_id Form ID
  */
 function mon_compte_form_alter(&$form, &$form_state, $form_id) {
-  global $user;
   switch ($form_id) {
     case 'user_login' :
 
@@ -80,12 +87,19 @@ function mon_compte_form_alter(&$form, &$form_state, $form_id) {
 
 function inscription() {
   global $theme_path;
-  
-  drupal_add_js($theme_path.'/js/jquery.qtip-1.0.0.min.js');
-  drupal_add_js($theme_path.'/js/jquery.validate.min.js');
-  drupal_add_js($theme_path.'/js/messages_fr.js');
+
+  drupal_add_js($theme_path . '/js/jquery.validate.min.js');
+  drupal_add_js($theme_path . '/js/messages_fr.js');
 
   $js = 'jQuery(function($){
+
+            //Costum validators
+            $.validator.addMethod("check_ext_photo", function(value, element) {
+              var ext = value.split(".").pop().toLowerCase();
+              var check = ($.inArray(ext, ["gif","png","jpg","jpeg"]) == -1) ? false : true;
+              return this.optional(element) || check;
+            }, "L\'extension de la photo est non valide.");
+
             $("#edit-agence").hide();
             $(".form-item-type-annonceur input").live("click", function() {
               if($(this).val() == 58){
@@ -93,11 +107,11 @@ function inscription() {
               }else
                 $("#edit-agence").hide();
             });
-            
+
             if ($("input[name=type_annonceur]:checked").val() == 58){
               $("#edit-type-annonceur-58").trigger("click");
             }
-            
+
             $("#inscription-form").validate({
               errorClass: "invalid",
               validClass: "",
@@ -117,15 +131,16 @@ function inscription() {
                   tel: "digits",
                   cp_agence: "digits",
                   tel_agence: "digits",
-                  site_web_agence: "url"
+                  site_web_agence: "url",
+                  "files[logo_agence]": "check_ext_photo"
                 },
               messages: {
 
                }
             });
-            
-            
-            
+
+
+
           });';
 
   drupal_add_js($js, 'inline');
@@ -280,7 +295,7 @@ function inscription_form_validate($form, &$form_state) {
     $file = inscription_upload_file('logo_agence', 'public://');
 
     if (empty($file)) {
-      form_set_error('logo_agence', t('Veuillez mettre une photo de type (jpg, jpeg) ayant une taille de 200Ko ou moins.'));
+      form_set_error('logo_agence', t('Veuillez mettre une photo de type (JPG, JPEG, PNG ou GIF) ayant une taille de 200Ko ou moins.'));
     }
     else {
       $form_state['values']['fid_logo_agence'] = $file->fid;
@@ -313,10 +328,7 @@ function inscription_form_validate($form, &$form_state) {
 
 function inscription_form_submit($form, &$form_state) {
   $data = $form_state['values'];
-//  echo '<pre>';
-//  print_r($form_state['values']);
-//  echo '</pre>';
-//  die('DEBUG MODE');
+
   $pass = user_password();
   $account = array(
     'name' => $data['email'],
@@ -366,8 +378,8 @@ function inscription_succes() {
 
 function inscription_upload_file($file, $savepath) {
   $limits = array();
-  $limits['extensions'] = array('jpg jpeg');
-  $limits['file_size'] = 200 * 1024;
+  $limits['extensions'] = array('jpg jpeg gif png');
+  $limits['file_size'] = 1 * 1024;
 
   $validators = array(
     'file_validate_extensions' => $limits['extensions'],
