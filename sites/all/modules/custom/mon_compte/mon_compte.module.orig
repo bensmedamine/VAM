@@ -66,7 +66,6 @@ function mon_compte_theme() {
  * @param string $form_id Form ID
  */
 function mon_compte_form_alter(&$form, &$form_state, $form_id) {
-
   switch ($form_id) {
     case 'user_login' :
 
@@ -88,10 +87,11 @@ function mon_compte_form_alter(&$form, &$form_state, $form_id) {
 
 function inscription() {
   global $theme_path;
-  drupal_add_js($theme_path.'/js/messages_fr.js');
+
   drupal_add_js($theme_path . '/js/jquery.filestyle.js');
   drupal_add_js($theme_path . '/js/jquery.validate.min.js');
   drupal_add_js($theme_path . '/js/messages_fr.js');
+
   $js = 'jQuery(function($){
 
             //Costum validators
@@ -132,7 +132,6 @@ function inscription() {
                   tel: "digits",
                   cp_agence: "digits",
                   tel_agence: "digits",
-
                   site_web_agence: "url",
                   "files[logo_agence]": "check_ext_photo"
                 },
@@ -140,12 +139,18 @@ function inscription() {
 
                }
             });
+
+            
             $("#edit-logo-agence").filestyle({ 
               image: "'.$theme_path.'/images/choose-file.gif",
               imageheight : 35,
               imagewidth : 82,
               width : 250
-            });          });';
+            });
+            
+
+          });
+	';
 
   drupal_add_js($js, 'inline');
   return theme('inscription', array('form' => drupal_get_form('inscription_form')));
@@ -263,7 +268,6 @@ function inscription_form() {
   $form['agence']['logo_agence'] = array(
     '#type' => 'file',
     '#title' => t('Logo'),
-
     '#attributes' => array('class' => array('has-description')),
     '#required' => FALSE,
      '#size' => FALSE,
@@ -300,7 +304,6 @@ function inscription_form_validate($form, &$form_state) {
     $file = inscription_upload_file('logo_agence', 'public://');
 
     if (empty($file)) {
-
       form_set_error('logo_agence', t('Veuillez mettre une photo de type (JPG, JPEG, PNG ou GIF) ayant une taille de 200Ko ou moins.'));
     }
     else {
@@ -334,7 +337,6 @@ function inscription_form_validate($form, &$form_state) {
 
 function inscription_form_submit($form, &$form_state) {
   $data = $form_state['values'];
-
 
   $pass = user_password();
   $account = array(
@@ -385,8 +387,6 @@ function inscription_succes() {
 
 function inscription_upload_file($file, $savepath) {
   $limits = array();
-
-
   $limits['extensions'] = array('jpg jpeg gif png');
   $limits['file_size'] = 1 * 1024;
 
