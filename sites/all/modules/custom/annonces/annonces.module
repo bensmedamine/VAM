@@ -152,16 +152,37 @@ function deposer_annonce() {
             return true;
           }
 
-          function arrayUnset(array, value){
-              array.splice(array.indexOf(value), 1);
+          //prototype.indexOf
+          if (!Array.prototype.indexOf) {
+            Array.prototype.indexOf = function(elt /*, from*/) {
+              var len = this.length;
+              var from = Number(arguments[1]) || 0;
+              from = (from < 0) ? Math.ceil(from) : Math.floor(from);
+              if (from < 0) from += len;
+              for (; from < len; from++) {
+                if (from in this && this[from] === elt)
+                  return from;
+              }
+              return -1;
+            };
+          }
+
+          //prototype.unset
+          Array.prototype.unset = function(val){
+            var index = this.indexOf(val);
+            if(index > -1){
+              this.splice(index,1);
+            }
           }
 
           $(".supprimer-user-picture").live("click", function(){
+              set_picture_message("");
               var html = "<p><img src=\"' . url('sites/default/files/pictures/no_ads_picture.gif') . '\"></p>";
               var alt = $(this).parents("div.photo").find("img").eq(0).attr("alt");
               $(this).parents("div.photo").addClass("empty").html(html);
               if (alt.length) {
-                arrayUnset(user_pictures , alt);
+                user_pictures.unset(alt);
+
               }
               if (count_pictures > 0 ) {
                 count_pictures--;
@@ -173,7 +194,8 @@ function deposer_annonce() {
           //traitement des photos
           $("#edit-photo").live("change", function(){
 
-              var value = $(this).val();
+              var value = $(this).val().toLowerCase();
+              var img = value.split("/").pop().toLowerCase();
 
               //Vérification de l extension
               var ext = value.split(".").pop().toLowerCase();
@@ -226,7 +248,7 @@ function deposer_annonce() {
                         }
 
                         count_pictures++;
-                        user_pictures.push(value);
+                        user_pictures.push(photo.filename);
                         var uri = photo.uri;
                         var html = "<p><img src=\'"+img_annonces_url+photo.filename+"\' alt=\'"+photo.filename+"\' with=\'131\' height=\'85\'></p>";
                         html += "<input type=\'hidden\' value=\'"+photo.fid+"\' name=\'pictures[]\'>";

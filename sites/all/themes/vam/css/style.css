@@ -398,7 +398,7 @@ ul.disc li{
 
 /*== sideright & widget ==*/
 
-.sidebar_right{ width:300px; float:right; margin-top: 14px;}
+.sidebar_right{ width:300px; float:right; margin-top: 10px;}
 .sidebar .widget-title{font-size:18px; line-height:18px; margin-bottom:10px; border-bottom:1px solid #d8d8d8; padding-bottom:5px;}
 .sidebar ul{list-style-type:none; padding:0 ; margin:0; list-style-position:outside}
 .sidebar ul li{list-style-type:none; padding:0 ; margin:0; font-size:11px;}
@@ -650,9 +650,11 @@ h3.desc{margin-bottom: 10px;}
 
 #content .acces-deny {font-family: 'Open Sans',sans-serif; font-weight: 400; font-size: 16px;}
 
+#header-annonce {font-family: 'Open Sans',sans-serif; font-weight: 400;}
+
 #block-blocks-vam-front-search h2 span.blue {font-weight: 400;}
 
-#block-blocks-vam-last-announcements a.featured{font-family: 'Open Sans',sans-serif; font-size: 14px; font-weight: 400;} 
+#block-blocks-vam-last-announcements a.featured{font-family: 'Open Sans',sans-serif; font-size: 14px; font-weight: 400;}
 #block-blocks-vam-last-announcements h3 a {font-weight: 300;}
 #block-blocks-vam-last-announcements ul.box_text li {font-family: 'Open Sans',sans-serif; font-size: 13px;}
 
