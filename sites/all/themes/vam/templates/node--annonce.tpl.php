@@ -81,6 +81,7 @@ $edit_link = null;
 if ($is_admin) {
   $edit_link = '<a class="blue fs-18" href="/node/' . $node->nid . '/edit" target="_blank" > Modifier l\'annonce</a>';
 }
+up_nbr_views($node->nid);
 ?>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -117,22 +118,22 @@ if ($is_admin) {
     </style>
   <?php endif; ?>
   <script type="text/javascript">
-    jQuery(function($){
-      $(".group").colorbox({rel:'group'});
-      $("#foo").carouFredSel({
-        circular    : false,
-        infinite    : true,
-        auto : true,
-        prev : {
-          button      : "#foo_prev",
-          items       : 1
-        },
-        next : {
-          button      : "#foo_next",
-          items       : 1
-        }
-      });
+  jQuery(function($){
+    $(".group").colorbox({rel:'group'});
+    $("#foo").carouFredSel({
+      circular    : false,
+      infinite    : true,
+      auto : true,
+      prev : {
+        button      : "#foo_prev",
+        items       : 1
+      },
+      next : {
+        button      : "#foo_next",
+        items       : 1
+      }
     });
+  });
   </script>
 <?php endif; ?>
 <div class="clear"><br /></div>
@@ -152,7 +153,13 @@ if ($is_admin) {
 <div class="clear"><br /><br /></div>
 
 <h2 class="underline">Annonceur <?php print $node->field_type_annonceur['und'][0]['taxonomy_term']->name; ?></h2>
-<p class="fs-18 telephone"><?php print ($node->field_prenom['und'][0]['value']); ?> : <?php print ($node->field_tel['und'][0]['value']); ?></p>
+<p class="fs-18 telephone"><?php print ($node->field_prenom['und'][0]['value']); ?> :
+  <?php if (isset($node->field_tel['und'][0]['value'])): ?>
+    <?php $phone = $node->field_tel['und'][0]['value']; ?>
+
+  <img src="<?php print url('sites/default/phone.php', array('query' => array('phone' => base64_encode($phone)))); ?>" />
+  <?php endif; ?>
+</p>
 <div class="clear"><br /></div>
 
 <?php /*
@@ -194,29 +201,8 @@ if ($is_admin) {
  */ ?>
 
 <h2 class="underline">Autres annonces location <?php print strtolower($node->field_type_du_bien['und'][0]['taxonomy_term']->name); ?> à <?php print $node->field_ville['und'][0]['taxonomy_term']->name; ?></h2>
-<ul class="four_column_properties last-announcement">
-  <li>
-    <a title="Studio meublé au maarif" href="/annonce-location-vacances-maroc/casablanca/studio/studio-meuble-au-maarif-0"><img width="184" height="119" alt="Studio meublé au maarif" src="http://vacaumaroc.dev/sites/default/files/styles/thumb_184x119/public/img_annonces/studio-meuble-au-maarif_3.jpg" typeof="foaf:Image"></a>      <h3><a title="Studio meublé au maarif" href="/annonce-location-vacances-maroc/casablanca/studio/studio-meuble-au-maarif-0"><cufon class="cufon cufon-canvas" alt="Studio " style="width: 57px; height: 18px;"><canvas width="71" height="21" style="width: 71px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>Studio </cufontext></cufon><cufon class="cufon cufon-canvas" alt="meublé " style="width: 66px; height: 18px;"><canvas width="80" height="21" style="width: 80px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>meublé </cufontext></cufon><cufon class="cufon cufon-canvas" alt="au " style="width: 25px; height: 18px;"><canvas width="39" height="21" style="width: 39px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>au </cufontext></cufon><cufon class="cufon cufon-canvas" alt="maarif" style="width: 52px; height: 18px;"><canvas width="65" height="21" style="width: 65px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>maarif</cufontext></cufon></a></h3>
-    <ul class="box_text">
-      <li><span class="left">Ajouté il y a</span> 1 semaine 8 heures</li>
-      <li><span class="left">Ville</span> Casablanca</li>
-      <li><span class="left">Logement</span> Studio</li>
-    </ul>
-  </li>
-  <li>
-    <a title="Appartement meublé a louer marrakech" href="/annonce-location-vacances-maroc/marrackech/appartement/appartement-meuble-a-louer-marrakech"><img width="184" height="119" alt="Appartement meublé a louer marrakech" src="http://vacaumaroc.dev/sites/default/files/styles/thumb_184x119/public/img_annonces//appartement-meuble-a-louer-marrakech.jpg" typeof="foaf:Image"></a>      <h3><a title="Appartement meublé a louer marrakech" href="/annonce-location-vacances-maroc/marrackech/appartement/appartement-meuble-a-louer-marrakech"><cufon class="cufon cufon-canvas" alt="Appartement " style="width: 110px; height: 18px;"><canvas width="124" height="21" style="width: 124px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>Appartement </cufontext></cufon><cufon class="cufon cufon-canvas" alt="meublé " style="width: 66px; height: 18px;"><canvas width="80" height="21" style="width: 80px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>meublé </cufontext></cufon><cufon class="cufon cufon-canvas" alt="a " style="width: 15px; height: 18px;"><canvas width="29" height="21" style="width: 29px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>a </cufontext></cufon><cufon class="cufon cufon-canvas" alt="louer " style="width: 47px; height: 18px;"><canvas width="61" height="21" style="width: 61px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>louer </cufontext></cufon><cufon class="cufon cufon-canvas" alt="marrakech" style="width: 84px; height: 18px;"><canvas width="93" height="21" style="width: 93px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>marrakech</cufontext></cufon></a></h3>
-    <ul class="box_text">
-      <li><span class="left">Ajouté il y a</span> 1 semaine 8 heures</li>
-      <li><span class="left">Ville</span> Marrackech</li>
-      <li><span class="left">Logement</span> Appartement</li>
-    </ul>
-  </li>
-  <li>
-    <a title="Appartement meublé 250dh à agadir" href="/annonce-location-vacances-maroc/agadir/appartement/appartement-meuble-250dh-a-agadir"><img width="184" height="119" alt="Appartement meublé 250dh à agadir" src="http://vacaumaroc.dev/sites/default/files/styles/thumb_184x119/public/img_annonces//appartement-meuble-250dh-a-agadir.jpg" typeof="foaf:Image"></a>      <h3><a title="Appartement meublé 250dh à agadir" href="/annonce-location-vacances-maroc/agadir/appartement/appartement-meuble-250dh-a-agadir"><cufon class="cufon cufon-canvas" alt="Appartement " style="width: 110px; height: 18px;"><canvas width="124" height="21" style="width: 124px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>Appartement </cufontext></cufon><cufon class="cufon cufon-canvas" alt="meublé " style="width: 66px; height: 18px;"><canvas width="80" height="21" style="width: 80px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>meublé </cufontext></cufon><cufon class="cufon cufon-canvas" alt="250dh " style="width: 57px; height: 18px;"><canvas width="71" height="21" style="width: 71px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>250dh </cufontext></cufon><cufon class="cufon cufon-canvas" alt="à " style="width: 15px; height: 18px;"><canvas width="29" height="21" style="width: 29px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>à </cufontext></cufon><cufon class="cufon cufon-canvas" alt="agadir" style="width: 51px; height: 18px;"><canvas width="63" height="21" style="width: 63px; height: 21px; top: -2px; left: -1px;"></canvas><cufontext>agadir</cufontext></cufon></a></h3>
-    <ul class="box_text">
-      <li><span class="left">Ajouté il y a</span> 1 semaine 16 heures</li>
-      <li><span class="left">Ville</span> Agadir</li>
-      <li><span class="left">Logement</span> Appartement</li>
-    </ul>
-  </li>
-</ul>
+<?php
+echo '<pre>';
+print_r(get_similar_annonces($node->field_ville['und'][0]['taxonomy_term']->tid, $node->field_type_du_bien['und'][0]['taxonomy_term']->tid));
+echo '</pre>';
+?>

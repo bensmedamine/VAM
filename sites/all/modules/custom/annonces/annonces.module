@@ -276,6 +276,12 @@ function annonces_query_random_alter($query) {
   $query->orderRandom();
 }
 
+/**
+ * Annonces sur la crousel de la page d'acceuil
+ * @param type $tid
+ * @param type $nbr
+ * @return type 
+ */
 function get_annonces_par_ville($tid, $nbr) {
 
   $query = new EntityFieldQuery();
@@ -291,8 +297,48 @@ function get_annonces_par_ville($tid, $nbr) {
   return $nodes;
 }
 
+/**
+ * Les annonces similaire sur la page détails annonces
+ * @param type $ville
+ * @param type $type_du_bien
+ * @param type $nbr
+ * @return type 
+ */
+function get_similar_annonces($ville, $type_du_bien, $nbr = 3) {
+$query = new EntityFieldQuery();
+  $entities = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'annonce')
+      ->propertyCondition('status', 1)
+      ->fieldCondition('field_ville', 'tid', $ville)
+      ->fieldCondition('field_type_du_bien', 'tid', $type_du_bien)
+      ->addTag('random')
+      ->range(0, $nbr)
+      ->execute();
+
+  $nodes = node_load_multiple(array_keys($entities['node']));
+  return $nodes;
+}
+
+/**
+ * Ajoute 1 sur les view
+ * @param type $nid 
+ */
+function up_nbr_views($nid) {
+      db_update('field_data_field_vues')
+        ->expression('field_vues_value', 'field_vues_value + :val', array(':val' => 1))
+      ->condition('entity_id', $nid)
+      ->execute();
+  
+  return;
+}
+
+/**
+ * 
+ * @param type $tid
+ * @return type 
+ */
 function get_count_annonces_par_ville($tid) {
-  $count = db_query('SELECT COUNT(field_ville_tid) total FROM vam_field_data_field_ville WHERE field_ville_tid = :tid', array(':tid' => $tid))
+  $count = db_query('SELECT COUNT(field_ville_tid) total FROM {field_data_field_ville} WHERE field_ville_tid = :tid', array(':tid' => $tid))
       ->fetch();
   return $count->total;
 }
@@ -365,7 +411,7 @@ function nouvelle_annonce() {
     '#attributes' => array('class' => array('has-description')),
     '#required' => FALSE,
     '#size' => FALSE,
-    '#suffix' => '<img id="picture-loader" src="'.url('sites/default/files/pictos/ajax-loader.gif').'"><label id="picture-message" class="invalid"></label>',
+    '#suffix' => '<img id="picture-loader" src="' . url('sites/default/files/pictos/ajax-loader.gif') . '"><label id="picture-message" class="invalid"></label>',
     '#description' => 'Formats autorisés : JPG, JPEG, PNG ou GIF',
   );
 
@@ -403,7 +449,7 @@ function nouvelle_annonce() {
 }
 
 function nouvelle_annonce_validate($form, &$form_state) {
-
+  
 }
 
 function nouvelle_annonce_submit($form, &$form_state) {
@@ -414,4 +460,25 @@ function nouvelle_annonce_submit($form, &$form_state) {
   print_r($_POST['pictures']);
   echo '</pre>';
   die('DEBUG MODE');
+}
+
+
+function amynoffis($num) {
+ // header ("Content-type: image/png");
+$image = imagecreate(150,15);
+
+/*$orange = imagecolorallocate($image, 255, 128, 0); // Le fond est orange (car c'est la première couleur)
+$bleu = imagecolorallocate($image, 0, 0, 255);
+$bleuclair = imagecolorallocate($image, 156, 227, 254);*/
+
+$blanc = imagecolorallocate($image, 255, 255, 255);
+$noir = imagecolorallocate($image, 0, 0, 0);
+
+
+
+imagestring($image, 6, 0, 0, $num, $noir);
+//imagecolortransparent($image, $orange); // On rend le fond orange transparent
+
+imagepng($image);
+return TRUE;
 }
