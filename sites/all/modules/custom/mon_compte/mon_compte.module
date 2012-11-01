@@ -387,7 +387,7 @@ function inscription_upload_file($file, $savepath) {
 
 
   $limits['extensions'] = array('jpg jpeg gif png');
-  $limits['file_size'] = 1000 * 1024;
+  $limits['file_size'] = 2000 * 1024;
 
   $validators = array(
     'file_validate_extensions' => $limits['extensions'],
