@@ -5,7 +5,7 @@
       <?php print l('<h2>' . $node->title . '</h2>', 'node/' . $node->nid, array('html' => true, 'attributes' => array('title' => $node->title))); ?><span class="timer">Il y a <?php print format_interval(REQUEST_TIME - $node->created); ?> | <strong><?php print $node->field_vues['und'][0]['value']; ?></strong> vues</span>
     </div><!-- end .title_property2 -->
     <div class="clear"></div>
-    <?php $img_uri = @$node->field_photos['und'][0]['uri']; ?>
+    <?php $img_uri = isset($node->field_photos['und'][0]['uri'])?$node->field_photos['und'][0]['uri']:null; ?>
     <?php
     if (empty($img_uri)) {
       $img_uri = 'public://no-photo.gif';
