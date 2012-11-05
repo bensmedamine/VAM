@@ -648,6 +648,7 @@ h3.desc{margin-bottom: 10px;}
 .slider-city .blue, h2, h3{font-family: 'Open Sans',sans-serif;}
 .num {font-family: Verdana,Arial,Tahoma;}
 
+#content .phone {vertical-align: middle;}
 #content .acces-deny {font-family: 'Open Sans',sans-serif; font-weight: 400; font-size: 16px;}
 
 #header-annonce {font-family: 'Open Sans',sans-serif; font-weight: 400;}

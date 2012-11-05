@@ -157,7 +157,7 @@ up_nbr_views($node->nid);
   <?php if (isset($node->field_tel['und'][0]['value'])): ?>
     <?php $phone = $node->field_tel['und'][0]['value']; ?>
 
-  <img src="<?php print url('sites/default/phone.php', array('query' => array('phone' => base64_encode($phone)))); ?>" />
+  <img class="phone" src="<?php print url('sites/default/phone.php', array('query' => array('phone' => base64_encode($phone)))); ?>" />
   <?php endif; ?>
 </p>
 <div class="clear"><br /></div>
