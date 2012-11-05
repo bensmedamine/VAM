@@ -157,7 +157,7 @@ up_nbr_views($node->nid);
   <?php if (isset($node->field_tel['und'][0]['value'])): ?>
     <?php $phone = $node->field_tel['und'][0]['value']; ?>
 
-  <img class="phone" src="<?php print url('sites/default/phone.php', array('query' => array('phone' => base64_encode($phone)))); ?>" />
+    <img src="<?php print url('sites/default/phone.php', array('query' => array('phone' => base64_encode($phone)))); ?>" />
   <?php endif; ?>
 </p>
 <div class="clear"><br /></div>
@@ -201,8 +201,25 @@ up_nbr_views($node->nid);
  */ ?>
 
 <h2 class="underline">Autres annonces location <?php print strtolower($node->field_type_du_bien['und'][0]['taxonomy_term']->name); ?> à <?php print $node->field_ville['und'][0]['taxonomy_term']->name; ?></h2>
-<?php
-echo '<pre>';
-print_r(get_similar_annonces($node->field_ville['und'][0]['taxonomy_term']->tid, $node->field_type_du_bien['und'][0]['taxonomy_term']->tid));
-echo '</pre>';
-?>
+<?php $similar_annonces = get_similar_annonces($node->field_ville['und'][0]['taxonomy_term']->tid, $node->field_type_du_bien['und'][0]['taxonomy_term']->tid, $node->nid); ?>
+<ul id="similar_annonces" class="four_column_properties last-announcement">
+  <?php $i = 0; ?>
+  <?php foreach ($similar_annonces as $annonce): ?>
+    <?php
+    $i++;
+    $picture = isset($annonce->field_photos['und'][0]['uri']) ? $annonce->field_photos['und'][0]['uri'] : null;
+    if (empty($picture)) {
+      $picture = 'public://no-photo.gif';
+    }
+    ?>
+    <li class="<?php print ($i == 3) ? 'nomargin' : ''  ?>">
+      <?php print l(theme('image_style', array('style_name' => 'thumb_184x119', 'path' => $picture, 'alt' => $annonce->title)), 'node/' . $annonce->nid, array('html' => true, 'attributes' => array('title' => $annonce->title))); ?>     
+      <h3 ><?php print l($annonce->title, 'node/' . $annonce->nid, array('html' => true, 'attributes' => array('title' => $annonce->title))); ?></h3>
+      <ul class="box_text">
+        <li><span class="left">Ajouté il y a</span> <?php print format_interval(REQUEST_TIME - $annonce->created); ?></li>
+        <li><span class="left">Ville</span> <?php print taxonomy_term_load($annonce->field_ville['und'][0]['tid'])->name; ?></li>
+        <li><span class="left">Logement</span> <?php print taxonomy_term_load($annonce->field_type_du_bien['und'][0]['tid'])->name; ?></li>
+      </ul>
+    </li>
+  <?php endforeach; ?> 
+</ul>  

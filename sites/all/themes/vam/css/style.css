@@ -630,6 +630,8 @@ label.invalid {color: red; display: block; margin-left: 154px; margin-bottom: 5p
 #header-annonce span{float: right;}
 h3.desc{margin-bottom: 10px;}
 .telephone{padding: 5px 0px 5px 30px; background: url("/sites/default/files/pictures/telephone.png") no-repeat scroll 0px 2px transparent;}
+#similar_annonces li{margin: 0 10px 0 0; padding: 7px;}
+#similar_annonces h3{font-size: 14px;}
 
 /* */
 #search-form-front{clear: both;}

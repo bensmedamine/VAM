@@ -326,13 +326,14 @@ function get_annonces_par_ville($tid, $nbr) {
  * @param type $nbr
  * @return type 
  */
-function get_similar_annonces($ville, $type_du_bien, $nbr = 3) {
-$query = new EntityFieldQuery();
+function get_similar_annonces($ville, $type_du_bien, $nid_to_esc, $nbr = 3) {
+  $query = new EntityFieldQuery();
   $entities = $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'annonce')
       ->propertyCondition('status', 1)
       ->fieldCondition('field_ville', 'tid', $ville)
       ->fieldCondition('field_type_du_bien', 'tid', $type_du_bien)
+      ->propertyCondition('nid', $nid_to_esc, '<>')
       ->addTag('random')
       ->range(0, $nbr)
       ->execute();
@@ -346,11 +347,11 @@ $query = new EntityFieldQuery();
  * @param type $nid 
  */
 function up_nbr_views($nid) {
-      db_update('field_data_field_vues')
-        ->expression('field_vues_value', 'field_vues_value + :val', array(':val' => 1))
+  db_update('field_data_field_vues')
+      ->expression('field_vues_value', 'field_vues_value + :val', array(':val' => 1))
       ->condition('entity_id', $nid)
       ->execute();
-  
+
   return;
 }
 
@@ -484,23 +485,22 @@ function nouvelle_annonce_submit($form, &$form_state) {
   die('DEBUG MODE');
 }
 
-
 function amynoffis($num) {
- // header ("Content-type: image/png");
-$image = imagecreate(150,15);
+  // header ("Content-type: image/png");
+  $image = imagecreate(150, 15);
 
-/*$orange = imagecolorallocate($image, 255, 128, 0); // Le fond est orange (car c'est la première couleur)
-$bleu = imagecolorallocate($image, 0, 0, 255);
-$bleuclair = imagecolorallocate($image, 156, 227, 254);*/
+  /* $orange = imagecolorallocate($image, 255, 128, 0); // Le fond est orange (car c'est la première couleur)
+    $bleu = imagecolorallocate($image, 0, 0, 255);
+    $bleuclair = imagecolorallocate($image, 156, 227, 254); */
 
-$blanc = imagecolorallocate($image, 255, 255, 255);
-$noir = imagecolorallocate($image, 0, 0, 0);
+  $blanc = imagecolorallocate($image, 255, 255, 255);
+  $noir = imagecolorallocate($image, 0, 0, 0);
 
 
 
-imagestring($image, 6, 0, 0, $num, $noir);
+  imagestring($image, 6, 0, 0, $num, $noir);
 //imagecolortransparent($image, $orange); // On rend le fond orange transparent
 
-imagepng($image);
-return TRUE;
+  imagepng($image);
+  return TRUE;
 }
