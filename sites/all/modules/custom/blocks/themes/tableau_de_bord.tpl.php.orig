@@ -5,7 +5,7 @@
     <li><a href="<?php print url('modifier-mes-coordonnees'); ?>" title="Modifier mes coordonnées"><span class="blue">&rarr;</span> Modifier mes coordonnées</a></li>
     <li><a href="<?php print url('mon-compte'); ?>" title="Mon compte"><img src="<?php print url($theme_path . '/images/user_16.png') ?>" style="vertical-align: sub;" /> <span class="fs-12 blue"><?php print $user_name; ?></span></a></li>
     <li><a href="<?php print url('modifier-mes-coordonnees'); ?>" title="Modifier mes coordonnées"><span class="blue">&rarr;</span> Modifier mes coordonnées</a></li>
-    <li><a href="#" title="Modifier les coordonnées de Pyxi"><span class="blue">&rarr;</span> Modifier les coordonnées  de Pyxi</a></li>
+    <li><a href="<?php print url('modifier-informations-agence'); ?>" title="Modifier les coordonnées de <?php print $user->field_nom_agence[LANGUAGE_NONE][0]['value']; ?>"><span class="blue">&rarr;</span> Modifier les coordonnées de <?php print $user->field_nom_agence[LANGUAGE_NONE][0]['value']; ?></a></li>
     <?php if (arg(0) != 'deposer-une-annonce'): ?>
       <li><a href="<?php print url('deposer-une-annonce'); ?>" title="Déposer une annonce"><span class="blue">&rarr;</span> Déposer une annonce</a></li>
     <?php endif; ?>
