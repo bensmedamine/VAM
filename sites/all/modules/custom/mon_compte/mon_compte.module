@@ -35,6 +35,12 @@ function mon_compte_menu() {
     'access callback' => 'user_is_logged_in',
     'file' => 'compte.fo.inc',
   );
+  $items['modifier-informations-agence'] = array(
+    'title' => 'Modifier les informations de l\'agence',
+    'page callback' => 'modifier_informations_agence',
+    'access callback' => 'user_is_logged_in',
+    'file' => 'compte.fo.inc',
+  );
   return $items;
 }
 
@@ -54,6 +60,9 @@ function mon_compte_theme() {
     ),
     'mes_coordonnees' => array(
       'template' => 'themes/mes_coordonnees'
+    ),
+    'informations_agence' => array(
+      'template' => 'themes/informations_agence'
     ),
   );
 }
@@ -88,7 +97,7 @@ function mon_compte_form_alter(&$form, &$form_state, $form_id) {
 
 function inscription() {
   global $theme_path;
-  drupal_add_js($theme_path.'/js/messages_fr.js');
+  drupal_add_js($theme_path . '/js/messages_fr.js');
   drupal_add_js($theme_path . '/js/jquery.filestyle.js');
   drupal_add_js($theme_path . '/js/jquery.validate.min.js');
   drupal_add_js($theme_path . '/js/messages_fr.js');
@@ -140,11 +149,12 @@ function inscription() {
                }
             });
             $("#edit-logo-agence").filestyle({
-              image: "'.$theme_path.'/images/choose-file.gif",
+              image: "' . $theme_path . '/images/choose-file.gif",
               imageheight : 35,
               imagewidth : 82,
               width : 250
-            });          });';
+            });         
+          });';
 
   drupal_add_js($js, 'inline');
   return theme('inscription', array('form' => drupal_get_form('inscription_form')));
@@ -262,10 +272,9 @@ function inscription_form() {
   $form['agence']['logo_agence'] = array(
     '#type' => 'file',
     '#title' => t('Logo'),
-
     '#attributes' => array('class' => array('has-description')),
     '#required' => FALSE,
-     '#size' => FALSE,
+    '#size' => FALSE,
     '#description' => 'Formats autorisés : JPG, JPEG, PNG ou GIF',
   );
   $form['submit'] = array(
@@ -306,29 +315,6 @@ function inscription_form_validate($form, &$form_state) {
       $form_state['values']['fid_logo_agence'] = $file->fid;
     }
   }
-
-//  // Upload files if any
-//  if (!empty($_FILES['files']['name']['logo_agence'])) {
-//    $files = array();
-//    foreach ($_FILES['files']['name'] as $k => $v) {
-//      if (!empty($v)) {
-//        $file = inscription_upload_file($k, 'public://');
-//
-//        if (empty($file)) {
-//          form_set_error($k, t('Veuillez mettre une photo de type (jpg, jpeg) ayant une taille de 200Ko ou moins.'));
-//        }
-//        else {
-//          $files[] = $file;
-//        }
-//      }
-//    }
-//
-//    if (!empty($files)) {
-//      foreach ($files as $k => $v) {
-//        $form_state['values']['fid_' . $v->source] = $v->fid;
-//      }
-//    }
-//  }
 }
 
 function inscription_form_submit($form, &$form_state) {
