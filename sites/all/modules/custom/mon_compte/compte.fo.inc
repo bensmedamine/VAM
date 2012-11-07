@@ -244,7 +244,7 @@ function informations_agence_form() {
     '#title' => t('Adresse'),
     '#size' => 60,
     '#maxlength' => 128,
-    '#default_value' => $user->field_prenom[LANGUAGE_NONE][0]['value'],
+    '#default_value' => $user->field_adresse[LANGUAGE_NONE][0]['value'],
   );
   $form['cp_agence'] = array(
     '#type' => 'textfield',
@@ -270,8 +270,18 @@ function informations_agence_form() {
   );
 
   if (!empty($user->field_image[LANGUAGE_NONE][0]['uri'])) {
+    $form[] = array(
+      '#markup' => '<div id="agence-picture">'
+    );
     $form['picture'] = array(
       '#markup' => theme('image_style', array('style_name' => 'medium', 'path' => $user->field_image[LANGUAGE_NONE][0]['uri'], 'alt' => 'Agence ' . ucfirst($user->field_nom_agence[LANGUAGE_NONE][0]['value']), 'attributes' => array('class' => array('logo-agence'))))
+    );
+    $form['delete_picture'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'Supprimer la photo',
+    );
+    $form[] = array(
+      '#markup' => '</div>'
     );
   }
 
@@ -326,6 +336,9 @@ function informations_agence_form_submit($form, &$form_state) {
     $edit['field_site_web'] = array(LANGUAGE_NONE => array(array('value' => $data['site_web_agence'])));
   if (!empty($data['fid_logo_agence']))
     $edit['field_image'] = array(LANGUAGE_NONE => array(array('fid' => $data['fid_logo_agence'])));
+
+  if (isset($data['delete_picture']) && $data['delete_picture'] == 1)
+    $edit['field_image'] = array();
 
   $user = user_save($user, $edit);
   drupal_set_message(t('Votre profil a été mis à jour'));
