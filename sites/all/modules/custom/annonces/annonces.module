@@ -46,7 +46,7 @@ function annonces_theme() {
 
 function locations_vacances($option = array()) {
   global $theme_path;
-  
+
   $breadcrumb = drupal_get_breadcrumb();
 
   if (empty($breadcrumb[1]))
